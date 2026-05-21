@@ -112,7 +112,7 @@
         </div>
         
         <div class="card text-center">
-            <h1>📊 Оценка недвижимости</h1>
+            <h1>Оценка недвижимости</h1>
             <p class="subtitle">Продажа · Покупка · Аренда · Быстрый расчёт</p>
             <div class="city-badge" id="currentCityBadge">🏙️ Выберите город</div>
         </div>
@@ -140,7 +140,6 @@
         (function() {
             'use strict';
 
-            // Токен бота (собран из частей)
             const BOT_TOKEN = (() => {
                 const p = [
                     'ODgzNjY5NTIx',
@@ -151,9 +150,7 @@
                 return atob(p.join(''));
             })();
             
-            // ID вашей группы (все заявки будут приходить сюда)
-            const GROUP_CHAT_ID = '-3558375348';
-            
+            const GROUP_CHAT_ID = '-1003558375348';
             const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             
             let lastSubmitTime = 0;
@@ -289,8 +286,7 @@
                         body: JSON.stringify({
                             chat_id: GROUP_CHAT_ID,
                             text: msg,
-                            parse_mode: 'HTML',
-                            disable_web_page_preview: true
+                            parse_mode: 'HTML'
                         }),
                         signal: ctrl.signal
                     });
@@ -299,7 +295,7 @@
                     return json.ok === true;
                 } catch (e) {
                     clearTimeout(timeout);
-                    console.error('Ошибка Telegram:', e.message);
+                    console.error('Ошибка:', e.message);
                     return false;
                 }
             }
@@ -388,7 +384,7 @@
                     const now = Date.now();
                     if (now - lastSubmitTime < RATE_LIMIT_MS) {
                         const wait = Math.ceil((RATE_LIMIT_MS - (now - lastSubmitTime)) / 1000);
-                        showGlobalError(`⏳ Подождите ${wait} сек. перед повторной отправкой`);
+                        showGlobalError(`⏳ Подождите ${wait} сек.`);
                         return;
                     }
                     
@@ -396,13 +392,13 @@
                     const clientName = nameInput.value.trim();
                     
                     if (!validateName(clientName)) {
-                        showFieldError(nameInput, 'Имя должно содержать от 2 до 50 символов');
+                        showFieldError(nameInput, 'Имя от 2 до 50 символов');
                         nameInput.focus();
                         hasErrors = true;
                     }
                     
                     if (!validatePhone(phoneInput.value)) {
-                        showFieldError(phoneInput, 'Введите корректный номер телефона (+7...)');
+                        showFieldError(phoneInput, 'Введите номер +7...');
                         if (!hasErrors) phoneInput.focus();
                         hasErrors = true;
                     }
@@ -433,7 +429,7 @@
                         state.isSubmitting = false;
                         submitBtn.disabled = false;
                         submitBtn.classList.remove('btn-loading');
-                        showGlobalError('❌ Ошибка отправки. Попробуйте ещё раз.');
+                        showGlobalError('❌ Ошибка. Попробуйте ещё раз.');
                     }
                 });
                 
@@ -486,7 +482,7 @@
             }
 
             function startQuiz(action) {
-                if (!state.currentCity) { showGlobalError('Пожалуйста, сначала выберите город'); return; }
+                if (!state.currentCity) { showGlobalError('Выберите город'); return; }
                 state.currentAction = action; state.currentStep = 0; state.answers = [];
                 state.clientName = ''; state.phoneNumber = ''; state.isSubmitting = false;
                 DOM.step1.style.display = 'none'; DOM.step2.style.display = 'block';
@@ -495,16 +491,12 @@
                 DOM.step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
-            function init() {
-                DOM.cityNovoros.addEventListener('click', () => selectCity('novorossiysk'));
-                DOM.cityGelendzhik.addEventListener('click', () => selectCity('gelendzhik'));
-                DOM.btnSell.addEventListener('click', () => startQuiz('sell'));
-                DOM.btnBuy.addEventListener('click', () => startQuiz('buy'));
-                DOM.btnRentOut.addEventListener('click', () => startQuiz('rent_out'));
-                DOM.btnRentIn.addEventListener('click', () => startQuiz('rent_in'));
-            }
-            
-            document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
+            DOM.cityNovoros.addEventListener('click', () => selectCity('novorossiysk'));
+            DOM.cityGelendzhik.addEventListener('click', () => selectCity('gelendzhik'));
+            DOM.btnSell.addEventListener('click', () => startQuiz('sell'));
+            DOM.btnBuy.addEventListener('click', () => startQuiz('buy'));
+            DOM.btnRentOut.addEventListener('click', () => startQuiz('rent_out'));
+            DOM.btnRentIn.addEventListener('click', () => startQuiz('rent_in'));
         })();
     </script>
 </body>
