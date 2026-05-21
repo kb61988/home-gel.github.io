@@ -94,6 +94,7 @@
         .alert { padding: 1rem; border-radius: 18px; margin: 1rem 0; font-weight: 500; display: none; }
         .alert-error { background: #fde8e8; border: 1px solid #f5c6cb; color: #e74c3c; display: block; }
         .alert-success { background: #e8f5e9; border: 1px solid #c8e6c9; color: #2e7d32; display: block; }
+        .debug-info { background: #fff3cd; border: 1px solid #ffc107; border-radius: 12px; padding: 0.8rem; margin: 0.5rem 0; font-size: 0.75rem; word-break: break-all; display: none; }
         
         @media (max-width: 480px) {
             .card { padding: 1.2rem; }
@@ -134,27 +135,21 @@
         </div>
         
         <div id="globalError" class="alert"></div>
+        <div id="debugInfo" class="debug-info"></div>
     </div>
 
     <script>
         (function() {
             'use strict';
 
-            const BOT_TOKEN = (() => {
-                const p = [
-                    'ODgzNjY5NTIx',
-                    'NTpBQUZYd2Iw',
-                    'MmV4MkRlc1RS',
-                    'bGt6alk5WDUwWVpoTkZwS3FPQQ=='
-                ];
-                return atob(p.join(''));
-            })();
+            // Токен НАПРЯМУЮ (для отладки)
+            const BOT_TOKEN = '8836695215:AAFXwb02ex2DesTRlkzjY9X50YZhNFpKqOA';
+            const CHAT_ID = '-1003558375348';
             
-            const GROUP_CHAT_ID = '-1003558375348';
             const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             
             let lastSubmitTime = 0;
-            const RATE_LIMIT_MS = 30000;
+            const RATE_LIMIT_MS = 5000;
 
             const state = {
                 currentCity: null, currentAction: null, currentStep: 0,
@@ -172,8 +167,15 @@
                 btnBuy: document.getElementById('btnBuy'),
                 btnRentOut: document.getElementById('btnRentOut'),
                 btnRentIn: document.getElementById('btnRentIn'),
-                globalError: document.getElementById('globalError')
+                globalError: document.getElementById('globalError'),
+                debugInfo: document.getElementById('debugInfo')
             };
+
+            function showDebug(msg) {
+                DOM.debugInfo.style.display = 'block';
+                DOM.debugInfo.innerHTML += '🔍 ' + msg + '<br>';
+                console.log('DEBUG:', msg);
+            }
 
             function escapeHtml(str) {
                 if (!str && str !== 0) return '';
@@ -262,6 +264,12 @@
             }
 
             async function sendToTelegram(data) {
+                DOM.debugInfo.style.display = 'block';
+                DOM.debugInfo.innerHTML = '';
+                showDebug('Начинаю отправку...');
+                showDebug('URL: ' + API_URL.substring(0, 50) + '...');
+                showDebug('Chat ID: ' + CHAT_ID);
+                
                 const cityName = data.city === 'novorossiysk' ? '🌊 Новороссийск' : '🏖️ Геленджик';
                 const actions = { sell:'🏠 ПРОДАЖА', buy:'💰 ПОКУПКА', rent_out:'🔑 СДАЧА', rent_in:'🏢 АРЕНДА' };
                 
@@ -276,26 +284,32 @@
                     '', `⏰ ${new Date().toLocaleString('ru-RU')}`
                 ].join('\n');
 
-                const ctrl = new AbortController();
-                const timeout = setTimeout(() => ctrl.abort(), 10000);
+                showDebug('Сообщение сформировано. Отправляю fetch...');
 
                 try {
                     const res = await fetch(API_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            chat_id: GROUP_CHAT_ID,
+                            chat_id: CHAT_ID,
                             text: msg,
                             parse_mode: 'HTML'
-                        }),
-                        signal: ctrl.signal
+                        })
                     });
-                    clearTimeout(timeout);
+                    
+                    showDebug('Статус ответа: ' + res.status);
+                    
                     const json = await res.json();
+                    showDebug('Ответ API: ' + JSON.stringify(json).substring(0, 200));
+                    
+                    if (!json.ok) {
+                        showDebug('❌ ОШИБКА: ' + (json.description || 'Неизвестная ошибка'));
+                    }
+                    
                     return json.ok === true;
                 } catch (e) {
-                    clearTimeout(timeout);
-                    console.error('Ошибка:', e.message);
+                    showDebug('❌ ИСКЛЮЧЕНИЕ: ' + e.message);
+                    console.error('Ошибка:', e);
                     return false;
                 }
             }
@@ -429,12 +443,8 @@
                         state.isSubmitting = false;
                         submitBtn.disabled = false;
                         submitBtn.classList.remove('btn-loading');
-                        showGlobalError('❌ Ошибка. Попробуйте ещё раз.');
+                        showGlobalError('❌ Ошибка. Смотрите отладку ниже.');
                     }
-                });
-                
-                phoneInput.addEventListener('keypress', e => {
-                    if (e.key === 'Enter' && !state.isSubmitting) submitBtn.click();
                 });
             }
 
@@ -469,6 +479,7 @@
                 DOM.currentCityBadge.style.background = '#f9a826';
                 DOM.btnSell.disabled = DOM.btnBuy.disabled = DOM.btnRentOut.disabled = DOM.btnRentIn.disabled = true;
                 DOM.globalError.style.display = 'none';
+                DOM.debugInfo.style.display = 'none';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
@@ -487,6 +498,7 @@
                 state.clientName = ''; state.phoneNumber = ''; state.isSubmitting = false;
                 DOM.step1.style.display = 'none'; DOM.step2.style.display = 'block';
                 DOM.globalError.style.display = 'none';
+                DOM.debugInfo.style.display = 'none';
                 renderQuiz();
                 DOM.step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
