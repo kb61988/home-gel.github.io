@@ -140,7 +140,7 @@
         (function() {
             'use strict';
 
-            // Токен собран из 4 частей (защита от простых сканеров)
+            // Токен бота (собран из частей)
             const BOT_TOKEN = (() => {
                 const p = [
                     'ODgzNjY5NTIx',
@@ -151,10 +151,11 @@
                 return atob(p.join(''));
             })();
             
-            const CHAT_ID = '383582538';
+            // ID вашей группы (все заявки будут приходить сюда)
+            const GROUP_CHAT_ID = '-3558375348';
+            
             const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             
-            // Rate limiting: 30 секунд между отправками
             let lastSubmitTime = 0;
             const RATE_LIMIT_MS = 30000;
 
@@ -268,12 +269,12 @@
                 const actions = { sell:'🏠 ПРОДАЖА', buy:'💰 ПОКУПКА', rent_out:'🔑 СДАЧА', rent_in:'🏢 АРЕНДА' };
                 
                 const msg = [
-                    '🆕 НОВАЯ ЗАЯВКА!', '',
-                    `📍 Город: ${cityName}`,
-                    `📋 Тип: ${actions[data.action]}`,
-                    `👤 Имя: ${data.name}`,
-                    `📞 Телефон: ${data.phone}`,
-                    '📝 Ответы:',
+                    '🆕 <b>НОВАЯ ЗАЯВКА!</b>', '',
+                    `📍 <b>Город:</b> ${cityName}`,
+                    `📋 <b>Тип:</b> ${actions[data.action]}`,
+                    `👤 <b>Имя:</b> ${data.name}`,
+                    `📞 <b>Телефон:</b> ${data.phone}`,
+                    '📝 <b>Ответы:</b>',
                     ...data.details.map((a,i) => `  ${i+1}. ${a}`),
                     '', `⏰ ${new Date().toLocaleString('ru-RU')}`
                 ].join('\n');
@@ -286,7 +287,7 @@
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            chat_id: CHAT_ID,
+                            chat_id: GROUP_CHAT_ID,
                             text: msg,
                             parse_mode: 'HTML',
                             disable_web_page_preview: true
