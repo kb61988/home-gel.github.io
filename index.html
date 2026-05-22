@@ -10,7 +10,6 @@
     <meta name="author" content="Екатерина — риелтор в Геленджике">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Недвижимость в Геленджике">
     <meta property="og:title" content="🏠 Найдите свой дом у моря в Геленджике">
@@ -19,13 +18,11 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="🏠 Недвижимость в Геленджике | Подбор жилья">
     <meta name="twitter:description" content="Помогу найти идеальное жильё у моря. Любой бюджет. Бесплатная консультация!">
     <meta name="twitter:image" content="https://www.onetwotrip.com/ru/blog/wp-content/uploads/2021/01/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.jpg">
 
-    <!-- Структурированные данные -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -47,19 +44,15 @@
         }
     </script>
 
-    <!-- Гео-теги -->
     <meta name="geo.region" content="RU-KDA">
     <meta name="geo.placename" content="Геленджик">
 
-    <!-- Фавиконки -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🏠</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='36' fill='%230a192f'/><text y='120' font-size='90' text-anchor='middle' x='90'>🏠</text></svg>">
     <meta name="theme-color" content="#0a192f">
 
-    <!-- reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Lfn3fYsAAAAACx-Cg50PZfkOmiYSSgbS0EtCxRb"></script>
 
-    <!-- Яндекс.Метрика -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -75,13 +68,11 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/99999999" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
-    <!-- Предзагрузка -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.telegram.org">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -104,7 +95,6 @@
             line-height: 1.6;
         }
 
-        /* ГЛАВНЫЙ ЭКРАН */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -154,7 +144,6 @@
             opacity: 0.95;
         }
 
-        /* КВИЗ КАРТОЧКА */
         .quiz-card {
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px);
@@ -254,7 +243,6 @@
             cursor: not-allowed;
         }
 
-        /* ФОРМА */
         .input-wrapper {
             position: relative;
             margin-bottom: 15px;
@@ -297,7 +285,6 @@
 
         .error-message.visible { display: block; }
 
-        /* ЧЕКБОКС СОГЛАСИЯ */
         .consent-checkbox {
             display: flex;
             align-items: flex-start;
@@ -325,7 +312,6 @@
             color: #ff6b6b;
         }
 
-        /* ПРЕИМУЩЕСТВА */
         .features {
             padding: 80px 20px;
             background: var(--white);
@@ -379,7 +365,6 @@
             color: var(--primary-dark);
         }
 
-        /* БЛОК О РИЕЛТОРЕ */
         .about-section {
             padding: 80px 20px;
             background: var(--primary-dark);
@@ -459,6 +444,35 @@
 
         .toast.show { transform: translateX(-50%) translateY(0); }
 
+        .success-message {
+            text-align: center;
+            padding: 20px;
+        }
+        .success-message .emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .success-message .title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        .success-message .text {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+        .btn-restart {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-dark);
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -486,9 +500,11 @@
                     <div class="progress-fill" id="progressFill" style="width: 0%"></div>
                 </div>
                 <div class="step-indicator" id="stepIndicator">ШАГ 1 ИЗ 4</div>
-                <div class="quiz-question" id="quizQuestion"></div>
-                <div class="quiz-options" id="quizOptions"></div>
-                <div class="quiz-nav" id="quizNav"></div>
+                <div id="quizContent">
+                    <div class="quiz-question" id="quizQuestion"></div>
+                    <div class="quiz-options" id="quizOptions"></div>
+                    <div class="quiz-nav" id="quizNav"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -556,7 +572,6 @@
 
     <script>
         (function() {
-            // КОНФИГУРАЦИЯ
             const CONFIG = {
                 botToken: (() => {
                     const p = ['ODgzNjY5NTIx','NTpBQUZYd2Iw','MmV4MkRlc1RS','bGt6alk5WDUwWVpoTkZwS3FPQQ=='];
@@ -566,7 +581,6 @@
                 phoneMaxDigits: 11,
             };
 
-            // ВОПРОСЫ КВИЗА
             const questions = [
                 { question: 'Какая недвижимость вас интересует?', options: ['Студия', 'Квартира', 'Дом', 'Апартаменты'] },
                 { question: 'Сколько комнат нужно?', options: ['1 комната', '2 комнаты', '3 комнаты', '4 и более'] },
@@ -578,14 +592,13 @@
             let answers = [];
             let isSubmitting = false;
 
-            // DOM элементы квиза
             const progressFill = document.getElementById('progressFill');
             const stepIndicator = document.getElementById('stepIndicator');
             const quizQuestion = document.getElementById('quizQuestion');
             const quizOptions = document.getElementById('quizOptions');
             const quizNav = document.getElementById('quizNav');
+            const quizContent = document.getElementById('quizContent');
 
-            // Функции валидации
             const validateName = (name) => name.trim().length >= 2 && name.trim().length <= 50;
             const validatePhone = (phone) => {
                 const digits = phone.replace(/\D/g, '');
@@ -593,7 +606,6 @@
             };
             const getPhoneDigits = (phone) => phone.replace(/\D/g, '').substring(0, 11);
 
-            // Маска телефона
             const initPhoneMask = (input) => {
                 input.addEventListener('input', (e) => {
                     let digits = e.target.value.replace(/\D/g, '');
@@ -607,7 +619,6 @@
                 });
             };
 
-            // Показ уведомления
             const showToast = (message, type = 'success') => {
                 const toast = document.getElementById('toast');
                 toast.textContent = message;
@@ -617,14 +628,12 @@
                 setTimeout(() => toast.classList.remove('show'), 3000);
             };
 
-            // Отправка в Telegram
             const sendToTelegram = async (name, phone, isQuiz = true) => {
                 let answersText = '';
                 if (isQuiz) {
-                    // Формируем ответы, пропуская вопрос о комнатах, если выбрана студия
                     const isStudio = answers[0] === 'Студия';
                     answersText = answers.map((a, i) => {
-                        if (isStudio && i === 1) return null; // пропускаем вопрос о комнатах
+                        if (isStudio && i === 1) return null;
                         return `${i+1}. ${questions[i].question}: ${a}`;
                     }).filter(a => a !== null).join('\n');
                 }
@@ -643,29 +652,32 @@
                 } catch { return false; }
             };
 
-            // Получение следующего шага с учётом пропуска комнат для студии
+            const showSuccessScreen = (name) => {
+                quizContent.innerHTML = `
+                    <div class="success-message">
+                        <div class="emoji">🎉</div>
+                        <div class="title">Спасибо, ${name}!</div>
+                        <div class="text">Я перезвоню вам в ближайшее время и подберу лучшие варианты.</div>
+                        <button class="btn-restart" onclick="window.restartQuiz()">🔄 Пройти заново</button>
+                    </div>
+                `;
+                progressFill.style.width = '100%';
+                stepIndicator.textContent = 'ЗАЯВКА ОТПРАВЛЕНА';
+            };
+
             const getNextStep = (currentStep, answers) => {
-                // Если на шаге 0 (тип недвижимости) выбрали "Студия"
-                if (currentStep === 0 && answers[0] === 'Студия') {
-                    return 2; // пропускаем шаг 1 (комнаты), переходим к бюджету
-                }
-                // Если на шаге 1 (комнаты) и это не студия — идём дальше
+                if (currentStep === 0 && answers[0] === 'Студия') return 2;
                 return currentStep + 1;
             };
 
-            // Рендер шага квиза
             const renderStep = () => {
-                // Определяем реальный индекс вопроса для отображения
                 let displayStep = currentStep;
                 const isStudio = answers[0] === 'Студия';
                 
-                // Корректируем отображаемый номер шага для студии
-                if (isStudio && currentStep >= 1) {
-                    displayStep = currentStep + 1;
-                }
+                if (isStudio && currentStep >= 1) displayStep = currentStep + 1;
                 
                 const totalSteps = isStudio ? questions.length - 1 : questions.length;
-                const totalStepsForDisplay = totalSteps + 1; // +1 за шаг с контактами
+                const totalStepsForDisplay = totalSteps + 1;
                 
                 if (currentStep < questions.length) {
                     const q = questions[currentStep];
@@ -696,18 +708,14 @@
                     if (currentStep > 0) {
                         document.getElementById('btnBack')?.addEventListener('click', () => {
                             currentStep--;
-                            // Если возвращаемся со второго шага и выбрана студия — показываем первый
-                            if (answers[0] === 'Студия' && currentStep === 1) {
-                                currentStep = 0;
-                            }
+                            if (answers[0] === 'Студия' && currentStep === 1) currentStep = 0;
                             renderStep();
                         });
                     }
                     
                     document.getElementById('btnNext').addEventListener('click', () => {
                         if (answers[currentStep]) {
-                            const nextStep = getNextStep(currentStep, answers);
-                            currentStep = nextStep;
+                            currentStep = getNextStep(currentStep, answers);
                             renderStep();
                         }
                     });
@@ -722,7 +730,6 @@
                         }, 10);
                     }
                 } else {
-                    // ФИНАЛЬНЫЙ ШАГ С КОНТАКТАМИ И ГАЛОЧКОЙ
                     progressFill.style.width = '100%';
                     stepIndicator.textContent = `ШАГ ${totalStepsForDisplay} ИЗ ${totalStepsForDisplay} — ПОСЛЕДНИЙ ШАГ`;
                     quizQuestion.textContent = '📞 Осталось только представиться';
@@ -752,13 +759,9 @@
                         <button class="btn-quiz btn-quiz-next" id="btnSubmit">📨 Получить подборку</button>
                     `;
                     
-                    // Обработка кнопки "Назад" с учётом пропуска комнат
                     document.getElementById('btnBack').addEventListener('click', () => {
-                        if (answers[0] === 'Студия') {
-                            currentStep = 0;
-                        } else {
-                            currentStep = questions.length - 1;
-                        }
+                        if (answers[0] === 'Студия') currentStep = 0;
+                        else currentStep = questions.length - 1;
                         renderStep();
                     });
                     
@@ -814,8 +817,7 @@
                         const success = await sendToTelegram(name, phone, true);
                         
                         if (success) {
-                            quizOptions.innerHTML = '<p style="color: white; text-align: center;">🎉 Спасибо! Я перезвоню вам в ближайшее время.</p>';
-                            quizNav.innerHTML = '';
+                            showSuccessScreen(name);
                             showToast('✅ Заявка отправлена! Ждите звонка.');
                         } else {
                             showToast('❌ Ошибка. Попробуйте ещё раз.', 'error');
@@ -827,7 +829,22 @@
                 }
             };
 
-            // БЫСТРАЯ ФОРМА
+            window.restartQuiz = function() {
+                currentStep = 0;
+                answers = [];
+                isSubmitting = false;
+                quizContent.innerHTML = `
+                    <div class="quiz-question" id="quizQuestion"></div>
+                    <div class="quiz-options" id="quizOptions"></div>
+                    <div class="quiz-nav" id="quizNav"></div>
+                `;
+                // Перепривязываем переменные после восстановления DOM
+                Object.assign(quizQuestion, document.getElementById('quizQuestion'));
+                Object.assign(quizOptions, document.getElementById('quizOptions'));
+                Object.assign(quizNav, document.getElementById('quizNav'));
+                renderStep();
+            };
+
             const aboutForm = document.getElementById('aboutForm');
             const aboutName = document.getElementById('aboutName');
             const aboutPhone = document.getElementById('aboutPhone');
