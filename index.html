@@ -17,16 +17,16 @@
     <meta property="og:site_name" content="Недвижимость в Геленджике">
     <meta property="og:title" content="🏠 Найдите свой дом у моря в Геленджике">
     <meta property="og:description" content="От уютной студии до квартиры с панорамным видом. Подберу жильё под любой бюджет. Бесплатная консультация!">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="https://www.onetwotrip.com/ru/blog/wp-content/uploads/2021/01/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Пляж в Геленджике с видом на море и горы">
+    <meta property="og:image:alt" content="Набережная Геленджика с видом на море и горы">
     
     <!-- ==================== TWITTER CARD ==================== -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="🏠 Недвижимость в Геленджике | Подбор жилья">
     <meta name="twitter:description" content="Помогу найти идеальное жильё у моря. Любой бюджет. Бесплатная консультация!">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta name="twitter:image" content="https://www.onetwotrip.com/ru/blog/wp-content/uploads/2021/01/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.jpg">
     
     <!-- ==================== СТРУКТУРИРОВАННЫЕ ДАННЫЕ ==================== -->
     <script type="application/ld+json">
@@ -138,7 +138,7 @@
             text-align: center;
             color: var(--white);
             background: linear-gradient(135deg, rgba(8, 28, 50, 0.75) 0%, rgba(11, 61, 98, 0.7) 100%), 
-                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+                        url('https://www.onetwotrip.com/ru/blog/wp-content/uploads/2021/01/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.jpg') center/cover no-repeat;
             background-attachment: scroll;
             overflow: hidden;
         }
@@ -714,6 +714,7 @@
             // ==================== ВОПРОСЫ КВИЗА ====================
             const quizQuestions = [
                 {
+                    id: 'type',
                     question: 'Какая недвижимость вас интересует?',
                     options: [
                         { text: 'Студия' },
@@ -723,6 +724,7 @@
                     ]
                 },
                 {
+                    id: 'rooms',
                     question: 'Сколько комнат нужно?',
                     options: [
                         { text: '1 комната' },
@@ -732,6 +734,7 @@
                     ]
                 },
                 {
+                    id: 'budget',
                     question: 'Какой бюджет рассматриваете?',
                     options: [
                         { text: '8 - 12 млн ₽' },
@@ -741,6 +744,7 @@
                     ]
                 },
                 {
+                    id: 'timing',
                     question: 'Когда планируете покупку?',
                     options: [
                         { text: 'В ближайший месяц' },
@@ -750,8 +754,6 @@
                     ]
                 },
             ];
-
-            const totalSteps = quizQuestions.length + 1;
 
             // ==================== DOM ====================
             const getElement = (id) => document.getElementById(id);
@@ -927,12 +929,26 @@
 
             // ==================== РЕНДЕР КВИЗА ====================
             const renderQuizStep = () => {
-                const progress = (state.currentStep / totalSteps) * 100;
-                progressFill.style.width = progress + '%';
+                // Если выбрана студия — пропускаем вопрос про комнаты
+                if (state.currentStep === 1 && state.answers[0] === 'Студия') {
+                    state.answers[1] = 'Студия';
+                    state.currentStep = 2;
+                }
+
+                const isStudio = state.answers[0] === 'Студия';
+                const displayTotalSteps = isStudio ? 4 : 5;
+                let displayCurrentStep = state.currentStep;
+                
+                if (isStudio && state.currentStep >= 2) {
+                    displayCurrentStep = state.currentStep - 1;
+                }
+
+                const progress = (state.currentStep / (quizQuestions.length + 1)) * 100;
+                progressFill.style.width = Math.min(progress, 90) + '%';
 
                 if (state.currentStep < quizQuestions.length) {
                     const q = quizQuestions[state.currentStep];
-                    stepIndicator.textContent = `ШАГ ${state.currentStep + 1} ИЗ ${totalSteps}`;
+                    stepIndicator.textContent = `ШАГ ${displayCurrentStep + 1} ИЗ ${displayTotalSteps}`;
                     quizQuestion.textContent = q.question;
 
                     quizOptions.innerHTML = q.options.map(opt => `
@@ -965,9 +981,24 @@
                     const btnBack = getElement('btnBack');
                     if (btnBack) {
                         btnBack.addEventListener('click', () => {
-                            state.currentStep--;
+                            if (isStudio && state.currentStep === 2) {
+                                state.currentStep = 0;
+                            } else {
+                                state.currentStep--;
+                            }
                             renderQuizStep();
                         });
+                    }
+
+                    if (state.answers[state.currentStep]) {
+                        setTimeout(() => {
+                            document.querySelectorAll('.quiz-option').forEach(btn => {
+                                if (btn.dataset.value === state.answers[state.currentStep]) {
+                                    btn.classList.add('selected');
+                                }
+                            });
+                            if (btnNext) btnNext.disabled = false;
+                        }, 50);
                     }
 
                     const observer = new MutationObserver(() => {
@@ -985,7 +1016,9 @@
 
             const renderContactStep = () => {
                 progressFill.style.width = '90%';
-                stepIndicator.textContent = `ШАГ ${totalSteps} ИЗ ${totalSteps} — ПОСЛЕДНИЙ ШАГ`;
+                const isStudio = state.answers[0] === 'Студия';
+                const displayTotalSteps = isStudio ? 4 : 5;
+                stepIndicator.textContent = `ШАГ ${displayTotalSteps} ИЗ ${displayTotalSteps} — ПОСЛЕДНИЙ ШАГ`;
                 quizQuestion.textContent = '📞 Осталось только представиться';
 
                 quizOptions.innerHTML = `
@@ -1085,7 +1118,7 @@
                 renderQuizStep();
             };
 
-            // ==================== БЫСТРАЯ ФОРМА В БЛОКЕ "О РИЕЛТОРЕ" ====================
+            // ==================== БЫСТРАЯ ФОРМА ====================
             const aboutForm = getElement('aboutForm');
             const aboutNameInput = getElement('aboutNameInput');
             const aboutPhoneInput = getElement('aboutPhoneInput');
@@ -1155,7 +1188,7 @@
 
             // ==================== ЗАПУСК ====================
             renderQuizStep();
-            console.log('🏠 Квиз + быстрая форма готовы. Защита reCAPTCHA активна.');
+            console.log('🏖️ Геленджик. Лендинг готов к работе!');
         })();
     </script>
 </body>
