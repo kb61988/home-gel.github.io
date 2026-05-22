@@ -2,379 +2,1057 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Оценка недвижимости | Геленджик & Новороссийск</title>
-    <meta name="description" content="Бесплатная оценка стоимости недвижимости в Геленджике и Новороссийске. Продажа, покупка, аренда, быстрый расчёт за 2 минуты.">
-    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Недвижимость в Геленджике | Подбор жилья для всех</title>
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.telegram.org">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #1e7a9c; --primary-dark: #146480; --accent: #f9a826; --success: #2a9d8f; --danger: #e74c3c; }
-        
+        :root {
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+            --primary-dark: #0a192f;
+            --gold: #FFD700;
+            --gold-dark: #FFA500;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.15);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.2);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-image: url('https://www.onetwotrip.com/ru/blog/wp-content/uploads/2021/01/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.jpg');
-            background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
-            min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.2rem; position: relative;
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--gray-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            min-height: 100dvh; /* Динамический viewport */
+            overflow-x: hidden;
+            padding-top: var(--safe-area-top);
+            padding-bottom: var(--safe-area-bottom);
         }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 0; }
-        
-        .container { width: 100%; max-width: 550px; margin: 0 auto; position: relative; z-index: 1; }
-        
-        .hero-white-card {
-            background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-radius: 32px; padding: 1.5rem;
-            text-align: center; box-shadow: 0 20px 35px rgba(0,20,30,0.12); border: 1px solid rgba(255,255,255,0.7);
-            width: 100%; margin-bottom: 1rem;
+
+        /* ----- УТИЛИТЫ ----- */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
         }
-        .hero-city { color: #1e7a9c; font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
-        .hero-sub { color: #2c3e50; font-size: 0.9rem; font-weight: 500; }
-        
-        .card {
-            background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-radius: 32px; padding: 1.8rem 1.5rem;
-            margin-bottom: 1.2rem; box-shadow: 0 20px 35px rgba(0,20,30,0.12); border: 1px solid rgba(255,255,255,0.7);
+
+        /* ----- ГЛАВНЫЙ ЭКРАН (HERO) ----- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            background-color: var(--primary-dark); /* Fallback */
+            background: linear-gradient(135deg, rgba(8, 28, 50, 0.75) 0%, rgba(11, 61, 98, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-attachment: scroll; /* Исправлено для мобильных */
+            overflow: hidden;
         }
-        .text-center { text-align: center; }
-        
-        h1 {
-            font-size: 1.8rem; font-weight: 700;
-            background: linear-gradient(135deg, #0b4f6c, #1e7a9c);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.2rem;
+
+        @media (min-width: 768px) {
+            .hero {
+                background-attachment: fixed;
+            }
         }
-        .subtitle { color: #2c3e50; font-size: 1rem; font-weight: 500; margin-bottom: 1rem; }
-        
-        .city-badge {
-            background: #f9a826; color: white; padding: 0.4rem 1.4rem; border-radius: 30px; display: inline-block;
-            font-weight: 600; font-size: 1rem; box-shadow: 0 8px 14px rgba(249,168,38,0.3);
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(248,249,250,0.1), transparent);
+            pointer-events: none;
         }
-        
-        .btn {
-            display: block; width: 100%; padding: 1rem 1.2rem; background: #1e7a9c; color: white; border: none;
-            border-radius: 60px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-bottom: 0.8rem;
-            text-align: center; transition: all 0.25s ease; box-shadow: 0 6px 14px rgba(30,122,156,0.25);
+
+        .hero-content {
+            max-width: 800px;
+            width: 100%;
+            padding: calc(20px + var(--safe-area-top)) 20px calc(40px + var(--safe-area-bottom));
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 2;
         }
-        .btn:hover { background: #146480; transform: translateY(-2px); }
-        .btn-outline { background: white; color: #1e7a9c; border: 2px solid #1e7a9c; box-shadow: none; }
-        .btn-outline:hover { background: #f0f9ff; }
-        .btn-success { background: #2a9d8f; }
-        .btn:disabled { opacity: 0.5; pointer-events: none; cursor: not-allowed; }
-        
-        .btn-loading { position: relative; color: transparent !important; }
-        .btn-loading::after {
-            content: ''; position: absolute; top: 50%; left: 50%; width: 20px; height: 20px;
-            margin: -10px 0 0 -10px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white;
-            border-radius: 50%; animation: spin 0.8s linear infinite;
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: var(--gold);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: clamp(20px, 3vh, 30px);
+            white-space: nowrap;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        
-        .city-selector { display: flex; gap: 0.8rem; margin-bottom: 1.4rem; justify-content: center; }
-        .city-btn { flex: 1; padding: 0.8rem; border: 2px solid #dce5ec; border-radius: 20px; background: white; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .city-btn.active { background: #1e7a9c; color: white; border-color: #1e7a9c; }
-        
-        .quiz-option {
-            padding: 0.9rem 1.2rem; border: 2px solid #e0e7ef; border-radius: 18px; margin-bottom: 0.7rem;
-            cursor: pointer; transition: all 0.2s; background: #fff; font-weight: 500; color: #1e293b;
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: clamp(12px, 2vh, 20px);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+            line-height: 1.15;
+            padding: 0 10px;
         }
-        .quiz-option:hover { border-color: #1e7a9c; background: #f6fcff; }
-        .quiz-option.selected { border-color: #1e7a9c; background: #e1f3fb; font-weight: 600; }
-        
-        .input-field, .input-phone {
-            width: 100%; padding: 1rem 1.2rem; border: 2px solid #e0e7ef; border-radius: 20px;
-            font-size: 1rem; margin-bottom: 1rem; background: white; outline: none;
+
+        .hero h1 span {
+            color: var(--gold);
+            display: inline-block;
         }
-        .input-field:focus, .input-phone:focus { border-color: #1e7a9c; box-shadow: 0 0 0 3px rgba(30,122,156,0.2); }
-        .input-field.error, .input-phone.error { border-color: #e74c3c; }
-        .error-message { color: #e74c3c; font-size: 0.85rem; margin-top: -0.8rem; margin-bottom: 1rem; display: none; text-align: left; padding-left: 0.5rem; }
-        .error-message.visible { display: block; }
-        
-        .progress-bar { height: 8px; background: #e2e8f0; border-radius: 20px; margin: 0.7rem 0 1.3rem; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #1e7a9c, #2a9d8f); border-radius: 20px; transition: width 0.35s ease; }
-        
-        .data-output { background: #f4f9fc; border: 1px solid #cbdbe9; border-radius: 18px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.9rem; word-break: break-word; }
-        .bonus { background: #fff7e0; padding: 1rem; border-radius: 18px; margin: 1.2rem 0; font-weight: 500; border: 1px solid #ffe5b9; }
-        .alert { padding: 1rem; border-radius: 18px; margin: 1rem 0; font-weight: 500; display: none; }
-        .alert-error { background: #fde8e8; border: 1px solid #f5c6cb; color: #e74c3c; display: block; }
-        .alert-success { background: #e8f5e9; border: 1px solid #c8e6c9; color: #2e7d32; display: block; }
-        
+
+        .hero > .hero-content > p:first-of-type {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-weight: 400;
+            margin-bottom: clamp(30px, 4vh, 40px);
+            opacity: 0.95;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        /* ----- ФОРМА ЗАЯВКИ ----- */
+        .form-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius);
+            padding: clamp(20px, 3vw, 30px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: var(--shadow-lg);
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(10px, 1.5vh, 15px);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .form-card input {
+            width: 100%;
+            padding: clamp(14px, 2vw, 16px) 20px clamp(14px, 2vw, 16px) 48px;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.92);
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.95rem, 1.5vw, 1rem);
+            font-weight: 500;
+            color: var(--text-dark);
+            outline: none;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-card input:focus {
+            background: var(--white);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2), 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-card input.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.15);
+        }
+
+        .form-card input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .error-message {
+            font-size: 0.75rem;
+            color: #ff6b6b;
+            text-align: left;
+            padding: 4px 0 0 20px;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .error-message.visible {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border: none;
+            padding: clamp(14px, 2vw, 16px);
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
+            margin-top: 5px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 165, 0, 0.55);
+            background: linear-gradient(135deg, #FFC300 0%, #FF8C00 100%);
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+            transition: all 0.1s;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            filter: grayscale(20%);
+        }
+
+        .btn-primary .btn-text { transition: opacity 0.2s; }
+        .btn-primary .btn-loader {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-primary.loading .btn-text { opacity: 0; }
+        .btn-primary.loading .btn-loader { display: block; }
+
+        .privacy-note {
+            font-size: clamp(0.7rem, 1vw, 0.75rem);
+            opacity: 0.75;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        /* ----- СЕКЦИЯ ПРЕИМУЩЕСТВ ----- */
+        .features {
+            padding: clamp(40px, 8vh, 80px) 20px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: clamp(30px, 5vh, 50px);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: clamp(60px, 10vw, 80px);
+            height: 4px;
+            background: var(--gold);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(20px, 3vw, 40px);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .feature-card {
+            background: var(--gray-light);
+            padding: clamp(25px, 4vw, 40px) clamp(20px, 3vw, 30px);
+            border-radius: var(--radius);
+            transition: all var(--transition);
+            border-bottom: 4px solid transparent;
+            will-change: transform;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-bottom-color: var(--gold);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--primary-dark);
+            background: var(--gold);
+            width: clamp(60px, 8vw, 70px);
+            height: clamp(60px, 8vw, 70px);
+            line-height: clamp(60px, 8vw, 70px);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+        }
+
+        .feature-card p {
+            color: #555;
+            font-weight: 400;
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+        }
+
+        /* ----- БЛОК "О РИЕЛТОРЕ" ----- */
+        .about-section {
+            padding: clamp(40px, 8vh, 80px) 20px;
+            background: var(--primary-dark);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(30px, 5vw, 60px);
+        }
+
+        .about-text {
+            max-width: 520px;
+            flex: 1 1 300px;
+        }
+
+        .about-text h2 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .about-text p {
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: clamp(0.95rem, 1.2vw, 1rem);
+        }
+
+        .stats {
+            display: flex;
+            gap: clamp(20px, 4vw, 40px);
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Вторая форма */
+        .about-form-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: clamp(25px, 3vw, 35px) clamp(20px, 3vw, 30px);
+            border-radius: var(--radius);
+            max-width: 380px;
+            width: 100%;
+            flex: 0 1 380px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .about-form-box h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+        }
+
+        .about-form-box .input-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .about-form-box input {
+            background: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            padding: clamp(13px, 1.5vw, 15px) 20px clamp(13px, 1.5vw, 15px) 48px;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+            font-weight: 500;
+            outline: none;
+            transition: all var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .about-form-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+        }
+
+        .about-form-box input.error {
+            border-color: #ff6b6b;
+        }
+
+        .about-form-box .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* ----- УВЕДОМЛЕНИЯ (Toast) ----- */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120px);
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 16px 28px;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success { border: 2px solid #2ecc71; }
+        .toast.error { border: 2px solid #e74c3c; }
+        .toast.warning { border: 2px solid #f39c12; }
+
+        /* ----- АНИМАЦИИ ----- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .fa-spinner {
+            animation: spin 0.8s linear infinite;
+        }
+
+        /* ----- АДАПТИВНОСТЬ ----- */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: calc(15px + var(--safe-area-top)) 15px calc(30px + var(--safe-area-bottom));
+            }
+
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .about-text {
+                max-width: 100%;
+            }
+
+            .stats {
+                justify-content: center;
+            }
+
+            .about-form-box {
+                max-width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+
         @media (max-width: 480px) {
-            .card { padding: 1.2rem; }
-            h1 { font-size: 1.4rem; }
-            .hero-white-card { padding: 1rem; }
-            .hero-city { font-size: 1.3rem; }
-            .hero-sub { font-size: 0.75rem; }
+            .form-card {
+                padding: 20px 15px;
+                border-radius: var(--radius-sm);
+            }
+
+            .form-card input {
+                padding-left: 42px;
+            }
+
+            .input-wrapper i {
+                left: 14px;
+            }
+
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 8px 18px;
+                letter-spacing: 1px;
+            }
+
+            .btn-primary {
+                letter-spacing: 0.5px;
+            }
+        }
+
+        /* Для очень маленьких экранов (iPhone SE, Galaxy Fold) */
+        @media (max-width: 374px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero > .hero-content > p:first-of-type {
+                font-size: 0.85rem;
+            }
+
+            .form-card {
+                padding: 15px 12px;
+                gap: 8px;
+            }
+        }
+
+        /* Темная тема (опционально) */
+        @media (prefers-color-scheme: dark) {
+            /* Можно добавить темную тему, но оставим как есть для консистентности */
+        }
+
+        /* Уменьшение анимаций для пользователей с предпочтениями */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero-white-card">
-            <div class="hero-city">🌊 Геленджик</div>
-            <div class="hero-sub">Жемчужина Черноморского побережья</div>
-        </div>
-        
-        <div class="card text-center">
-            <h1>Оценка недвижимости</h1>
-            <p class="subtitle">Продажа · Покупка · Аренда · Быстрый расчёт</p>
-            <div class="city-badge" id="currentCityBadge">🏙️ Выберите город</div>
-        </div>
 
-        <div id="step1" class="card">
-            <div class="city-selector">
-                <button class="city-btn" id="cityNovoros">🌊 Новороссийск</button>
-                <button class="city-btn" id="cityGelendzhik">🏖️ Геленджик</button>
+    <!-- 1. ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero" aria-label="Главный экран">
+        <div class="hero-content">
+            <div class="hero-badge" aria-hidden="true">
+                <i class="fas fa-map-marker-alt"></i> Геленджик • Недвижимость для каждого
             </div>
-            <button class="btn" id="btnSell" disabled>🏠 Хочу продать квартиру</button>
-            <button class="btn btn-outline" id="btnBuy" disabled>💰 Хочу купить квартиру</button>
-            <button class="btn btn-outline" id="btnRentOut" disabled>🔑 Хочу сдать квартиру</button>
-            <button class="btn btn-outline" id="btnRentIn" disabled>🏢 Хочу арендовать</button>
-            <p style="font-size:0.8rem; color:#5f6b7a; margin-top:0.6rem; text-align:center;">👆 Сначала выберите город</p>
+            <h1>Найдите свой дом <span>у моря</span></h1>
+            <p>От уютной студии до просторной квартиры с панорамным видом. Помогаю найти жильё под любой бюджет.</p>
+            
+            <!-- ОСНОВНАЯ ФОРМА ЗАЯВКИ -->
+            <form class="form-card" id="mainForm" novalidate autocomplete="on">
+                <div class="input-wrapper">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <label for="heroName" class="sr-only">Ваше имя</label>
+                    <input type="text" id="heroName" name="name" placeholder="Ваше имя" 
+                           required minlength="2" maxlength="50" autocomplete="name"
+                           aria-required="true" aria-describedby="heroNameError">
+                    <div class="error-message" id="heroNameError" role="alert"></div>
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                    <label for="heroPhone" class="sr-only">Номер телефона</label>
+                    <input type="tel" id="heroPhone" name="phone" placeholder="+7 (___) ___-__-__" 
+                           required autocomplete="tel" inputmode="tel"
+                           aria-required="true" aria-describedby="heroPhoneError">
+                    <div class="error-message" id="heroPhoneError" role="alert"></div>
+                </div>
+                <button type="submit" class="btn-primary" id="heroSubmitBtn">
+                    <span class="btn-text"><i class="fas fa-paper-plane"></i> Подобрать варианты</span>
+                    <span class="btn-loader"><i class="fas fa-spinner"></i></span>
+                </button>
+                <div class="privacy-note">
+                    <i class="fas fa-lock"></i> Это бесплатно и ни к чему не обязывает
+                </div>
+            </form>
         </div>
+    </section>
 
-        <div id="step2" class="card" style="display:none;">
-            <div id="quizContent"></div>
+    <!-- 2. ПРЕИМУЩЕСТВА -->
+    <section class="features" aria-label="Преимущества">
+        <h2 class="section-title">Почему со мной удобно</h2>
+        <div class="features-grid">
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Для любого бюджета</h3>
+                <p>Студии, квартиры, дома — от доступного жилья до элитного. Каждый найдёт свой вариант.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true"><i class="fas fa-calculator"></i></div>
+                <h3>Помощь с ипотекой</h3>
+                <p>Рассчитаем ежемесячный платёж, поможем с одобрением. Даже если первый взнос минимален.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
+                <h3>Безопасная сделка</h3>
+                <p>Полная юридическая проверка объекта. Никаких скрытых рисков и переплат.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- 3. БЛОК С РИЕЛТОРОМ + ВТОРАЯ ФОРМА -->
+    <section class="about-section" aria-label="О риелторе">
+        <div class="about-text">
+            <h2>Екатерина — ваш риелтор в Геленджике</h2>
+            <p>Я не просто продаю недвижимость, я помогаю людям найти именно тот вариант, который им по карману и по душе. Работаю честно и без давления.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>350+</h3>
+                    <p>Счастливых семей</p>
+                </div>
+                <div class="stat-item">
+                    <h3>7 лет</h3>
+                    <p>На рынке недвижимости</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Прозрачности</p>
+                </div>
+            </div>
         </div>
         
-        <div id="globalError" class="alert"></div>
-    </div>
+        <!-- ВТОРАЯ ФОРМА -->
+        <div class="about-form-box">
+            <h3>Бесплатная консультация</h3>
+            <form id="secondForm" novalidate autocomplete="on">
+                <div class="input-wrapper">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <label for="aboutName" class="sr-only">Ваше имя</label>
+                    <input type="text" id="aboutName" name="name" placeholder="Имя" 
+                           required minlength="2" maxlength="50" autocomplete="name"
+                           aria-required="true" aria-describedby="aboutNameError">
+                    <div class="error-message" id="aboutNameError" role="alert"></div>
+                </div>
+                <div class="input-wrapper">
+                    <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                    <label for="aboutPhone" class="sr-only">Номер телефона</label>
+                    <input type="tel" id="aboutPhone" name="phone" placeholder="Телефон" 
+                           required autocomplete="tel" inputmode="tel"
+                           aria-required="true" aria-describedby="aboutPhoneError">
+                    <div class="error-message" id="aboutPhoneError" role="alert"></div>
+                </div>
+                <button type="submit" class="btn-primary" id="aboutSubmitBtn">
+                    <span class="btn-text"><i class="fas fa-phone-volume"></i> Позвоните мне</span>
+                    <span class="btn-loader"><i class="fas fa-spinner"></i></span>
+                </button>
+            </form>
+        </div>
+    </section>
 
+    <!-- Toast-уведомления -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- СКРИПТ ОБРАБОТКИ ЗАЯВОК -->
     <script>
         (function() {
             'use strict';
 
-            const BOT_TOKEN = (() => {
-                const p = ['ODgzNjY5NTIx','NTpBQUZYd2Iw','MmV4MkRlc1RS','bGt6alk5WDUwWVpoTkZwS3FPQQ=='];
-                return atob(p.join(''));
-            })();
-            
-            const CHAT_ID = '-1003558375348';
-            const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-            let lastSubmitTime = 0;
-            const RATE_LIMIT_MS = 30000;
+            // ==================== КОНФИГУРАЦИЯ ====================
+            const CONFIG = {
+                // Telegram (замените на свои реальные данные)
+                // ВНИМАНИЕ: В продакшене токен должен быть на серверной стороне!
+                // Это демо-решение. Для реального проекта используйте прокси-сервер.
+                botToken: (() => {
+                    const p = ['ODgzNjY5NTIx','NTpBQUZYd2Iw','MmV4MkRlc1RS','bGt6alk5WDUwWVpoTkZwS3FPQQ=='];
+                    return atob(p.join(''));
+                })(),
+                chatId: '-1003558375348',
+                
+                // Ограничения
+                rateLimitMs: 30000,    // 30 секунд между заявками с одного IP
+                minNameLength: 2,
+                maxNameLength: 50,
+                phoneMinDigits: 11,
+                
+                // Таймаут fetch
+                fetchTimeout: 10000,   // 10 секунд
+            };
 
+            // ==================== СОСТОЯНИЕ ====================
             const state = {
-                currentCity: null, currentAction: null, currentStep: 0,
-                answers: [], clientName: '', phoneNumber: '', isSubmitting: false
+                lastSubmitTime: 0,
+                isSubmitting: false,
             };
 
-            const DOM = {
-                step1: document.getElementById('step1'), step2: document.getElementById('step2'),
-                quizContent: document.getElementById('quizContent'),
-                cityNovoros: document.getElementById('cityNovoros'), cityGelendzhik: document.getElementById('cityGelendzhik'),
-                currentCityBadge: document.getElementById('currentCityBadge'),
-                btnSell: document.getElementById('btnSell'), btnBuy: document.getElementById('btnBuy'),
-                btnRentOut: document.getElementById('btnRentOut'), btnRentIn: document.getElementById('btnRentIn'),
-                globalError: document.getElementById('globalError')
-            };
-
-            function escapeHtml(str) {
+            // ==================== УТИЛИТЫ ====================
+            const sanitizeHTML = (str) => {
                 if (!str && str !== 0) return '';
-                const div = document.createElement('div'); div.textContent = String(str); return div.innerHTML;
-            }
-            function sanitizeString(str) {
-                if (typeof str !== 'string') return '';
-                return str.replace(/[<>"'&]/g, c => ({'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#x27;','&':'&amp;'})[c]);
-            }
-            function validatePhone(phone) { return /^7\d{10}$/.test(phone.replace(/\D/g, '')); }
-            function validateName(name) { const t = name.trim(); return t.length >= 2 && t.length <= 50; }
-            function showFieldError(el, msg) {
-                el.classList.add('error');
-                const err = el.nextElementSibling;
-                if (err && err.classList.contains('error-message')) { err.textContent = msg; err.classList.add('visible'); }
-            }
-            function clearFieldError(el) {
-                el.classList.remove('error');
-                const err = el.nextElementSibling;
-                if (err && err.classList.contains('error-message')) err.classList.remove('visible');
-            }
-            function showGlobalError(msg) {
-                DOM.globalError.textContent = msg;
-                DOM.globalError.className = 'alert alert-error';
-                setTimeout(() => { DOM.globalError.style.display = 'none'; }, 5000);
-            }
+                const div = document.createElement('div');
+                div.textContent = String(str);
+                return div.innerHTML;
+            };
 
-            function getDistricts() {
-                return state.currentCity === 'novorossiysk'
-                    ? ['Центр', 'Южный район', 'Приморский', '13-й микрорайон', 'Мысхако', 'Цемдолина']
-                    : ['Центр', 'Голубая бухта', 'Тонкий мыс', 'Архипо-Осиповка', 'Кабардинка'];
-            }
+            const validateName = (name) => {
+                const trimmed = name.trim();
+                return trimmed.length >= CONFIG.minNameLength && 
+                       trimmed.length <= CONFIG.maxNameLength &&
+                       /^[a-zA-Zа-яА-ЯёЁ\s\-'.]+$/.test(trimmed);
+            };
 
-            function getQuestionsForAction(action) {
-                const d = getDistricts();
-                switch (action) {
-                    case 'sell': return [
-                        { text: '📍 В каком районе находится квартира?', options: d },
-                        { text: '🛏️ Сколько комнат?', options: ['Студия', '1-комнатная', '2-комнатная', '3+ комнат'] },
-                        { text: '🌊 Есть ли вид на море?', options: ['Да, прямой вид', 'Частичный вид', 'Нет, вид во двор'] }
-                    ];
-                    case 'buy': return [
-                        { text: '📍 Какой район предпочтителен?', options: [...d, 'Не важно'] },
-                        { text: '🛏️ Сколько комнат нужно?', options: ['Студия', '1-комнатная', '2-комнатная', '3+ комнат'] },
-                        { text: '💰 Какой бюджет?', options: ['до 3 млн ₽', '3 - 5 млн ₽', '5 - 8 млн ₽', '8 - 12 млн ₽', 'от 12 млн ₽'] },
-                        { text: '🌊 Важен ли вид на море?', options: ['Обязательно', 'Желательно', 'Не важно'] }
-                    ];
-                    case 'rent_out': return [
-                        { text: '📍 Где находится квартира?', options: d },
-                        { text: '📅 Тип аренды', options: ['Посуточная', 'Долгосрочная', 'Любой вариант'] },
-                        { text: '🛋️ Сколько комнат?', options: ['Студия', '1-комнатная', '2-комнатная', '3+ комнат'] }
-                    ];
-                    case 'rent_in': return [
-                        { text: '🗺️ Какой район предпочтителен?', options: [...d, 'Не важно'] },
-                        { text: '⏳ Тип аренды', options: ['Посуточно', 'Долгосрочно', 'Рассмотрю оба варианта'] },
-                        { text: '🚪 Сколько комнат нужно?', options: ['Студия', '1-комнатная', '2-комнатная', '3+ комнат'] },
-                        { text: '💰 Какой бюджет?', options: ['до 20 000 ₽/мес', '20 000 - 35 000 ₽/мес', '35 000 - 50 000 ₽/мес', '50 000 - 80 000 ₽/мес', 'от 80 000 ₽/мес'] }
-                    ];
-                    default: return [];
+            const validatePhone = (phone) => {
+                const digits = phone.replace(/\D/g, '');
+                return digits.length >= CONFIG.phoneMinDigits && 
+                       /^7\d{10}$/.test(digits);
+            };
+
+            const getPhoneDigits = (phone) => {
+                return phone.replace(/\D/g, '');
+            };
+
+            // ==================== DOM ЭЛЕМЕНТЫ ====================
+            const getElement = (id) => document.getElementById(id);
+            const mainForm = getElement('mainForm');
+            const secondForm = getElement('secondForm');
+            const toast = getElement('toast');
+
+            // ==================== TOAST УВЕДОМЛЕНИЯ ====================
+            let toastTimer = null;
+
+            const showToast = (message, type = 'success') => {
+                if (toastTimer) clearTimeout(toastTimer);
+                
+                toast.className = `toast ${type}`;
+                toast.innerHTML = message;
+                
+                // Принудительный reflow для анимации
+                void toast.offsetWidth;
+                toast.classList.add('show');
+                
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            };
+
+            // ==================== МАСКА ТЕЛЕФОНА ====================
+            const applyPhoneMask = (input) => {
+                const value = input.value.replace(/\D/g, '');
+                const match = value.match(/^(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})$/);
+                
+                if (!match) return;
+                
+                let formatted = '+7';
+                if (match[2]) formatted += ' (' + match[2];
+                if (match[3]) formatted += ') ' + match[3];
+                if (match[4]) formatted += '-' + match[4];
+                if (match[5]) formatted += '-' + match[5];
+                
+                input.value = formatted;
+            };
+
+            const initPhoneMask = (input) => {
+                input.addEventListener('input', () => {
+                    applyPhoneMask(input);
+                    clearFieldError(input);
+                });
+                
+                input.addEventListener('focus', () => {
+                    if (input.value === '') {
+                        input.value = '+7 (';
+                    }
+                });
+                
+                input.addEventListener('blur', () => {
+                    if (input.value === '+7 (' || input.value === '+7') {
+                        input.value = '';
+                    }
+                });
+            };
+
+            // ==================== ВАЛИДАЦИЯ ПОЛЕЙ ====================
+            const showFieldError = (input, errorId, message) => {
+                input.classList.add('error');
+                const errorEl = getElement(errorId);
+                if (errorEl) {
+                    errorEl.textContent = message;
+                    errorEl.classList.add('visible');
                 }
-            }
+            };
 
-            function getEstimate() {
-                if (state.currentAction === 'sell') {
-                    const a = state.answers[0] || '';
-                    if (state.currentCity === 'novorossiysk') {
-                        if (a.includes('Центр')) return '≈ 105 000 - 120 000 ₽/м²';
-                        if (a.includes('Южный')) return '≈ 90 000 - 100 000 ₽/м²';
-                        return '≈ 85 000 - 110 000 ₽/м²';
-                    } else {
-                        if (a.includes('Центр')) return '≈ 120 000 - 140 000 ₽/м²';
-                        if (a.includes('Голубая')) return '≈ 110 000 - 130 000 ₽/м²';
-                        return '≈ 100 000 - 130 000 ₽/м²';
+            const clearFieldError = (input) => {
+                input.classList.remove('error');
+                const errorId = input.getAttribute('aria-describedby');
+                if (errorId) {
+                    const errorEl = getElement(errorId);
+                    if (errorEl) {
+                        errorEl.textContent = '';
+                        errorEl.classList.remove('visible');
                     }
                 }
-                return 'индивидуальный расчёт';
-            }
+            };
 
-            async function sendToTelegram(data) {
-                const cityName = data.city === 'novorossiysk' ? '🌊 Новороссийск' : '🏖️ Геленджик';
-                const actions = { sell:'🏠 ПРОДАЖА', buy:'💰 ПОКУПКА', rent_out:'🔑 СДАЧА', rent_in:'🏢 АРЕНДА' };
-                const msg = [
-                    '🆕 <b>НОВАЯ ЗАЯВКА!</b>', '',
-                    `📍 <b>Город:</b> ${cityName}`, `📋 <b>Тип:</b> ${actions[data.action]}`,
-                    `👤 <b>Имя:</b> ${data.name}`, `📞 <b>Телефон:</b> ${data.phone}`,
-                    '📝 <b>Ответы:</b>', ...data.details.map((a,i) => `  ${i+1}. ${a}`),
-                    '', `⏰ ${new Date().toLocaleString('ru-RU')}`
+            // ==================== ОТПРАВКА В TELEGRAM ====================
+            const sendToTelegram = async (formType, name, phone) => {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), CONFIG.fetchTimeout);
+
+                const message = [
+                    '\u{1F195} <b>НОВАЯ ЗАЯВКА С ЛЕНДИНГА!</b>',
+                    '',
+                    `\u{1F4CD} <b>Город:</b> \u{1F3D6}\u{FE0F} Геленджик`,
+                    `\u{1F4CB} <b>Форма:</b> ${sanitizeHTML(formType)}`,
+                    `\u{1F464} <b>Имя:</b> ${sanitizeHTML(name)}`,
+                    `\u{1F4DE} <b>Телефон:</b> ${sanitizeHTML(phone)}`,
+                    '',
+                    `\u{23F0} ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
                 ].join('\n');
 
                 try {
-                    const res = await fetch(API_URL, {
+                    const url = `https://api.telegram.org/bot${CONFIG.botToken}/sendMessage`;
+                    const response = await fetch(url, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'HTML' })
+                        body: JSON.stringify({
+                            chat_id: CONFIG.chatId,
+                            text: message,
+                            parse_mode: 'HTML',
+                            disable_web_page_preview: true
+                        }),
+                        signal: controller.signal
                     });
-                    const json = await res.json();
-                    return json.ok === true;
-                } catch (e) {
-                    console.error('Ошибка:', e.message);
+
+                    clearTimeout(timeoutId);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    return data.ok === true;
+                } catch (error) {
+                    clearTimeout(timeoutId);
+                    
+                    if (error.name === 'AbortError') {
+                        console.error('Telegram API timeout');
+                        return false;
+                    }
+                    
+                    console.error('Telegram send error:', error.message);
                     return false;
                 }
-            }
+            };
 
-            function renderQuiz() {
-                const questions = getQuestionsForAction(state.currentAction);
-                const totalSteps = questions.length + 1;
-                if (state.currentStep < questions.length) {
-                    const q = questions[state.currentStep];
-                    const progress = (state.currentStep / totalSteps) * 100;
-                    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>`;
-                    html += `<h3 style="margin-bottom:1rem;">${escapeHtml(q.text)}</h3>`;
-                    q.options.forEach(opt => {
-                        const sel = state.answers[state.currentStep] === opt ? ' selected' : '';
-                        html += `<div class="quiz-option${sel}" data-value="${escapeHtml(opt)}">${escapeHtml(opt)}</div>`;
-                    });
-                    html += `<button class="btn" id="nextBtn">Далее →</button>`;
-                    DOM.quizContent.innerHTML = html;
-                    document.querySelectorAll('.quiz-option').forEach(opt => {
-                        opt.addEventListener('click', () => {
-                            document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
-                            opt.classList.add('selected');
-                            state.answers[state.currentStep] = opt.dataset.value;
-                        });
-                    });
-                    document.getElementById('nextBtn').addEventListener('click', () => {
-                        if (!state.answers[state.currentStep]) { showGlobalError('Пожалуйста, выберите вариант ответа'); return; }
-                        state.currentStep++; renderQuiz();
-                    });
-                } else { renderContactForm(); }
-            }
+            // ==================== ОБРАБОТЧИК ФОРМ ====================
+            const createFormHandler = (formId, nameInputId, phoneInputId, submitBtnId, formType) => {
+                const form = getElement(formId);
+                const nameInput = getElement(nameInputId);
+                const phoneInput = getElement(phoneInputId);
+                const submitBtn = getElement(submitBtnId);
+                
+                if (!form || !nameInput || !phoneInput || !submitBtn) {
+                    console.error(`Form elements not found for ${formId}`);
+                    return;
+                }
 
-            function renderContactForm() {
-                const estimate = getEstimate();
-                DOM.quizContent.innerHTML = `
-                    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                    <h3>📞 Остался последний шаг!</h3>
-                    <p style="margin-bottom:0.8rem;">Предварительная оценка: <strong>${escapeHtml(estimate)}</strong></p>
-                    <div><input type="text" class="input-field" id="nameInput" placeholder="👤 Ваше имя" maxlength="50"><div class="error-message" id="nameError"></div></div>
-                    <div><input type="tel" class="input-phone" id="phoneInput" placeholder="📞 +7 (___) ___-__-__"><div class="error-message" id="phoneError"></div></div>
-                    <button class="btn btn-success" id="submitBtn">📨 Отправить заявку</button>
-                `;
-                const nameInput = document.getElementById('nameInput'), phoneInput = document.getElementById('phoneInput'), submitBtn = document.getElementById('submitBtn');
-                phoneInput.addEventListener('input', function() {
-                    let value = this.value.replace(/\D/g, '').substring(0, 11), formatted = '+7';
-                    if (value.length > 1) formatted += ' (' + value.substring(1, 4);
-                    if (value.length >= 5) formatted += ') ' + value.substring(4, 7);
-                    if (value.length >= 8) formatted += '-' + value.substring(7, 9);
-                    if (value.length >= 10) formatted += '-' + value.substring(9, 11);
-                    this.value = formatted; clearFieldError(phoneInput);
-                });
-                nameInput.addEventListener('input', () => clearFieldError(nameInput));
-                submitBtn.addEventListener('click', async () => {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    
+                    // Защита от двойного клика
                     if (state.isSubmitting) return;
-                    clearFieldError(nameInput); clearFieldError(phoneInput);
+                    
+                    // Rate limiting
                     const now = Date.now();
-                    if (now - lastSubmitTime < RATE_LIMIT_MS) { showGlobalError(`⏳ Подождите ${Math.ceil((RATE_LIMIT_MS - (now - lastSubmitTime)) / 1000)} сек.`); return; }
+                    const timeSinceLastSubmit = now - state.lastSubmitTime;
+                    if (timeSinceLastSubmit < CONFIG.rateLimitMs) {
+                        const waitSeconds = Math.ceil((CONFIG.rateLimitMs - timeSinceLastSubmit) / 1000);
+                        showToast(
+                            `⏳ Пожалуйста, подождите ${waitSeconds} сек. перед повторной отправкой`,
+                            'warning'
+                        );
+                        return;
+                    }
+
+                    // Очистка предыдущих ошибок
+                    clearFieldError(nameInput);
+                    clearFieldError(phoneInput);
+
+                    // Валидация
                     let hasErrors = false;
-                    const clientName = nameInput.value.trim();
-                    if (!validateName(clientName)) { showFieldError(nameInput, 'Имя от 2 до 50 символов'); nameInput.focus(); hasErrors = true; }
-                    if (!validatePhone(phoneInput.value)) { showFieldError(phoneInput, 'Введите номер +7...'); if (!hasErrors) phoneInput.focus(); hasErrors = true; }
-                    if (hasErrors) return;
-                    state.isSubmitting = true; submitBtn.disabled = true; submitBtn.classList.add('btn-loading');
-                    state.clientName = sanitizeString(clientName); state.phoneNumber = phoneInput.value; lastSubmitTime = Date.now();
-                    const lead = { city: state.currentCity, action: state.currentAction, name: state.clientName, phone: state.phoneNumber, details: state.answers.map(a => sanitizeString(a)) };
-                    const success = await sendToTelegram(lead);
+                    const name = nameInput.value.trim();
+                    const phone = phoneInput.value.trim();
+
+                    if (!validateName(name)) {
+                        showFieldError(nameInput, `${nameInputId}Error`, 
+                            'Введите корректное имя (от 2 до 50 символов)');
+                        hasErrors = true;
+                    }
+
+                    if (!validatePhone(phone)) {
+                        showFieldError(phoneInput, `${phoneInputId}Error`, 
+                            'Введите полный номер телефона (11 цифр)');
+                        hasErrors = true;
+                    }
+
+                    if (hasErrors) {
+                        // Фокус на первом ошибочном поле
+                        if (nameInput.classList.contains('error')) {
+                            nameInput.focus();
+                        } else {
+                            phoneInput.focus();
+                        }
+                        return;
+                    }
+
+                    // Блокировка формы
+                    state.isSubmitting = true;
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('loading');
+
+                    // Отправка
+                    const cleanPhone = getPhoneDigits(phone);
+                    const success = await sendToTelegram(formType, name, cleanPhone);
+                    
+                    state.lastSubmitTime = Date.now();
+
+                    // Разблокировка формы
+                    state.isSubmitting = false;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+
                     if (success) {
-                        const cityName = state.currentCity === 'novorossiysk' ? 'Новороссийск' : 'Геленджик';
-                        const actionText = { sell:'ПРОДАЖА', buy:'ПОКУПКА', rent_out:'СДАЧА', rent_in:'АРЕНДА' }[state.currentAction];
-                        DOM.quizContent.innerHTML = `<div class="text-center"><h2>✅ Спасибо за заявку!</h2><p style="margin:1rem 0;">Мы свяжемся с вами в ближайшее время.</p><div class="bonus">🎁 Специалист подберёт для вас лучшие варианты</div><div class="data-output"><strong>Ваши данные:</strong><br>Город: ${escapeHtml(cityName)}<br>Тип: ${escapeHtml(actionText)}<br>Имя: ${escapeHtml(state.clientName)}<br>Телефон: ${escapeHtml(state.phoneNumber)}</div><button class="btn btn-outline" id="resetBtn">🔄 Новый запрос</button></div>`;
-                        document.getElementById('resetBtn').addEventListener('click', resetApp);
+                        showToast(
+                            `✅ Спасибо, ${sanitizeHTML(name)}! Я перезвоню в течение 15 минут.`,
+                            'success'
+                        );
+                        nameInput.value = '';
+                        phoneInput.value = '';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else {
-                        state.isSubmitting = false; submitBtn.disabled = false; submitBtn.classList.remove('btn-loading');
-                        showGlobalError('❌ Ошибка. Попробуйте ещё раз.');
+                        showToast(
+                            '❌ Ошибка отправки. Попробуйте ещё раз или позвоните по телефону.',
+                            'error'
+                        );
                     }
                 });
-            }
 
-            function resetApp() {
-                state.currentStep = 0; state.answers = []; state.clientName = ''; state.phoneNumber = '';
-                state.isSubmitting = false; state.currentAction = null; state.currentCity = null;
-                DOM.step2.style.display = 'none'; DOM.step1.style.display = 'block';
-                DOM.cityNovoros.classList.remove('active'); DOM.cityGelendzhik.classList.remove('active');
-                DOM.currentCityBadge.textContent = '🏙️ Выберите город'; DOM.currentCityBadge.style.background = '#f9a826';
-                DOM.btnSell.disabled = DOM.btnBuy.disabled = DOM.btnRentOut.disabled = DOM.btnRentIn.disabled = true;
-                DOM.globalError.style.display = 'none'; window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+                // Очистка ошибок при вводе
+                nameInput.addEventListener('input', () => clearFieldError(nameInput));
+                phoneInput.addEventListener('input', () => clearFieldError(phoneInput));
+            };
 
-            function selectCity(city) {
-                state.currentCity = city;
-                DOM.cityNovoros.classList.toggle('active', city === 'novorossiysk');
-                DOM.cityGelendzhik.classList.toggle('active', city === 'gelendzhik');
-                DOM.currentCityBadge.textContent = city === 'novorossiysk' ? '🌊 Новороссийск' : '🏖️ Геленджик';
-                DOM.currentCityBadge.style.background = city === 'novorossiysk' ? '#1e7a9c' : '#f9a826';
-                DOM.btnSell.disabled = DOM.btnBuy.disabled = DOM.btnRentOut.disabled = DOM.btnRentIn.disabled = false;
-            }
+            // ==================== ИНИЦИАЛИЗАЦИЯ ====================
+            const init = () => {
+                // Маски для телефонов
+                const phoneInputs = document.querySelectorAll('input[type="tel"]');
+                phoneInputs.forEach(initPhoneMask);
 
-            function startQuiz(action) {
-                if (!state.currentCity) { showGlobalError('Выберите город'); return; }
-                state.currentAction = action; state.currentStep = 0; state.answers = [];
-                state.clientName = ''; state.phoneNumber = ''; state.isSubmitting = false;
-                DOM.step1.style.display = 'none'; DOM.step2.style.display = 'block';
-                DOM.globalError.style.display = 'none'; renderQuiz();
-                DOM.step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+                // Обработчики форм
+                createFormHandler(
+                    'mainForm', 'heroName', 'heroPhone', 'heroSubmitBtn',
+                    '🏠 Главная форма (Подобрать варианты)'
+                );
+                
+                createFormHandler(
+                    'secondForm', 'aboutName', 'aboutPhone', 'aboutSubmitBtn',
+                    '📞 Форма "О риелторе" (Позвоните мне)'
+                );
 
-            DOM.cityNovoros.addEventListener('click', () => selectCity('novorossiysk'));
-            DOM.cityGelendzhik.addEventListener('click', () => selectCity('gelendzhik'));
-            DOM.btnSell.addEventListener('click', () => startQuiz('sell'));
-            DOM.btnBuy.addEventListener('click', () => startQuiz('buy'));
-            DOM.btnRentOut.addEventListener('click', () => startQuiz('rent_out'));
-            DOM.btnRentIn.addEventListener('click', () => startQuiz('rent_in'));
+                // Предотвращение случайной отправки при Enter
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && 
+                        state.isSubmitting) {
+                        e.preventDefault();
+                    }
+                });
+
+                console.log('🏖️ Лендинг недвижимости Геленджик инициализирован');
+                console.log('🔒 Защита: XSS-фильтрация, Rate limiting, валидация');
+            };
+
+            // Запуск после загрузки DOM
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
         })();
     </script>
 </body>
