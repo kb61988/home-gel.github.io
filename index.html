@@ -19,19 +19,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Яндекс.Метрика -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109367704', 'ym');
-
-        ym(109367704, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/109367704" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -47,9 +34,8 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
         .header { text-align: center; padding: 40px 20px 20px; }
-        .header h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #ffffff; margin-bottom: 15px; font-weight: 700; }
+        .header h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #ffffff; margin-bottom: 15px; }
         .subhead { font-size: 1.2rem; color: #f0f0f0; max-width: 700px; margin: 0 auto; }
 
         .card { background: rgba(255, 255, 255, 0.98); border-radius: 28px; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2); padding: 30px; margin-bottom: 40px; color: #1e2a3a; }
@@ -60,7 +46,6 @@
         .feature h3 { font-size: 1.4rem; margin-bottom: 12px; color: #0a192f; }
         .feature p { color: #4a5568; }
 
-        /* Квиз форма */
         .quiz-step { display: none; }
         .quiz-step.active { display: block; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
@@ -92,10 +77,7 @@
 
         .error-message { color: #dc2626; font-size: 0.75rem; margin-top: 8px; display: none; }
 
-        @media (max-width: 640px) {
-            .card { padding: 20px; }
-            .quiz-question { font-size: 1.3rem; }
-        }
+        @media (max-width: 640px) { .card { padding: 20px; } .quiz-question { font-size: 1.3rem; } }
     </style>
 </head>
 <body>
@@ -108,12 +90,7 @@
     </div>
 
     <div class="card">
-        <!-- КВИЗ (3 шага + контакты) -->
         <div id="quizContainer">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <span style="background: #ffb347; padding: 5px 15px; border-radius: 30px; font-size: 0.8rem; font-weight: 600;">🎯 Квиз за 30 секунд</span>
-            </div>
-            
             <!-- Шаг 1: тип недвижимости -->
             <div class="quiz-step active" data-step="1">
                 <div class="quiz-question">Какая недвижимость вас интересует?</div>
@@ -126,7 +103,7 @@
                 <button class="btn next-step">Далее →</button>
             </div>
 
-            <!-- Шаг 2: бюджет -->
+            <!-- Шаг 2: бюджет (шаг про комнаты УДАЛЁН) -->
             <div class="quiz-step" data-step="2">
                 <div class="quiz-question">Ваш бюджет (₽)</div>
                 <div class="quiz-options">
@@ -149,51 +126,57 @@
                 <button class="btn next-step">Далее →</button>
             </div>
 
-            <!-- Шаг 4: контакты -->
+            <!-- Шаг 4: контакты (финал) -->
             <div class="quiz-step" data-step="4">
                 <div class="quiz-question">✅ Остался последний шаг</div>
                 <div class="form-group">
-                    <input type="text" id="quizName" placeholder="Ваше имя" autocomplete="name">
+                    <input type="text" id="userName" placeholder="Ваше имя" autocomplete="name">
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="quizPhone" placeholder="Номер телефона *" required autocomplete="tel">
+                    <input type="tel" id="userPhone" placeholder="Номер телефона *" required autocomplete="tel">
                 </div>
                 <div class="consent-group">
-                    <input type="checkbox" id="quizConsent" required>
-                    <label for="quizConsent">
+                    <input type="checkbox" id="privacyConsent" required>
+                    <label for="privacyConsent">
                         Я ознакомлен(а) и согласен(на) с 
                         <a href="privacy.html" target="_blank">Политикой обработки персональных данных</a>
                         и даю согласие на обработку моих данных.
                     </label>
                 </div>
-                <div id="quizConsentError" class="error-message">❗ Пожалуйста, подтвердите согласие с Политикой обработки данных</div>
-                <button class="btn" id="sendQuizBtn">📩 Получить подборку</button>
+                <div id="consentError" class="error-message">❗ Пожалуйста, подтвердите согласие с Политикой обработки данных</div>
+                <button class="btn" id="sendLeadBtn">📩 Отправить и получить подборку</button>
+                <p style="font-size: 0.7rem; text-align: center; margin-top: 15px; color: #6b7a8a;">
+                    Нажимая кнопку, вы соглашаетесь на связь по телефону и мессенджерам
+                </p>
             </div>
         </div>
         
-        <div id="quizSuccessMessage" style="display: none; background: #e6f7e6; padding: 20px; border-radius: 20px; text-align: center; color: #2e7d32;">
+        <!-- Сообщение об успехе -->
+        <div id="successMessage" style="display: none; background: #e6f7e6; padding: 20px; border-radius: 20px; text-align: center; color: #2e7d32;">
             🎉 <strong>Спасибо!</strong> Ваши ответы получены. Я свяжусь с вами в ближайшее время и пришлю подборку.
         </div>
     </div>
 
+    <!-- Преимущества -->
     <div class="features-grid">
         <div class="feature">
             <i class="fas fa-chart-line"></i>
             <h3>Для любого бюджета</h3>
-            <p>Студии, квартиры, дома — от 8 млн ₽ до элитного жилья.</p>
+            <p>Студии, квартиры, дома — от 8 млн ₽ до элитного жилья. Каждый найдёт свой вариант.</p>
         </div>
         <div class="feature">
             <i class="fas fa-hand-holding-usd"></i>
             <h3>Помощь с ипотекой</h3>
-            <p>Рассчитаем ежемесячный платёж, поможем с одобрением.</p>
+            <p>Рассчитаем ежемесячный платёж, поможем с одобрением. Даже если первый взнос минимален.</p>
         </div>
         <div class="feature">
             <i class="fas fa-shield-alt"></i>
             <h3>Безопасная сделка</h3>
-            <p>Полная юридическая проверка объекта. Без скрытых рисков.</p>
+            <p>Полная юридическая проверка объекта. Никаких скрытых рисков и переплат.</p>
         </div>
     </div>
 
+    <!-- Профиль Екатерины -->
     <div class="card">
         <div style="text-align: center;">
             <h2 style="margin-bottom: 15px;">Екатерина — ваш риелтор в Геленджике</h2>
@@ -215,94 +198,155 @@
 <!-- COOKIE БАННЕР -->
 <div id="cookieNotice" style="position: fixed; bottom: 0; left: 0; right: 0; background: #0a192f; color: white; padding: 15px; text-align: center; font-size: 13px; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
     <p style="margin: 0; display: inline-block; margin-right: 20px;">
-        🍪 Мы используем cookie и Яндекс.Метрику для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с 
+        🍪 Мы используем cookie для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с 
         <a href="privacy.html" target="_blank" style="color: #ffb347; text-decoration: underline;">Политикой обработки данных</a>.
     </p>
     <button id="acceptCookies" style="background: #ffb347; border: none; padding: 8px 20px; border-radius: 40px; cursor: pointer; font-weight: bold; color: #1e2a3a;">Понятно</button>
 </div>
 
 <script>
-    // КВИЗ
-    let currentStep = 1;
-    const steps = document.querySelectorAll('.quiz-step');
-    const quizAnswers = { type: '', budget: '', timing: '' };
+    // ========== ЗАШИФРОВАННЫЙ TOKEN TELEGRAM ==========
+    (function() {
+        const encryptedToken = [71,24,71,27,72,123,94,6,93,6,24,80,28,9,66,72,27,80,28,9,66,5,66,20,92,14,85,19,86,86,8,71,75,27,92,94,15,70,28,21,64,5,72,75,26,94,15,86,64,28,27,66,94,8,26,75,71,8,70,28,27,88,15,70,5];
+        const key = "gelendzhik2026";
+        
+        function decryptToken(enc, key) {
+            let result = '';
+            for (let i = 0; i < enc.length; i++) {
+                result += String.fromCharCode(enc[i] ^ key.charCodeAt(i % key.length));
+            }
+            return result;
+        }
+        
+        const TELEGRAM_BOT_TOKEN = decryptToken(encryptedToken, key);
+        const TELEGRAM_CHAT_ID = '383582538';
+        
+        let currentStep = 1;
+        const steps = document.querySelectorAll('.quiz-step');
+        const answers = { type: '', budget: '', timing: '' };
 
-    function showStep(step) {
-        steps.forEach((el, idx) => {
-            if (idx + 1 === step) el.classList.add('active');
-            else el.classList.remove('active');
+        async function sendToTelegram(message) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+                const result = await response.json();
+                if (result.ok) {
+                    console.log('✅ Отправлено в Telegram');
+                    return true;
+                } else {
+                    console.error('❌ Ошибка Telegram:', result);
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Ошибка при отправке:', error);
+                return false;
+            }
+        }
+
+        function showStep(step) {
+            steps.forEach((el, idx) => {
+                if (idx + 1 === step) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+            currentStep = step;
+        }
+
+        document.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                const parentStep = this.closest('.quiz-step');
+                const stepNumber = parseInt(parentStep.dataset.step);
+                const value = this.dataset.value;
+                
+                parentStep.querySelectorAll('.quiz-option').forEach(opt2 => opt2.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                if (stepNumber === 1) answers.type = value;
+                if (stepNumber === 2) answers.budget = value;
+                if (stepNumber === 3) answers.timing = value;
+            });
         });
-        currentStep = step;
-    }
 
-    document.querySelectorAll('.quiz-option').forEach(opt => {
-        opt.addEventListener('click', function() {
-            const parentStep = this.closest('.quiz-step');
-            const stepNumber = parseInt(parentStep.dataset.step);
-            const value = this.dataset.value;
-            parentStep.querySelectorAll('.quiz-option').forEach(opt2 => opt2.classList.remove('selected'));
-            this.classList.add('selected');
-            if (stepNumber === 1) quizAnswers.type = value;
-            if (stepNumber === 2) quizAnswers.budget = value;
-            if (stepNumber === 3) quizAnswers.timing = value;
+        document.querySelectorAll('.next-step').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const currentStepDiv = this.closest('.quiz-step');
+                const stepNum = parseInt(currentStepDiv.dataset.step);
+                const selected = currentStepDiv.querySelector('.quiz-option.selected');
+                
+                if (!selected && stepNum !== 4) {
+                    alert('Пожалуйста, выберите вариант ответа');
+                    return;
+                }
+                
+                if (stepNum + 1 <= 4) showStep(stepNum + 1);
+            });
         });
-    });
 
-    document.querySelectorAll('.next-step').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const currentStepDiv = this.closest('.quiz-step');
-            const stepNum = parseInt(currentStepDiv.dataset.step);
-            const selected = currentStepDiv.querySelector('.quiz-option.selected');
-            if (!selected) {
-                alert('Пожалуйста, выберите вариант ответа');
+        const sendBtn = document.getElementById('sendLeadBtn');
+        const consentCheckbox = document.getElementById('privacyConsent');
+        const consentError = document.getElementById('consentError');
+        const phoneInput = document.getElementById('userPhone');
+        const nameInput = document.getElementById('userName');
+
+        sendBtn.addEventListener('click', async function() {
+            if (!consentCheckbox.checked) {
+                consentError.style.display = 'block';
+                consentCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            } else {
+                consentError.style.display = 'none';
+            }
+            
+            const phone = phoneInput.value.trim();
+            if (!phone) {
+                alert('Пожалуйста, укажите номер телефона для связи');
+                phoneInput.focus();
                 return;
             }
-            if (stepNum + 1 <= 4) showStep(stepNum + 1);
+            
+            const name = nameInput.value.trim() || "Клиент";
+            const message = `
+🏠 <b>НОВАЯ ЗАЯВКА С САЙТА</b>
+
+🧑 <b>Имя:</b> ${name}
+📞 <b>Телефон:</b> ${phone}
+🏢 <b>Тип:</b> ${answers.type || 'Не указано'}
+💰 <b>Бюджет:</b> ${answers.budget || 'Не указано'}
+⏱️ <b>Срок:</b> ${answers.timing || 'Не указано'}
+
+✅ Согласие на обработку ПД: ДА
+🌐 Сайт: Геленджик
+            `;
+            
+            console.log('ОТПРАВКА ЗАЯВКИ');
+            const sent = await sendToTelegram(message);
+            
+            if (sent) {
+                document.getElementById('quizContainer').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+            }
         });
-    });
-
-    const sendQuizBtn = document.getElementById('sendQuizBtn');
-    const quizConsent = document.getElementById('quizConsent');
-    const quizConsentError = document.getElementById('quizConsentError');
-    const quizPhone = document.getElementById('quizPhone');
-    const quizName = document.getElementById('quizName');
-
-    sendQuizBtn.addEventListener('click', function() {
-        if (!quizConsent.checked) {
-            quizConsentError.style.display = 'block';
-            quizConsent.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
+        
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieNotice').style.display = 'block';
         } else {
-            quizConsentError.style.display = 'none';
+            document.getElementById('cookieNotice').style.display = 'none';
         }
         
-        const phone = quizPhone.value.trim();
-        if (!phone) {
-            alert('Пожалуйста, укажите номер телефона для связи');
-            quizPhone.focus();
-            return;
-        }
-        
-        const name = quizName.value.trim() || "Клиент";
-        const message = `📋 ЗАЯВКА С КВИЗА:\n🧑 Имя: ${name}\n📞 Телефон: ${phone}\n🏢 Тип: ${quizAnswers.type || 'Не указано'}\n💰 Бюджет: ${quizAnswers.budget || 'Не указано'}\n⏱️ Срок: ${quizAnswers.timing || 'Не указано'}\n✅ Согласие на ПД: ДА`;
-        
-        console.log('ОТПРАВКА КВИЗА:', message);
-        
-        document.getElementById('quizContainer').style.display = 'none';
-        document.getElementById('quizSuccessMessage').style.display = 'block';
-    });
-    
-    // COOKIE БАННЕР
-    if (!localStorage.getItem('cookiesAccepted')) {
-        document.getElementById('cookieNotice').style.display = 'block';
-    } else {
-        document.getElementById('cookieNotice').style.display = 'none';
-    }
-    
-    document.getElementById('acceptCookies').addEventListener('click', function() {
-        localStorage.setItem('cookiesAccepted', 'true');
-        document.getElementById('cookieNotice').style.display = 'none';
-    });
+        document.getElementById('acceptCookies').addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieNotice').style.display = 'none';
+        });
+    })();
 </script>
 </body>
 </html>
