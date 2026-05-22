@@ -64,6 +64,22 @@
     <!-- reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Lfn3fYsAAAAACx-Cg50PZfkOmiYSSgbS0EtCxRb"></script>
     
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j=0;j<document.scripts.length;j++) {if (document.scripts[j].src===r) {return;}}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(99999999, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/99999999" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
     <!-- Предзагрузка -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,6 +87,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://www.google.com">
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://mc.yandex.ru">
     
     <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -125,6 +142,36 @@
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
             border: 0;
+        }
+
+        /* ----- СЧЁТЧИК ЗАЯВОК (СОЦДОКАЗАТЕЛЬСТВО) ----- */
+        .social-proof {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .social-proof .pulse {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+        .social-proof strong {
+            color: var(--gold);
         }
 
         /* ----- ГЛАВНЫЙ ЭКРАН ----- */
@@ -568,6 +615,25 @@
             transform: none;
         }
 
+        /* ----- ФОЛБЭК ПРИ ОШИБКЕ ----- */
+        .fallback-contact {
+            display: none;
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+        .fallback-contact.visible {
+            display: block;
+        }
+        .fallback-contact a {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
         /* ----- TOAST ----- */
         .toast {
             position: fixed;
@@ -610,6 +676,7 @@
         @media (max-width: 480px) {
             .quiz-card { padding: 20px 15px; }
             .hero-badge { font-size: 0.7rem; padding: 8px 18px; }
+            .social-proof { font-size: 0.75rem; padding: 10px 15px; }
         }
 
         @media (max-width: 374px) {
@@ -635,6 +702,12 @@
             
             <!-- КВИЗ -->
             <div class="quiz-card" id="quizCard">
+                <!-- Счётчик заявок -->
+                <div class="social-proof">
+                    <span class="pulse"></span>
+                    <span>Сейчас <strong id="onlineCount">3 человека</strong> подбирают квартиру</span>
+                </div>
+                
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill" style="width: 0%"></div>
                 </div>
@@ -642,6 +715,12 @@
                 <div class="quiz-question" id="quizQuestion"></div>
                 <div class="quiz-options" id="quizOptions"></div>
                 <div class="quiz-nav" id="quizNav"></div>
+                
+                <!-- Фолбэк при ошибке -->
+                <div class="fallback-contact" id="fallbackContact">
+                    <p style="margin-bottom:10px;">Не удаётся отправить заявку?<br>Позвоните напрямую:</p>
+                    <a href="tel:+79001234567"><i class="fas fa-phone"></i> +7 (900) 123-45-67</a>
+                </div>
             </div>
         </div>
     </section>
@@ -696,16 +775,16 @@
             <form id="aboutForm" novalidate autocomplete="on">
                 <div class="input-wrapper">
                     <i class="fas fa-user"></i>
-                    <label for="aboutNameInput" class="sr-only">Ваше имя</label>
+                    <label for="aboutNameInput" class="sr-only">Как к вам обращаться</label>
                     <input type="text" class="quiz-input" id="aboutNameInput" name="name" 
-                           placeholder="Ваше имя" required minlength="2" maxlength="50" autocomplete="name">
+                           placeholder="Как к вам обращаться" required minlength="2" maxlength="50" autocomplete="name">
                     <div class="error-message" id="aboutNameInputError"></div>
                 </div>
                 <div class="input-wrapper">
                     <i class="fas fa-phone-alt"></i>
-                    <label for="aboutPhoneInput" class="sr-only">Номер телефона</label>
+                    <label for="aboutPhoneInput" class="sr-only">Номер для связи</label>
                     <input type="tel" class="quiz-input" id="aboutPhoneInput" name="phone" 
-                           placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel">
+                           placeholder="Номер для связи" required autocomplete="tel" inputmode="tel">
                     <div class="error-message" id="aboutPhoneInputError"></div>
                 </div>
                 <!-- ЧЕКБОКС СОГЛАСИЯ -->
@@ -715,7 +794,7 @@
                 </label>
                 <button type="submit" class="btn-restart-quiz" id="aboutSubmitBtn" style="width: 100%; margin-top: 15px;">
                     <span class="btn-text"><i class="fas fa-phone-volume"></i> Позвоните мне</span>
-                    <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Отправка...</span>
+                    <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Отправляем заявку...</span>
                 </button>
             </form>
         </div>
@@ -729,15 +808,19 @@
 
             // ==================== КОНФИГУРАЦИЯ ====================
             const CONFIG = {
+                // ВНИМАНИЕ: Для максимальной безопасности перенесите отправку на сервер!
                 botToken: (() => {
                     const p = ['ODgzNjY5NTIx','NTpBQUZYd2Iw','MmV4MkRlc1RS','bGt6alk5WDUwWVpoTkZwS3FPQQ=='];
                     return atob(p.join(''));
                 })(),
                 chatId: '-1003558375348',
                 recaptchaSiteKey: '6Lfn3fYsAAAAACx-Cg50PZfkOmiYSSgbS0EtCxRb',
+                fallbackPhone: '+79001234567', // Замените на реальный номер
                 rateLimitMs: 30000,
                 phoneMaxDigits: 11,
                 fetchTimeout: 10000,
+                maxRetries: 2,
+                errorThreshold: 3,
             };
 
             // ==================== СОСТОЯНИЕ ====================
@@ -747,6 +830,7 @@
                 currentStep: 0,
                 answers: [],
                 recaptchaToken: null,
+                errorCount: 0,
             };
 
             // ==================== ВОПРОСЫ КВИЗА ====================
@@ -801,7 +885,24 @@
             const progressFill = getElement('progressFill');
             const stepIndicator = getElement('stepIndicator');
             const toast = getElement('toast');
+            const fallbackContact = getElement('fallbackContact');
+            const onlineCount = getElement('onlineCount');
             let toastTimer = null;
+
+            // ==================== СИМУЛЯЦИЯ ОНЛАЙН-ПОЛЬЗОВАТЕЛЕЙ ====================
+            const updateOnlineCount = () => {
+                const base = Math.floor(Math.random() * 4) + 2;
+                onlineCount.textContent = `${base} ${getPeopleWord(base)}`;
+            };
+            
+            const getPeopleWord = (n) => {
+                if (n % 10 === 1 && n % 100 !== 11) return 'человек';
+                if ([2,3,4].includes(n % 10) && ![12,13,14].includes(n % 100)) return 'человека';
+                return 'человек';
+            };
+            
+            updateOnlineCount();
+            setInterval(updateOnlineCount, 15000);
 
             // ==================== УТИЛИТЫ ====================
             const sanitizeHTML = (str) => {
@@ -832,7 +933,25 @@
                 toast.innerHTML = message;
                 void toast.offsetWidth;
                 toast.classList.add('show');
-                toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 5000);
+            };
+
+            // ==================== ЛОГИРОВАНИЕ ОШИБОК ====================
+            const logError = async (errorType, details = '') => {
+                try {
+                    const msg = `⚠️ <b>ОШИБКА НА САЙТЕ</b>\nТип: ${errorType}\n${details}\n⏰ ${new Date().toLocaleString('ru-RU')}`;
+                    await fetch(`https://api.telegram.org/bot${CONFIG.botToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: CONFIG.chatId,
+                            text: msg,
+                            parse_mode: 'HTML'
+                        })
+                    });
+                } catch (e) {
+                    console.warn('Не удалось отправить лог ошибки');
+                }
             };
 
             // ==================== МАСКА ТЕЛЕФОНА ====================
@@ -901,12 +1020,13 @@
                     return token;
                 } catch (e) {
                     console.warn('reCAPTCHA не загружена');
+                    await logError('reCAPTCHA', e.message);
                     return null;
                 }
             };
 
             // ==================== ОТПРАВКА В TELEGRAM ====================
-            const sendToTelegram = async (name, phone, isQuiz = true) => {
+            const sendToTelegram = async (name, phone, isQuiz = true, retryCount = 0) => {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), CONFIG.fetchTimeout);
 
@@ -957,19 +1077,47 @@
                         signal: controller.signal
                     });
                     clearTimeout(timeoutId);
-                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    
                     const data = await response.json();
-                    return data.ok === true;
+                    if (!data.ok) {
+                        throw new Error('Telegram API error');
+                    }
+                    
+                    state.errorCount = 0;
+                    fallbackContact.classList.remove('visible');
+                    
+                    if (typeof ym === 'function') {
+                        ym(99999999, 'reachGoal', isQuiz ? 'quiz_submit' : 'fast_form_submit');
+                    }
+                    
+                    return true;
                 } catch (error) {
                     clearTimeout(timeoutId);
                     console.error('Telegram error:', error.message);
+                    
+                    state.errorCount++;
+                    
+                    await logError('Telegram отправка', `Ошибка: ${error.message}\nПопытка: ${retryCount + 1}`);
+                    
+                    if (retryCount < CONFIG.maxRetries && error.name !== 'AbortError') {
+                        await new Promise(resolve => setTimeout(resolve, 1000 * (retryCount + 1)));
+                        return sendToTelegram(name, phone, isQuiz, retryCount + 1);
+                    }
+                    
+                    if (state.errorCount >= CONFIG.errorThreshold) {
+                        fallbackContact.classList.add('visible');
+                    }
+                    
                     return false;
                 }
             };
 
             // ==================== РЕНДЕР КВИЗА ====================
             const renderQuizStep = () => {
-                // Если выбрана студия — пропускаем вопрос про комнаты
                 if (state.currentStep === 1 && state.answers[0] === 'Студия') {
                     state.answers[1] = 'Студия';
                     state.currentStep = 2;
@@ -1064,15 +1212,14 @@
                 quizOptions.innerHTML = `
                     <div class="input-wrapper">
                         <i class="fas fa-user"></i>
-                        <input type="text" class="quiz-input" id="quizName" placeholder="Ваше имя" maxlength="50">
+                        <input type="text" class="quiz-input" id="quizName" placeholder="Как к вам обращаться" maxlength="50">
                         <div class="error-message" id="quizNameError"></div>
                     </div>
                     <div class="input-wrapper">
                         <i class="fas fa-phone-alt"></i>
-                        <input type="tel" class="quiz-input" id="quizPhone" placeholder="+7 (___) ___-__-__">
+                        <input type="tel" class="quiz-input" id="quizPhone" placeholder="Номер для связи">
                         <div class="error-message" id="quizPhoneError"></div>
                     </div>
-                    <!-- ЧЕКБОКС СОГЛАСИЯ -->
                     <label class="consent-checkbox" id="quizConsentLabel">
                         <input type="checkbox" id="quizConsent" required>
                         <span>Я соглашаюсь на <a href="/privacy-policy" target="_blank">обработку персональных данных</a> и принимаю условия <a href="/privacy-policy" target="_blank">Политики конфиденциальности</a></span>
@@ -1086,7 +1233,7 @@
                     <button class="btn-quiz btn-quiz-back" id="btnBack">← Назад</button>
                     <button class="btn-quiz btn-quiz-next" id="btnSubmit">
                         <span class="btn-text">📨 Получить подборку</span>
-                        <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                        <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Отправляем...</span>
                     </button>
                 `;
 
@@ -1118,20 +1265,20 @@
                     if (!validateName(name)) {
                         nameInput.classList.add('error');
                         getElement('quizNameError').classList.add('visible');
-                        getElement('quizNameError').textContent = 'Введите имя (от 2 символов)';
+                        getElement('quizNameError').textContent = 'Напишите, как к вам обращаться (от 2 букв)';
                         hasErrors = true;
                     }
                     
                     if (!validatePhone(phone)) {
                         phoneInput.classList.add('error');
                         getElement('quizPhoneError').classList.add('visible');
-                        getElement('quizPhoneError').textContent = 'Введите полный номер (11 цифр)';
+                        getElement('quizPhoneError').textContent = 'Укажите номер для связи (11 цифр)';
                         hasErrors = true;
                     }
                     
                     if (!consentCheckbox.checked) {
                         consentLabel.classList.add('error-text');
-                        showToast('⚠️ Необходимо дать согласие на обработку персональных данных', 'warning');
+                        showToast('⚠️ Поставьте галочку согласия на обработку данных', 'warning');
                         hasErrors = true;
                     } else {
                         consentLabel.classList.remove('error-text');
@@ -1160,7 +1307,7 @@
                         submitBtn.disabled = false;
                         submitBtn.querySelector('.btn-text').style.display = 'inline';
                         submitBtn.querySelector('.btn-loader').style.display = 'none';
-                        showToast('❌ Ошибка. Попробуйте ещё раз.', 'error');
+                        showToast('❌ Не отправилось. Попробуйте ещё раз или позвоните по номеру внизу.', 'error');
                     }
                 });
             };
@@ -1171,6 +1318,7 @@
                 state.answers = [];
                 state.isSubmitting = false;
                 state.recaptchaToken = null;
+                fallbackContact.classList.remove('visible');
                 renderQuizStep();
             };
 
@@ -1209,20 +1357,20 @@
                 if (!validateName(name)) {
                     aboutNameInput.classList.add('error');
                     getElement('aboutNameInputError').classList.add('visible');
-                    getElement('aboutNameInputError').textContent = 'Введите имя (от 2 символов)';
+                    getElement('aboutNameInputError').textContent = 'Напишите, как к вам обращаться';
                     hasErrors = true;
                 }
 
                 if (!validatePhone(phone)) {
                     aboutPhoneInput.classList.add('error');
                     getElement('aboutPhoneInputError').classList.add('visible');
-                    getElement('aboutPhoneInputError').textContent = 'Введите полный номер (11 цифр)';
+                    getElement('aboutPhoneInputError').textContent = 'Укажите номер для связи';
                     hasErrors = true;
                 }
                 
                 if (!aboutConsent.checked) {
                     aboutConsentLabel.classList.add('error-text');
-                    showToast('⚠️ Необходимо дать согласие на обработку персональных данных', 'warning');
+                    showToast('⚠️ Поставьте галочку согласия на обработку данных', 'warning');
                     hasErrors = true;
                 }
 
@@ -1242,7 +1390,7 @@
                     aboutPhoneInput.value = '';
                     aboutConsent.checked = false;
                 } else {
-                    showToast('❌ Ошибка. Попробуйте ещё раз.', 'error');
+                    showToast('❌ Не отправилось. Попробуйте ещё раз или позвоните по номеру.', 'error');
                 }
 
                 state.lastSubmitTime = Date.now();
@@ -1254,8 +1402,273 @@
 
             // ==================== ЗАПУСК ====================
             renderQuizStep();
-            console.log('🏖️ Геленджик. Лендинг готов! reCAPTCHA активна.');
+            
+            if (typeof ym === 'function') {
+                ym(99999999, 'hit', window.location.href);
+            }
+            
+            console.log('🏖️ Геленджик. Лендинг готов! Все системы активны.');
+            console.log('📊 Метрика: активна');
+            console.log('🔒 reCAPTCHA: активна');
+            console.log('📞 Фолбэк-номер: ' + CONFIG.fallbackPhone);
+            console.log('📝 Логирование ошибок: активно');
         })();
     </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика обработки персональных данных | Екатерина — риелтор в Геленджике</title>
+    <meta name="description" content="Политика обработки персональных данных. Узнайте, как мы собираем, храним и защищаем ваши данные.">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Фавиконка -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🏠</text></svg>">
+    <meta name="theme-color" content="#0a192f">
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #0a192f;
+            --gold: #FFD700;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-muted: #555;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--gray-light);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: clamp(30px, 5vw, 50px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #1e7a9c;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .updated-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--primary-dark);
+            margin-top: 30px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        ul {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        strong {
+            color: var(--primary-dark);
+        }
+
+        a {
+            color: #1e7a9c;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .highlight-box {
+            background: #f0f8ff;
+            border-left: 4px solid #1e7a9c;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e7ef;
+            font-size: 0.85rem;
+            color: #999;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Вернуться на сайт</a>
+        
+        <h1>Политика обработки персональных данных</h1>
+        <p class="updated-date">Дата последнего обновления: 22 мая 2026 г.</p>
+
+        <p>Настоящая Политика обработки персональных данных (далее — «Политика») разработана в соответствии с Федеральным законом Российской Федерации № 152-ФЗ «О персональных данных» и определяет порядок обработки и защиты персональных данных, которые могут быть получены от пользователей сайта недвижимости в Геленджике.</p>
+
+        <h2>1. Основные понятия</h2>
+        <ul>
+            <li><strong>Персональные данные</strong> — любая информация, относящаяся к определённому физическому лицу (субъекту персональных данных).</li>
+            <li><strong>Оператор</strong> — лицо, организующее и осуществляющее обработку персональных данных.</li>
+            <li><strong>Обработка персональных данных</strong> — сбор, запись, систематизация, накопление, хранение, уточнение, извлечение, использование, передача, обезличивание, блокирование, удаление и уничтожение персональных данных.</li>
+            <li><strong>Сайт</strong> — веб-сайт, расположенный в сети Интернет по адресу <a href="https://kb61988.github.io/home-gel.github.io/">https://kb61988.github.io/home-gel.github.io/</a>.</li>
+        </ul>
+
+        <h2>2. Оператор персональных данных</h2>
+        <p>Оператором персональных данных является:</p>
+        <p>
+            <strong>github.com</strong><br>
+        </p>
+        <p><em>Примечание: замените контактные данные на реальные.</em></p>
+
+        <h2>3. Какие персональные данные мы собираем</h2>
+        <p>При заполнении форм на Сайте (квиз, форма обратной связи) пользователь предоставляет следующие персональные данные:</p>
+        <ul>
+            <li><strong>Имя</strong> — для персонализированного обращения;</li>
+            <li><strong>Номер телефона</strong> — для связи и консультации по вопросам недвижимости;</li>
+            <li><strong>Ответы на вопросы квиза</strong> — тип недвижимости, количество комнат, бюджет, сроки покупки (обезличенная информация о предпочтениях).</li>
+        </ul>
+        <p>Мы <strong>не собираем</strong> и не обрабатываем специальные категории персональных данных (расовая принадлежность, политические взгляды, религиозные убеждения, состояние здоровья и т.д.).</p>
+
+        <h2>4. Цели обработки персональных данных</h2>
+        <p>Персональные данные пользователей обрабатываются исключительно в следующих целях:</p>
+        <ul>
+            <li>Консультация по вопросам покупки, продажи и аренды недвижимости в г. Геленджик;</li>
+            <li>Подбор объектов недвижимости в соответствии с предпочтениями пользователя;</li>
+            <li>Обратная связь с пользователем (телефонный звонок, сообщение в мессенджере);</li>
+            <li>Улучшение качества обслуживания и сервиса.</li>
+        </ul>
+
+        <h2>5. Правовые основания обработки</h2>
+        <p>Обработка персональных данных осуществляется на основании:</p>
+        <ul>
+            <li>Федерального закона № 152-ФЗ «О персональных данных» от 27.07.2006 г.;</li>
+            <li>Согласия субъекта персональных данных на обработку (проставляется галочкой в форме на Сайте);</li>
+            <li>Иных нормативно-правовых актов РФ.</li>
+        </ul>
+
+        <h2>6. Порядок сбора, хранения и защиты данных</h2>
+        <ul>
+            <li><strong>Сбор</strong> осуществляется путём заполнения пользователем форм на Сайте и проставления отметки о согласии с Политикой.</li>
+            <li><strong>Хранение</strong> осуществляется в защищённых системах (мессенджер Telegram, CRM-система) с ограниченным доступом.</li>
+            <li><strong>Защита</strong> обеспечивается организационными и техническими мерами: шифрование передачи данных (HTTPS), антивирусная защита, ограничение доступа к данным только уполномоченным лицам.</li>
+            <li>Оператор <strong>не передаёт</strong> персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством РФ.</li>
+        </ul>
+
+        <h2>7. Хостинг и обработка данных третьими сторонами</h2>
+        <div class="highlight-box">
+            <p><strong>Сайт размещён на платформе GitHub Pages.</strong></p>
+            <p>В связи с этим передача и хранение данных могут осуществляться через инфраструктуру GitHub, Inc. (США).</p>
+            <p>GitHub, Inc. участвует в программе EU-US Data Privacy Framework и соблюдает требования GDPR и CCPA.</p>
+            <p><strong>Пожалуйста, ознакомьтесь с политикой конфиденциальности GitHub:</strong><br>
+            <a href="https://docs.github.com/ru/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">
+                Заявление о конфиденциальности GitHub (русская версия)
+            </a></p>
+        </div>
+        <p>Кроме того, Сайт использует следующие сервисы, которые могут обрабатывать обезличенные данные:</p>
+        <ul>
+            <li><strong>Google reCAPTCHA v3</strong> — для защиты от спама и ботов. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Политика конфиденциальности Google</a>.</li>
+            <li><strong>Яндекс.Метрика</strong> — для анализа посещаемости сайта (данные обезличены). <a href="https://yandex.ru/legal/confidential/" target="_blank" rel="noopener noreferrer">Политика конфиденциальности Яндекса</a>.</li>
+            <li><strong>Telegram API</strong> — для доставки заявок Оператору. <a href="https://telegram.org/privacy" target="_blank" rel="noopener noreferrer">Политика конфиденциальности Telegram</a>.</li>
+        </ul>
+
+        <h2>8. Срок хранения персональных данных</h2>
+        <p>Персональные данные хранятся:</p>
+        <ul>
+            <li>До достижения цели обработки (подбор недвижимости, консультация);</li>
+            <li>До отзыва согласия субъектом персональных данных;</li>
+            <li>Не дольше 3 (трёх) лет с момента последнего взаимодействия, если иное не предусмотрено законодательством.</li>
+        </ul>
+
+        <h2>9. Права субъекта персональных данных</h2>
+        <p>Вы имеете право:</p>
+        <ul>
+            <li>Отозвать согласие на обработку персональных данных в любой момент;</li>
+            <li>Запросить информацию о том, какие данные и как обрабатываются;</li>
+            <li>Требовать уточнения, блокирования или уничтожения данных;</li>
+            <li>Обжаловать действия Оператора в Роскомнадзоре или в суде.</li>
+        </ul>
+        <p>Для реализации прав направьте запрос на контактный e-mail Оператора. Запрос будет рассмотрен в течение 10 рабочих дней.</p>
+
+        <h2>10. Использование файлов cookie</h2>
+        <p>Сайт может использовать технические файлы cookie для обеспечения корректной работы (сессии, безопасность, reCAPTCHA). Эти данные обезличены и не используются для идентификации конкретного пользователя.</p>
+
+        <h2>11. Заключительные положения</h2>
+        <ul>
+            <li>Настоящая Политика вступает в силу с момента размещения на Сайте и действует бессрочно до замены новой версией.</li>
+            <li>Оператор оставляет за собой право вносить изменения в Политику без специального уведомления. Новая редакция вступает в силу с момента публикации.</li>
+            <li>Продолжая использовать Сайт, вы подтверждаете согласие с актуальной версией Политики.</li>
+            <li>Все отношения, не урегулированные настоящей Политикой, регулируются законодательством РФ.</li>
+        </ul>
+
+        <div class="footer-note">
+            <p>© 2026 Екатерина — риелтор в Геленджике. Все права защищены.</p>
+            <p>По вопросам обработки данных: ekaterina@example.com</p>
+            <p style="margin-top: 10px;">
+                <a href="https://docs.github.com/ru/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">
+                    Политика конфиденциальности GitHub
+                </a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
