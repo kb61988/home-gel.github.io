@@ -62,7 +62,7 @@
     <meta name="msapplication-TileColor" content="#0a192f">
     
     <!-- reCAPTCHA v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lc_ваш_ключ_тут"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lfn3fYsAAAAACx-Cg50PZfkOmiYSSgbS0EtCxRb"></script>
     
     <!-- Предзагрузка -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -734,7 +734,7 @@
                     return atob(p.join(''));
                 })(),
                 chatId: '-1003558375348',
-                recaptchaSiteKey: '6Lc_ваш_ключ_тут',
+                recaptchaSiteKey: '6Lfn3fYsAAAAACx-Cg50PZfkOmiYSSgbS0EtCxRb',
                 rateLimitMs: 30000,
                 phoneMaxDigits: 11,
                 fetchTimeout: 10000,
@@ -1115,7 +1115,6 @@
 
                     let hasErrors = false;
                     
-                    // Валидация имени
                     if (!validateName(name)) {
                         nameInput.classList.add('error');
                         getElement('quizNameError').classList.add('visible');
@@ -1123,7 +1122,6 @@
                         hasErrors = true;
                     }
                     
-                    // Валидация телефона
                     if (!validatePhone(phone)) {
                         phoneInput.classList.add('error');
                         getElement('quizPhoneError').classList.add('visible');
@@ -1131,7 +1129,6 @@
                         hasErrors = true;
                     }
                     
-                    // Валидация согласия
                     if (!consentCheckbox.checked) {
                         consentLabel.classList.add('error-text');
                         showToast('⚠️ Необходимо дать согласие на обработку персональных данных', 'warning');
@@ -1257,7 +1254,7 @@
 
             // ==================== ЗАПУСК ====================
             renderQuizStep();
-            console.log('🏖️ Геленджик. Лендинг готов к работе! 152-ФЗ соблюдён.');
+            console.log('🏖️ Геленджик. Лендинг готов! reCAPTCHA активна.');
         })();
     </script>
 </body>
