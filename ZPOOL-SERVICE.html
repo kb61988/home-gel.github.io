@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === ЦВЕТА (ИЗ ТВОЕГО МАКЕТА) === */
+        /* === ЦВЕТА (ВЗЯТЫ НАПРЯМУЮ ИЗ ТВОЕГО ЛОГОТИПА) === */
         :root {
-            --c-cyan: #00a6c6;         
-            --c-cyan-hover: #008ba6;   
-            --c-dark: #0061af;         
-            --c-text: #556975;         
+            --c-cyan: #18a6c7;         /* Яркий бирюзовый из логотипа */
+            --c-cyan-hover: #138ca8;   /* Темнее для ховера */
+            --c-dark: #0a3877;         /* Глубокий темно-синий из логотипа */
+            --c-footer-bg: #07224c;    /* Еще более темный синий для контрастного подвала */
+            
+            --c-text: #556975;         /* Серый для описаний */
             --c-bg-light: #f2f8fb;   
             --c-border: #dbe6ec;     
             --c-white: #ffffff;
@@ -47,7 +49,7 @@
         }
         .header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
-        /* Логотип (Картинка) */
+        /* Логотип */
         .logo-img { 
             height: 48px; 
             width: auto; 
@@ -77,7 +79,7 @@
             transition: left 0.6s ease; z-index: -1;
         }
         .btn-header:hover::before, .btn-primary:hover::before { left: 100%; }
-        .btn-header:hover, .btn-primary:hover { background-color: var(--c-cyan-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 166, 198, 0.3); }
+        .btn-header:hover, .btn-primary:hover { background-color: var(--c-cyan-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(24, 166, 199, 0.3); }
 
         .btn-outline {
             background-color: transparent; color: var(--c-cyan); padding: 13px 32px; border-radius: 30px;
@@ -88,13 +90,11 @@
         /* === ГЛАВНЫЙ ЭКРАН (HERO) === */
         .hero {
             position: relative; height: 520px;
-            /* ВСТАВЛЕНА ТВОЯ ПЕРВАЯ КАРТИНКА */
             background: url('hero-bg.jpg') center/cover no-repeat;
             display: flex; align-items: center;
         }
         .hero::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            /* Градиент для читаемости текста (как на макете) */
             background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 70%);
         }
         .hero-content { position: relative; z-index: 1; max-width: 600px; }
@@ -136,7 +136,6 @@
         .equipment { padding: 0 0 80px 0; }
         .equipment-inner { background-color: var(--c-bg-light); border-radius: 15px; display: flex; align-items: stretch; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         
-        /* ВСТАВЛЕНА ТВОЯ ВТОРАЯ КАРТИНКА */
         .equipment-img {
             width: 38%; 
             background: url('equipment-bg.jpg') center/cover no-repeat;
@@ -166,7 +165,7 @@
         .brand-dinotec i { color: #8a959e; font-size: 18px; }
 
         /* === ПОДВАЛ === */
-        .footer { background-color: var(--c-dark); color: var(--c-white); padding: 60px 0 20px; }
+        .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 30px; margin-bottom: 40px; }
         
         .footer-logo-img {
