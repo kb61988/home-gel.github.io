@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === ЦВЕТА (ВЗЯТЫ НАПРЯМУЮ ИЗ ТВОЕГО ЛОГОТИПА) === */
+        /* === ЦВЕТА (ИЗ ТВОЕГО ЛОГОТИПА) === */
         :root {
-            --c-cyan: #18a6c7;         /* Яркий бирюзовый из логотипа */
-            --c-cyan-hover: #138ca8;   /* Темнее для ховера */
-            --c-dark: #0a3877;         /* Глубокий темно-синий из логотипа */
-            --c-footer-bg: #07224c;    /* Еще более темный синий для контрастного подвала */
+            --c-cyan: #18a6c7;         
+            --c-cyan-hover: #138ca8;   
+            --c-dark: #0a3877;         
+            --c-footer-bg: #07224c;    
             
-            --c-text: #556975;         /* Серый для описаний */
+            --c-text: #556975;         
             --c-bg-light: #f2f8fb;   
             --c-border: #dbe6ec;     
             --c-white: #ffffff;
@@ -44,14 +44,15 @@
 
         /* === ШАПКА === */
         .header {
-            background-color: var(--c-white); height: 85px; display: flex; align-items: center;
+            /* Увеличил высоту шапки, чтобы большой логотип помещался красиво */
+            background-color: var(--c-white); height: 90px; display: flex; align-items: center;
             position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
-        /* Логотип */
+        /* Логотип (Увеличен) */
         .logo-img { 
-            height: 48px; 
+            height: 65px; /* Было 48px */
             width: auto; 
             display: block; 
             transition: transform var(--transition); 
@@ -168,9 +169,14 @@
         .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 30px; margin-bottom: 40px; }
         
+        /* Логотип в подвале (Увеличен) */
         .footer-logo-img {
-            height: 48px; width: auto; display: block;
-            background-color: var(--c-white); padding: 5px 10px; border-radius: 8px;
+            height: 65px; /* Было 48px */
+            width: auto; 
+            display: block;
+            background-color: var(--c-white); 
+            padding: 8px 15px; /* Чуть увеличил отступы внутри белой плашки */
+            border-radius: 8px;
         }
 
         .footer-slogan { font-size: 13px; color: #b0c0cb; display: flex; align-items: center; gap: 8px; margin-top: 15px; }
@@ -205,11 +211,13 @@
         }
 
         @media (max-width: 768px) {
-            .header { height: 70px; }
-            .logo-img, .footer-logo-img { height: 35px; }
+            .header { height: 80px; } /* Увеличил шапку для мобилки */
+            
+            /* Увеличил логотипы для мобилки */
+            .logo-img, .footer-logo-img { height: 50px; } 
             
             .nav {
-                position: absolute; top: 70px; left: -100%; width: 100%; background-color: var(--c-white);
+                position: absolute; top: 80px; left: -100%; width: 100%; background-color: var(--c-white);
                 flex-direction: column; align-items: center; padding: 20px 0;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.1); transition: left 0.4s ease; margin-left: 0; gap: 20px;
             }
