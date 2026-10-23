@@ -14,14 +14,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === СБРОС И БАЗОВЫЕ НАСТРОЙКИ === */
+        /* === ТОЧНЫЕ ЦВЕТА ИЗ МАКЕТА === */
         :root {
-            --color-primary: #1ea8d7; /* Бирюзовый */
-            --color-primary-hover: #168eb7;
-            --color-dark: #0c2d43; /* Темно-синий (текст и футер) */
-            --color-text: #4a5a67;
-            --color-bg-light: #f2f8fb; /* Светло-голубой фон */
-            --color-border: #e5edf1;
+            --c-cyan: #25a8d3;       /* Основной голубой */
+            --c-cyan-hover: #1c8bb0;
+            --c-dark: #0e2e43;       /* Темно-синий (текст, футер) */
+            --c-text: #556975;       /* Серый текст */
+            --c-bg-light: #f2f8fb;   /* Светло-голубой фон блока */
+            --c-border: #dbe6ec;     /* Цвет рамок карточек */
+            --c-white: #ffffff;
         }
 
         * {
@@ -32,9 +33,9 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            color: var(--color-text);
-            background-color: #ffffff;
-            line-height: 1.5;
+            color: var(--c-text);
+            background-color: var(--c-white);
+            line-height: 1.4;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -48,15 +49,15 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         /* === ШАПКА === */
         .header {
-            background-color: #ffffff;
-            height: 80px;
+            background-color: var(--c-white);
+            height: 85px;
             display: flex;
             align-items: center;
         }
@@ -68,42 +69,34 @@
             width: 100%;
         }
 
-        /* Логотип (сделан на HTML/CSS, чтобы быть четким) */
+        /* Логотип (Точная копия) */
         .logo {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 150px;
         }
         .logo-top {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
-            color: var(--color-dark);
-            letter-spacing: 1px;
+            color: var(--c-dark);
             line-height: 1;
-            display: flex;
-            align-items: center;
-        }
-        .logo-top span {
-            color: var(--color-primary);
+            letter-spacing: 1px;
         }
         .logo-bottom {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-top: 2px;
-        }
-        .logo-bottom span {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--color-primary);
-            letter-spacing: 3px;
-            margin-left: 2px;
+            margin-top: 3px;
         }
         .logo-line {
             height: 2px;
-            background-color: var(--color-primary);
-            flex-grow: 1;
+            background-color: var(--c-cyan);
+            width: 25px;
+        }
+        .logo-bottom span {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--c-cyan);
+            letter-spacing: 4px;
             margin: 0 5px;
         }
 
@@ -111,121 +104,123 @@
         .nav {
             display: flex;
             gap: 35px;
+            margin-left: 40px;
         }
 
         .nav a {
             font-size: 14px;
             font-weight: 500;
-            color: #333;
-            transition: color 0.3s;
+            color: var(--c-dark);
+            transition: color 0.2s;
         }
 
         .nav a:hover {
-            color: var(--color-primary);
+            color: var(--c-cyan);
         }
 
         /* Кнопка в шапке */
         .btn-header {
-            background-color: var(--color-primary);
-            color: #fff;
-            padding: 12px 25px;
+            background-color: var(--c-cyan);
+            color: var(--c-white);
+            padding: 12px 24px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: background 0.3s;
+            gap: 10px;
+            transition: background 0.2s;
         }
         .btn-header:hover {
-            background-color: var(--color-primary-hover);
+            background-color: var(--c-cyan-hover);
         }
 
-        /* === ГЛАВНЫЙ БАННЕР (HERO) === */
+        /* === ГЛАВНЫЙ ЭКРАН === */
         .hero {
             position: relative;
-            height: 480px;
-            /* Фоновая картинка с бассейном и горами */
+            height: 520px;
+            /* Фото бассейна, гор и лежаков */
             background: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
         }
 
-        /* Белый градиент слева, чтобы текст читался */
+        /* Плавный белый градиент слева */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 45%, rgba(255,255,255,0) 70%);
+            background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0) 70%);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 550px;
+            max-width: 600px;
         }
 
         .hero h1 {
-            font-size: 42px;
-            line-height: 1.15;
-            color: var(--color-dark);
+            font-size: 44px;
+            line-height: 1.1;
+            color: var(--c-dark);
             font-weight: 700;
             margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
         .hero h1 span {
-            color: var(--color-primary);
+            color: var(--c-cyan);
         }
 
         .hero p {
             font-size: 16px;
-            color: var(--color-text);
-            margin-bottom: 30px;
+            color: var(--c-dark);
+            margin-bottom: 35px;
             font-weight: 500;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .hero-buttons {
             display: flex;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
         .btn-primary {
-            background-color: var(--color-primary);
-            color: #fff;
-            padding: 14px 30px;
+            background-color: var(--c-cyan);
+            color: var(--c-white);
+            padding: 14px 32px;
             border-radius: 30px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
         }
         .btn-primary:hover {
-            background-color: var(--color-primary-hover);
+            background-color: var(--c-cyan-hover);
         }
 
         .btn-outline {
             background-color: transparent;
-            color: var(--color-primary);
-            padding: 13px 30px;
+            color: var(--c-cyan);
+            padding: 13px 32px;
             border-radius: 30px;
             font-size: 14px;
-            font-weight: 600;
-            border: 1px solid var(--color-primary);
+            font-weight: 500;
+            border: 1px solid var(--c-cyan);
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
         }
         .btn-outline:hover {
-            background-color: var(--color-primary);
-            color: #fff;
+            background-color: var(--c-cyan);
+            color: var(--c-white);
         }
 
         /* Иконки преимуществ */
         .hero-features {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
 
         .feature {
@@ -233,42 +228,42 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 10px;
-            width: 80px;
+            gap: 12px;
+            width: 90px;
         }
 
         .feature-icon {
-            width: 45px;
-            height: 45px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            border: 1.5px solid var(--color-primary);
+            border: 1px solid var(--c-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-primary);
+            color: var(--c-cyan);
             font-size: 18px;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.7);
         }
 
         .feature span {
             font-size: 12px;
-            color: var(--color-dark);
+            color: var(--c-dark);
             font-weight: 500;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         /* === УСЛУГИ === */
         .services {
-            padding: 60px 0;
-            background: #fff;
+            padding: 60px 0 50px;
+            background: var(--c-white);
         }
 
         .services h2 {
             text-align: center;
-            font-size: 28px;
-            color: var(--color-dark);
+            font-size: 30px;
+            color: var(--c-dark);
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             line-height: 1.3;
         }
 
@@ -279,43 +274,43 @@
         }
 
         .service-card {
-            background: #fff;
-            border: 1px solid var(--color-border);
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
             border-radius: 8px;
-            padding: 20px 15px;
+            padding: 25px 15px 20px;
             text-align: left;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .service-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-color: var(--color-primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            border-color: var(--c-cyan);
         }
 
         .service-card .icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            border: 1px solid var(--color-primary);
+            border: 1px solid var(--c-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-primary);
-            font-size: 16px;
-            margin-bottom: 15px;
+            color: var(--c-cyan);
+            font-size: 18px;
+            margin-bottom: 18px;
         }
 
         .service-card h3 {
             font-size: 14px;
-            color: var(--color-dark);
+            color: var(--c-dark);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .service-card p {
             font-size: 11px;
-            color: var(--color-text);
-            line-height: 1.4;
+            color: var(--c-text);
+            line-height: 1.5;
         }
 
         /* === БЛОК ОБОРУДОВАНИЯ === */
@@ -324,28 +319,27 @@
         }
 
         .equipment-inner {
-            background-color: var(--color-bg-light);
+            background-color: var(--c-bg-light);
             border-radius: 15px;
             display: flex;
-            align-items: center;
+            align-items: stretch; /* Чтобы картинка тянулась на всю высоту */
             overflow: hidden;
         }
 
         .equipment-img {
-            width: 40%;
-            height: 250px;
-            /* Фоновая картинка бассейна с поручнями */
+            width: 38%;
+            /* Фото бассейна с лестницей */
             background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
         }
 
         .equipment-content {
-            width: 60%;
-            padding: 30px 40px;
+            width: 62%;
+            padding: 35px 45px;
         }
 
         .equipment-content h2 {
-            font-size: 24px;
-            color: var(--color-dark);
+            font-size: 26px;
+            color: var(--c-dark);
             font-weight: 700;
             margin-bottom: 25px;
         }
@@ -360,193 +354,190 @@
             gap: 15px;
             flex: 1;
         }
+        
+        /* Вертикальная линия разделитель */
+        .equip-divider {
+            width: 1px;
+            background-color: var(--c-border);
+        }
 
         .equip-item .icon {
-            width: 40px;
-            height: 40px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            border: 1px solid var(--color-primary);
+            border: 1px solid var(--c-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-primary);
-            font-size: 16px;
+            color: var(--c-cyan);
+            font-size: 18px;
             flex-shrink: 0;
-            background: #fff;
+            background: transparent;
         }
 
         .equip-item h4 {
             font-size: 15px;
-            color: var(--color-dark);
+            color: var(--c-dark);
             font-weight: 600;
             margin-bottom: 5px;
+            line-height: 1.3;
         }
 
         .equip-item p {
             font-size: 12px;
-            color: var(--color-text);
-            margin-bottom: 10px;
+            color: var(--c-text);
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
-        /* Логотипы брендов (имитация) */
+        /* Логотипы брендов */
         .brand-logos {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
             margin-top: 10px;
         }
-        .brand-logo {
-            height: 20px;
-            object-fit: contain;
-        }
-        .brand-text {
-            font-size: 18px;
+        .brand-ospa {
+            font-size: 20px;
             font-weight: 800;
-            color: var(--color-primary);
-            font-style: italic;
-            letter-spacing: -1px;
+            color: var(--c-cyan);
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .brand-ospa span {
+            font-size: 8px;
+            display: block;
+            color: #555;
+            letter-spacing: 0;
+            font-weight: 600;
+        }
+        .brand-dinotec {
+            font-size: 16px;
+            font-weight: 800;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1;
+        }
+        .brand-dinotec i {
+            color: #f7a800; /* Желтая галочка */
+            font-size: 18px;
         }
 
         /* === ПОДВАЛ === */
         .footer {
-            background-color: var(--color-dark);
-            color: #fff;
+            background-color: var(--c-dark);
+            color: var(--c-white);
             padding: 50px 0 20px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1.5fr 1fr 1.2fr;
+            grid-template-columns: 1fr 1fr 1fr 1.2fr;
             gap: 30px;
             margin-bottom: 40px;
         }
 
-        /* Колонка 1: Лого */
-        .footer-logo {
-            margin-bottom: 15px;
-        }
-        .footer-logo .logo-top { color: #fff; }
-        .footer-logo .logo-top span { color: var(--color-primary); }
-        .footer-logo .logo-bottom span { color: #fff; }
-        .footer-logo .logo-line { background-color: rgba(255,255,255,0.3); }
+        .footer-logo .logo-top { color: var(--c-white); }
+        .footer-logo .logo-bottom span { color: var(--c-cyan); }
+        .footer-logo .logo-line { background-color: var(--c-cyan); }
         
         .footer-slogan {
             font-size: 13px;
-            color: #a0b2c0;
+            color: #b0c0cb;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            margin-top: 15px;
         }
         .footer-slogan i {
-            color: var(--color-primary);
+            color: var(--c-cyan);
             font-size: 16px;
         }
 
-        /* Колонка 2: Контакты */
         .contact-list li {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 12px;
             margin-bottom: 15px;
             font-size: 13px;
             color: #d1dde5;
         }
         .contact-list i {
-            color: var(--color-primary);
+            color: var(--c-cyan);
             font-size: 14px;
-            margin-top: 3px;
+            width: 16px;
+            text-align: center;
         }
 
-        /* Колонка 3: Соцсети */
         .footer h4 {
             font-size: 15px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            color: var(--c-white);
         }
         .socials {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
         .socials a {
-            width: 35px;
-            height: 35px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background-color: var(--color-primary);
+            background-color: var(--c-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            font-size: 16px;
-            transition: 0.3s;
+            color: var(--c-white);
+            font-size: 18px;
+            transition: 0.2s;
         }
         .socials a:hover {
-            background-color: #fff;
-            color: var(--color-primary);
+            background-color: var(--c-white);
+            color: var(--c-cyan);
         }
 
-        /* Колонка 4: CTA */
         .footer-cta p {
-            font-size: 13px;
-            color: #a0b2c0;
+            font-size: 12px;
+            color: #b0c0cb;
             margin-bottom: 15px;
+            line-height: 1.4;
         }
         .btn-footer {
-            background-color: var(--color-primary);
-            color: #fff;
-            padding: 10px 25px;
+            background-color: var(--c-cyan);
+            color: var(--c-white);
+            padding: 10px 24px;
             border-radius: 30px;
             font-size: 13px;
             font-weight: 500;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
         }
         .btn-footer:hover {
-            background-color: var(--color-primary-hover);
+            background-color: var(--c-cyan-hover);
         }
 
-        /* Нижняя панель футера */
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
+            font-size: 11px;
             color: #7a8f9f;
-            position: relative;
         }
 
         .footer-bottom-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
-
         .footer-bottom-links a:hover {
-            color: #fff;
+            color: var(--c-white);
         }
 
-        /* Адаптивность (чтобы не сломалось на маленьких экранах, хотя фокус на десктоп) */
-        @media (max-width: 1100px) {
-            .services-grid { grid-template-columns: repeat(4, 1fr); }
-            .equipment-grid { flex-direction: column; gap: 15px; }
-        }
-        @media (max-width: 900px) {
-            .nav { display: none; }
-            .hero::before { background: rgba(255,255,255,0.85); }
-            .equipment-inner { flex-direction: column; }
-            .equipment-img { width: 100%; }
-            .equipment-content { width: 100%; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 600px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero h1 { font-size: 32px; }
-            .hero-buttons { flex-direction: column; }
-            .hero-features { flex-wrap: wrap; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-        }
     </style>
 </head>
 <body>
@@ -616,36 +607,43 @@
             <h2>Полный спектр услуг<br>по обслуживанию бассейнов</h2>
             
             <div class="services-grid">
+                <!-- 1 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                     <h3>Каталог товаров</h3>
                     <p>Оборудование, химия и материалы для любых типов бассейнов</p>
                 </div>
+                <!-- 2 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-wrench"></i></div>
                     <h3>Монтаж</h3>
                     <p>Установка и настройка оборудования и фильтрации</p>
                 </div>
+                <!-- 3 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-tint"></i></div>
                     <h3>Обслуживание</h3>
                     <p>Чистка, контроль качества воды, профилактика и уход</p>
                 </div>
+                <!-- 4 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-cog"></i></div>
                     <h3>Ремонт</h3>
                     <p>Диагностика и восстановление насосов, фильтров, систем</p>
                 </div>
+                <!-- 5 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-sync-alt"></i></div>
                     <h3>Реконструкция</h3>
                     <p>Полное обновление чаши, инженерии и внешнего вида. Бассейн снова будет как новый</p>
                 </div>
+                <!-- 6 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-border-all"></i></div>
                     <h3>Отделка</h3>
                     <p>Мозаика, пленка, плитка — финишная отделка чаши под ключ</p>
                 </div>
+                <!-- 7 -->
                 <div class="service-card">
                     <div class="icon"><i class="far fa-snowflake"></i></div>
                     <h3>Сезонные работы</h3>
@@ -659,11 +657,15 @@
     <section class="equipment">
         <div class="container">
             <div class="equipment-inner">
+                <!-- Левая картинка -->
                 <div class="equipment-img"></div>
+                
+                <!-- Правая часть -->
                 <div class="equipment-content">
                     <h2>Выбираем лучшее<br>для вашего бассейна</h2>
                     
                     <div class="equipment-grid">
+                        <!-- Левая колонка -->
                         <div class="equip-item">
                             <div class="icon"><i class="fas fa-user"></i></div>
                             <div>
@@ -671,15 +673,19 @@
                                 <p>Персональный подход, удобный график и решение под ваши задачи.</p>
                             </div>
                         </div>
+                        
+                        <!-- Разделитель -->
+                        <div class="equip-divider"></div>
+
+                        <!-- Правая колонка -->
                         <div class="equip-item">
                             <div class="icon"><i class="fas fa-link"></i></div>
                             <div>
                                 <h4>Монтаж оборудования<br>Ospa, Dinotec</h4>
                                 <p>Профессиональная установка и настройка премиум-оборудования.</p>
                                 <div class="brand-logos">
-                                    <!-- Имитация логотипов текстом, так как нет оригинальных файлов -->
-                                    <div class="brand-text">ospa</div>
-                                    <div class="brand-text" style="color: #333;"><i class="fas fa-caret-right" style="color: #f0b323; font-size: 14px;"></i> dinotec</div>
+                                    <div class="brand-ospa">ospa<span>Die Schwimmbad Profis</span></div>
+                                    <div class="brand-dinotec"><i class="fas fa-caret-right"></i> dinotec</div>
                                 </div>
                             </div>
                         </div>
