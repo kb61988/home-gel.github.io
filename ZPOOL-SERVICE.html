@@ -12,13 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === ЦВЕТА (ИЗ ТВОЕГО ЛОГОТИПА) === */
+        /* === ЦВЕТА === */
         :root {
             --c-cyan: #18a6c7;         
             --c-cyan-hover: #138ca8;   
             --c-dark: #0a3877;         
             --c-footer-bg: #07224c;    
-            
             --c-text: #556975;         
             --c-bg-light: #f2f8fb;   
             --c-border: #dbe6ec;     
@@ -49,17 +48,10 @@
         }
         .header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
-        /* Логотип (Увеличен) */
-        .logo-img { 
-            height: 65px; 
-            width: auto; 
-            display: block; 
-            transition: transform var(--transition); 
-            mix-blend-mode: multiply; 
-        }
+        .logo-img { height: 65px; width: auto; display: block; transition: transform var(--transition); mix-blend-mode: multiply; }
         .logo-img:hover { transform: scale(1.05); }
 
-        .nav { display: flex; gap: 35px; margin-left: 40px; }
+        .nav { display: flex; gap: 30px; margin-left: 30px; }
         .nav a { font-size: 14px; font-weight: 500; color: var(--c-dark); transition: color var(--transition); position: relative; }
         .nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background-color: var(--c-cyan); transition: width var(--transition); }
         .nav a:hover { color: var(--c-cyan); }
@@ -68,10 +60,14 @@
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--c-dark); cursor: pointer; }
 
         /* Кнопки */
+        .btn-header, .btn-primary, .btn-outline {
+            cursor: pointer; transition: all var(--transition); position: relative; overflow: hidden; z-index: 1;
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 30px;
+        }
+        
         .btn-header, .btn-primary {
-            background-color: var(--c-cyan); color: var(--c-white); padding: 12px 24px; border-radius: 30px;
-            font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: all var(--transition); border: none; cursor: pointer; position: relative; overflow: hidden; z-index: 1;
+            background-color: var(--c-cyan); color: var(--c-white); padding: 12px 24px;
+            font-size: 14px; font-weight: 500; border: none; gap: 10px;
         }
         .btn-header::before, .btn-primary::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
@@ -82,8 +78,8 @@
         .btn-header:hover, .btn-primary:hover { background-color: var(--c-cyan-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(24, 166, 199, 0.3); }
 
         .btn-outline {
-            background-color: transparent; color: var(--c-cyan); padding: 13px 32px; border-radius: 30px;
-            font-size: 14px; font-weight: 500; border: 1px solid var(--c-cyan); cursor: pointer; transition: all var(--transition);
+            background-color: transparent; color: var(--c-cyan); padding: 13px 32px;
+            font-size: 14px; font-weight: 500; border: 1px solid var(--c-cyan);
         }
         .btn-outline:hover { background-color: var(--c-cyan); color: var(--c-white); transform: translateY(-2px); }
 
@@ -130,8 +126,6 @@
         }
         .service-card:hover .icon { background-color: var(--c-cyan); color: var(--c-white); transform: rotate(10deg); }
         .service-card h3 { font-size: 14px; color: var(--c-dark); font-weight: 600; margin-bottom: 10px; }
-        
-        /* ИЗМЕНЕНО: Текст в карточках стал бирюзовым */
         .service-card p { font-size: 11px; color: var(--c-cyan); line-height: 1.5; }
 
         /* === БЛОК ОБОРУДОВАНИЯ === */
@@ -156,8 +150,6 @@
             font-size: 20px; flex-shrink: 0; background: transparent;
         }
         .equip-item h4 { font-size: 15px; color: var(--c-dark); font-weight: 600; margin-bottom: 5px; line-height: 1.3; }
-        
-        /* ИЗМЕНЕНО: Текст в блоке оборудования стал бирюзовым */
         .equip-item p { font-size: 12px; color: var(--c-cyan); margin-bottom: 12px; line-height: 1.4; }
 
         /* Логотипы брендов */
@@ -168,17 +160,118 @@
         .brand-dinotec { font-size: 18px; font-weight: 900; color: #f7b918; display: flex; align-items: center; gap: 6px; line-height: 1; font-family: Arial, sans-serif; }
         .brand-dinotec i { color: #8a959e; font-size: 18px; }
 
+        /* === КАК МЫ РАБОТАЕМ === */
+        .process { padding: 80px 0; background-color: var(--c-white); }
+        .process-grid { display: flex; justify-content: space-between; gap: 20px; margin-top: 50px; }
+        .process-step { text-align: center; flex: 1; position: relative; }
+        .process-step::after {
+            content: ''; position: absolute; top: 25px; left: 60%; width: 80%; height: 2px;
+            background-color: var(--c-border); z-index: 1;
+        }
+        .process-step:last-child::after { display: none; }
+        .step-num {
+            width: 50px; height: 50px; border-radius: 50%; background-color: var(--c-white);
+            border: 2px solid var(--c-cyan); color: var(--c-cyan); font-size: 20px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+            position: relative; z-index: 2; transition: all var(--transition);
+        }
+        .process-step:hover .step-num { background-color: var(--c-cyan); color: var(--c-white); }
+        .process-step h4 { font-size: 16px; color: var(--c-dark); font-weight: 600; margin-bottom: 10px; }
+        .process-step p { font-size: 13px; color: var(--c-text); }
+
+        /* === ГАРАНТИИ === */
+        .guarantees { padding: 80px 0; background-color: var(--c-bg-light); }
+        .guarantees-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .guarantee-card {
+            background: var(--c-white); padding: 30px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform var(--transition);
+        }
+        .guarantee-card:hover { transform: translateY(-5px); }
+        .guarantee-card i { font-size: 32px; color: var(--c-cyan); margin-bottom: 20px; }
+        .guarantee-card h3 { font-size: 18px; color: var(--c-dark); font-weight: 600; margin-bottom: 10px; }
+        .guarantee-card p { font-size: 14px; color: var(--c-text); line-height: 1.5; }
+
+        /* =========================================
+           НОВЫЙ БЛОК: FAQ (ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ)
+           ========================================= */
+        .faq { padding: 80px 0; background-color: var(--c-white); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid var(--c-border);
+            margin-bottom: 15px;
+        }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            font-size: 16px; font-weight: 600; color: var(--c-dark);
+            padding: 20px 0; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: color var(--transition);
+        }
+        .faq-question:hover { color: var(--c-cyan); }
+        .faq-question i { transition: transform var(--transition); color: var(--c-cyan); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .faq-answer p {
+            padding-bottom: 20px; font-size: 14px; color: var(--c-text); line-height: 1.6;
+        }
+
+        /* =========================================
+           НОВЫЙ БЛОК: МОДАЛЬНОЕ ОКНО (ФОРМА ЗАЯВКИ)
+           ========================================= */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(7, 34, 76, 0.8); /* Темно-синий полупрозрачный фон */
+            backdrop-filter: blur(5px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        .modal-content {
+            background: var(--c-white); padding: 40px; border-radius: 15px;
+            width: 100%; max-width: 450px; position: relative;
+            transform: translateY(30px); transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px;
+            font-size: 28px; color: #999; cursor: pointer; transition: color 0.3s;
+        }
+        .close-modal:hover { color: var(--c-dark); }
+        
+        .modal-content h3 { font-size: 24px; color: var(--c-dark); font-weight: 700; margin-bottom: 10px; text-align: center; }
+        .modal-content p { font-size: 13px; text-align: center; margin-bottom: 25px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-control {
+            width: 100%; padding: 14px 20px; border: 1px solid var(--c-border);
+            border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px;
+            background-color: var(--c-bg-light); transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            outline: none; border-color: var(--c-cyan); background-color: var(--c-white);
+        }
+        .modal-content .btn-primary {
+            width: 100%; margin-top: 10px; padding: 15px;
+        }
+
         /* === ПОДВАЛ === */
         .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 30px; margin-bottom: 40px; }
         
         .footer-logo-img {
-            height: 65px; 
-            width: auto; 
-            display: block;
-            background-color: var(--c-white); 
-            padding: 8px 15px; 
-            border-radius: 8px;
+            height: 65px; width: auto; display: block;
+            background-color: var(--c-white); padding: 8px 15px; border-radius: 8px;
         }
 
         .footer-slogan { font-size: 13px; color: #b0c0cb; display: flex; align-items: center; gap: 8px; margin-top: 15px; }
@@ -188,7 +281,6 @@
         .contact-list i { color: var(--c-cyan); font-size: 14px; width: 16px; text-align: center; }
         .footer h4 { font-size: 15px; font-weight: 600; margin-bottom: 15px; color: var(--c-white); }
 
-        /* Соцсети */
         .socials { display: flex; gap: 15px; }
         .socials a {
             width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center;
@@ -210,11 +302,13 @@
             .services-grid { grid-template-columns: repeat(4, 1fr); }
             .equipment-grid { flex-direction: column; gap: 20px; }
             .equip-divider { width: 100%; height: 1px; }
+            .process-grid, .guarantees-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .process-step::after { display: none; } 
+            .nav { gap: 15px; }
         }
 
         @media (max-width: 768px) {
             .header { height: 80px; } 
-            
             .logo-img, .footer-logo-img { height: 50px; } 
             
             .nav {
@@ -241,6 +335,11 @@
             .equipment-img { width: 100%; height: 250px; }
             .equipment-content { width: 100%; padding: 25px; }
             .brand-logos { flex-wrap: wrap; gap: 15px; }
+
+            .process-grid, .guarantees-grid { grid-template-columns: 1fr; }
+            
+            /* Модалка на мобильных */
+            .modal-content { padding: 30px 20px; max-width: 90%; }
 
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-slogan, .contact-list li { justify-content: center; }
@@ -271,15 +370,16 @@
             <nav class="nav" id="navMenu">
                 <a href="#hero">Главная</a>
                 <a href="#services">Услуги</a>
-                <a href="#">О компании</a>
-                <a href="#advantages">Преимущества</a>
-                <a href="#">Проекты</a>
+                <a href="#process">Как мы работаем</a>
+                <a href="#guarantees">Гарантии</a>
+                <a href="#faq">Вопросы</a>
                 <a href="#contacts">Контакты</a>
             </nav>
 
-            <a href="#contacts" class="btn-header">
+            <!-- Кнопка открывает модальное окно -->
+            <button class="btn-header open-modal-btn">
                 <i class="fas fa-phone-alt" style="font-size: 12px;"></i> Связаться с нами
-            </a>
+            </button>
         </div>
     </header>
 
@@ -290,8 +390,8 @@
             <p>Чистая вода, надежное оборудование <br>и безупречный сервис круглый год</p>
             
             <div class="hero-buttons">
-                <button class="btn-primary">Оставить заявку</button>
-                <button class="btn-outline">Как мы работаем</button>
+                <button class="btn-primary open-modal-btn">Оставить заявку</button>
+                <a href="#process" class="btn-outline">Как мы работаем</a>
             </div>
 
             <div class="hero-features" id="advantages">
@@ -321,37 +421,37 @@
             <h2 class="reveal">Полный спектр услуг<br>по обслуживанию бассейнов</h2>
             
             <div class="services-grid">
-                <div class="service-card reveal delay-1">
+                <div class="service-card reveal delay-1 open-modal-btn">
                     <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                     <h3>Каталог товаров</h3>
                     <p>Оборудование, химия и материалы для любых типов бассейнов</p>
                 </div>
-                <div class="service-card reveal delay-1">
+                <div class="service-card reveal delay-1 open-modal-btn">
                     <div class="icon"><i class="fas fa-wrench"></i></div>
                     <h3>Монтаж</h3>
                     <p>Установка и настройка оборудования и фильтрации</p>
                 </div>
-                <div class="service-card reveal delay-1">
+                <div class="service-card reveal delay-1 open-modal-btn">
                     <div class="icon"><i class="fas fa-tint"></i></div>
                     <h3>Обслуживание</h3>
                     <p>Чистка, контроль качества воды, профилактика и уход</p>
                 </div>
-                <div class="service-card reveal delay-2">
+                <div class="service-card reveal delay-2 open-modal-btn">
                     <div class="icon"><i class="fas fa-cog"></i></div>
                     <h3>Ремонт</h3>
                     <p>Диагностика и восстановление насосов, фильтров, систем</p>
                 </div>
-                <div class="service-card reveal delay-2">
+                <div class="service-card reveal delay-2 open-modal-btn">
                     <div class="icon"><i class="fas fa-sync-alt"></i></div>
                     <h3>Реконструкция</h3>
-                    <p>Полное обновление чаши, инженерии и внешнего вида. Бассейн снова будет как новый</p>
+                    <p>Полное обновление чаши, инженерии и внешнего вида</p>
                 </div>
-                <div class="service-card reveal delay-2">
+                <div class="service-card reveal delay-2 open-modal-btn">
                     <div class="icon"><i class="fas fa-border-all"></i></div>
                     <h3>Отделка</h3>
                     <p>Мозаика, пленка, плитка — финишная отделка чаши под ключ</p>
                 </div>
-                <div class="service-card reveal delay-3">
+                <div class="service-card reveal delay-3 open-modal-btn">
                     <div class="icon"><i class="far fa-snowflake"></i></div>
                     <h3>Сезонные работы</h3>
                     <p>Подготовка к сезону и консервация на зиму</p>
@@ -397,6 +497,108 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАК МЫ РАБОТАЕМ -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title reveal">Как мы работаем</h2>
+            <div class="process-grid reveal">
+                <div class="process-step">
+                    <div class="step-num">1</div>
+                    <h4>Заявка</h4>
+                    <p>Вы оставляете заявку на сайте или звоните нам</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">2</div>
+                    <h4>Выезд</h4>
+                    <p>Наш специалист бесплатно выезжает на объект</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">3</div>
+                    <h4>Смета</h4>
+                    <p>Мы составляем точную смету и согласовываем работы</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">4</div>
+                    <h4>Результат</h4>
+                    <p>Выполняем работы и сдаем идеально чистый бассейн</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ГАРАНТИИ -->
+    <section class="guarantees" id="guarantees">
+        <div class="container">
+            <h2 class="section-title reveal">Наши гарантии</h2>
+            <div class="guarantees-grid">
+                <div class="guarantee-card reveal">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>Официальный договор</h3>
+                    <p>Все работы выполняются строго по договору с фиксированной стоимостью.</p>
+                </div>
+                <div class="guarantee-card reveal delay-1">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Гарантия на работы</h3>
+                    <p>Предоставляем гарантию до 3 лет на все виды монтажных и отделочных работ.</p>
+                </div>
+                <div class="guarantee-card reveal delay-2">
+                    <i class="fas fa-tools"></i>
+                    <h3>Качественные материалы</h3>
+                    <p>Используем только проверенную химию и оборудование от надежных брендов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК: FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title reveal">Часто задаваемые вопросы</h2>
+            <div class="faq-list reveal">
+                <!-- Вопрос 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Как часто нужно проводить обслуживание бассейна?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Для поддержания идеального качества воды рекомендуется проводить профилактическую чистку и проверку оборудования не реже 1-2 раз в неделю. Мы можем составить индивидуальный график в зависимости от интенсивности использования.</p>
+                    </div>
+                </div>
+                <!-- Вопрос 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Выезд специалиста платный?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Первичный выезд специалиста для оценки состояния бассейна и составления сметы — абсолютно бесплатный. Вы платите только за фактически выполненные работы и материалы.</p>
+                    </div>
+                </div>
+                <!-- Вопрос 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Вы работаете с оборудованием, купленным не у вас?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да, мы обслуживаем и настраиваем оборудование любых популярных брендов (Ospa, Dinotec, Emaux и др.). Наши специалисты помогут с диагностикой и заменой запчастей.</p>
+                    </div>
+                </div>
+                <!-- Вопрос 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Что входит в услугу консервации бассейна на зиму?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>В комплекс работ входит: тщательная чистка чаши, промывка фильтров, снижение уровня воды, добавление зимней химии для предотвращения цветения и замерзания, а также укрытие бассейна защитным тентом.</p>
                     </div>
                 </div>
             </div>
@@ -451,7 +653,7 @@
                 <div class="footer-cta reveal delay-3">
                     <h4>Нужна консультация?</h4>
                     <p>Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
-                    <button class="btn-primary">Оставить заявку</button>
+                    <button class="btn-primary open-modal-btn">Оставить заявку</button>
                 </div>
 
             </div>
@@ -466,8 +668,28 @@
         </div>
     </footer>
 
+    <!-- НОВЫЙ БЛОК: МОДАЛЬНОЕ ОКНО (ВСПЛЫВАЮЩАЯ ФОРМА) -->
+    <div class="modal-overlay" id="callbackModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h3>Оставить заявку</h3>
+            <p>Оставьте свои контакты, и мы перезвоним вам в течение 15 минут</p>
+            
+            <form id="requestForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Ваш телефон" required>
+                </div>
+                <button type="submit" class="btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+
     <!-- СКРИПТЫ -->
     <script>
+        // 1. Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
 
@@ -481,6 +703,7 @@
             });
         });
 
+        // 2. Анимация появления при скролле
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -493,8 +716,65 @@
             threshold: 0,
             rootMargin: "0px 0px -50px 0px"
         });
-
         revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. Логика работы Модального окна (Формы)
+        const modal = document.getElementById('callbackModal');
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const form = document.getElementById('requestForm');
+
+        // Открыть модалку по клику на любую кнопку с классом .open-modal-btn
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Предотвращаем переход по ссылке, если это <a>
+                modal.classList.add('active');
+            });
+        });
+
+        // Закрыть по крестику
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Закрыть по клику вне окна
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Обработка отправки формы (демо)
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо! Ваша заявка отправлена (это демо-режим). В реальности здесь будет отправка на почту или CRM.');
+            modal.classList.remove('active');
+            form.reset();
+        });
+
+        // 4. Логика работы FAQ (Аккордеон)
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Закрываем все остальные (опционально)
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Если текущий не был активен, открываем его
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
     </script>
 </body>
 </html>
