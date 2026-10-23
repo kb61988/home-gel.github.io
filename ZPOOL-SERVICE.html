@@ -8,20 +8,20 @@
     <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === ТОЧНЫЕ ЦВЕТА ИЗ МАКЕТА === */
+        /* === ЦВЕТА === */
         :root {
-            --c-cyan: #25a8d3;       /* Основной голубой */
+            --c-cyan: #25a8d3;       
             --c-cyan-hover: #1c8bb0;
-            --c-dark: #0e2e43;       /* Темно-синий (текст, футер) */
-            --c-text: #556975;       /* Серый текст */
-            --c-bg-light: #f2f8fb;   /* Светло-голубой фон блока */
-            --c-border: #dbe6ec;     /* Цвет рамок карточек */
+            --c-dark: #0e2e43;       
+            --c-text: #556975;       
+            --c-bg-light: #f2f8fb;   
+            --c-border: #dbe6ec;     
             --c-white: #ffffff;
         }
 
@@ -69,38 +69,15 @@
             width: 100%;
         }
 
-        /* Логотип (Точная копия) */
-        .logo {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .logo-top {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--c-dark);
-            line-height: 1;
-            letter-spacing: 1px;
-        }
-        .logo-bottom {
-            display: flex;
-            align-items: center;
-            margin-top: 3px;
-        }
-        .logo-line {
-            height: 2px;
-            background-color: var(--c-cyan);
-            width: 25px;
-        }
-        .logo-bottom span {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--c-cyan);
-            letter-spacing: 4px;
-            margin: 0 5px;
+        /* --- ВСТАВЛЕННЫЙ ЛОГОТИП --- */
+        .logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
+            /* Убирает белый фон у картинки на белой шапке */
+            mix-blend-mode: multiply; 
         }
 
-        /* Навигация */
         .nav {
             display: flex;
             gap: 35px;
@@ -118,7 +95,6 @@
             color: var(--c-cyan);
         }
 
-        /* Кнопка в шапке */
         .btn-header {
             background-color: var(--c-cyan);
             color: var(--c-white);
@@ -139,13 +115,11 @@
         .hero {
             position: relative;
             height: 520px;
-            /* Фото бассейна, гор и лежаков */
             background: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
         }
 
-        /* Плавный белый градиент слева */
         .hero::before {
             content: '';
             position: absolute;
@@ -217,7 +191,6 @@
             color: var(--c-white);
         }
 
-        /* Иконки преимуществ */
         .hero-features {
             display: flex;
             gap: 25px;
@@ -322,13 +295,12 @@
             background-color: var(--c-bg-light);
             border-radius: 15px;
             display: flex;
-            align-items: stretch; /* Чтобы картинка тянулась на всю высоту */
+            align-items: stretch; 
             overflow: hidden;
         }
 
         .equipment-img {
             width: 38%;
-            /* Фото бассейна с лестницей */
             background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
         }
 
@@ -355,22 +327,21 @@
             flex: 1;
         }
         
-        /* Вертикальная линия разделитель */
         .equip-divider {
             width: 1px;
             background-color: var(--c-border);
         }
 
         .equip-item .icon {
-            width: 46px;
-            height: 46px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 1px solid var(--c-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--c-cyan);
-            font-size: 18px;
+            font-size: 20px;
             flex-shrink: 0;
             background: transparent;
         }
@@ -390,39 +361,51 @@
             line-height: 1.4;
         }
 
-        /* Логотипы брендов */
+        /* --- ЛОГОТИПЫ БРЕНДОВ --- */
         .brand-logos {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 15px;
+        }
+        
+        .brand-ospa-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .brand-ospa {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--c-cyan);
+            font-size: 24px;
+            font-weight: 900;
+            color: #005cbe;
             font-family: Arial, sans-serif;
             letter-spacing: 1px;
-            line-height: 1;
+            line-height: 0.9;
+            font-style: italic;
         }
-        .brand-ospa span {
-            font-size: 8px;
+        .brand-ospa-sub {
+            font-size: 5px;
             display: block;
-            color: #555;
-            letter-spacing: 0;
-            font-weight: 600;
-        }
-        .brand-dinotec {
-            font-size: 16px;
-            font-weight: 800;
             color: #333;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-top: 3px;
+            font-style: normal;
+            text-transform: uppercase;
+        }
+
+        .brand-dinotec {
+            font-size: 18px;
+            font-weight: 900;
+            color: #f7b918;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             line-height: 1;
+            font-family: Arial, sans-serif;
         }
         .brand-dinotec i {
-            color: #f7a800; /* Желтая галочка */
+            color: #8a959e;
             font-size: 18px;
         }
 
@@ -439,11 +422,16 @@
             gap: 30px;
             margin-bottom: 40px;
         }
-
-        .footer-logo .logo-top { color: var(--c-white); }
-        .footer-logo .logo-bottom span { color: var(--c-cyan); }
-        .footer-logo .logo-line { background-color: var(--c-cyan); }
         
+        /* Логотип в подвале (делаем его белым с помощью фильтра) */
+        .footer-logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
+            /* Фильтр делает все темные цвета белыми, а светлые - инвертирует */
+            filter: brightness(0) invert(1);
+        }
+
         .footer-slogan {
             font-size: 13px;
             color: #b0c0cb;
@@ -478,25 +466,30 @@
             margin-bottom: 15px;
             color: var(--c-white);
         }
+
+        /* --- СОЦСЕТИ --- */
         .socials {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
         .socials a {
-            width: 38px;
-            height: 38px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background-color: var(--c-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--c-white);
-            font-size: 18px;
+            font-size: 22px;
             transition: 0.2s;
         }
+        .socials .s-vk { background-color: #0077FF; }
+        .socials .s-tg { background-color: #27A7E7; }
+        .socials .s-wa { background-color: #25D366; }
+        
         .socials a:hover {
-            background-color: var(--c-white);
-            color: var(--c-cyan);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .footer-cta p {
@@ -545,13 +538,10 @@
     <!-- ШАПКА -->
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">
-                <div class="logo-top">ZPOOL</div>
-                <div class="logo-bottom">
-                    <div class="logo-line"></div>
-                    <span>SERVICE</span>
-                    <div class="logo-line"></div>
-                </div>
+            
+            <!-- ВСТАВЛЕННЫЙ ЛОГОТИП (КАРТИНКА) -->
+            <a href="#" aria-label="ZPOOL SERVICE">
+                <img src="logo.png" alt="ZPOOL SERVICE" class="logo-img">
             </a>
 
             <nav class="nav">
@@ -607,43 +597,36 @@
             <h2>Полный спектр услуг<br>по обслуживанию бассейнов</h2>
             
             <div class="services-grid">
-                <!-- 1 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                     <h3>Каталог товаров</h3>
                     <p>Оборудование, химия и материалы для любых типов бассейнов</p>
                 </div>
-                <!-- 2 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-wrench"></i></div>
                     <h3>Монтаж</h3>
                     <p>Установка и настройка оборудования и фильтрации</p>
                 </div>
-                <!-- 3 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-tint"></i></div>
                     <h3>Обслуживание</h3>
                     <p>Чистка, контроль качества воды, профилактика и уход</p>
                 </div>
-                <!-- 4 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-cog"></i></div>
                     <h3>Ремонт</h3>
                     <p>Диагностика и восстановление насосов, фильтров, систем</p>
                 </div>
-                <!-- 5 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-sync-alt"></i></div>
                     <h3>Реконструкция</h3>
                     <p>Полное обновление чаши, инженерии и внешнего вида. Бассейн снова будет как новый</p>
                 </div>
-                <!-- 6 -->
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-border-all"></i></div>
                     <h3>Отделка</h3>
                     <p>Мозаика, пленка, плитка — финишная отделка чаши под ключ</p>
                 </div>
-                <!-- 7 -->
                 <div class="service-card">
                     <div class="icon"><i class="far fa-snowflake"></i></div>
                     <h3>Сезонные работы</h3>
@@ -657,10 +640,8 @@
     <section class="equipment">
         <div class="container">
             <div class="equipment-inner">
-                <!-- Левая картинка -->
                 <div class="equipment-img"></div>
                 
-                <!-- Правая часть -->
                 <div class="equipment-content">
                     <h2>Выбираем лучшее<br>для вашего бассейна</h2>
                     
@@ -674,19 +655,25 @@
                             </div>
                         </div>
                         
-                        <!-- Разделитель -->
                         <div class="equip-divider"></div>
 
                         <!-- Правая колонка -->
                         <div class="equip-item">
-                            <div class="icon"><i class="fas fa-link"></i></div>
+                            <div class="icon"><i class="fas fa-paperclip"></i></div>
                             <div>
                                 <h4>Монтаж оборудования<br>Ospa, Dinotec</h4>
                                 <p>Профессиональная установка и настройка премиум-оборудования.</p>
+                                
                                 <div class="brand-logos">
-                                    <div class="brand-ospa">ospa<span>Die Schwimmbad Profis</span></div>
-                                    <div class="brand-dinotec"><i class="fas fa-caret-right"></i> dinotec</div>
+                                    <div class="brand-ospa-wrapper">
+                                        <div class="brand-ospa">ospa</div>
+                                        <span class="brand-ospa-sub">Die Schwimmbad Profis</span>
+                                    </div>
+                                    <div class="brand-dinotec">
+                                        <i class="far fa-gem"></i> dinotec
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -700,16 +687,11 @@
         <div class="container">
             <div class="footer-grid">
                 
-                <!-- Колонка 1 -->
+                <!-- Колонка 1 (Логотип в подвале) -->
                 <div>
-                    <div class="logo footer-logo">
-                        <div class="logo-top">ZPOOL</div>
-                        <div class="logo-bottom">
-                            <div class="logo-line"></div>
-                            <span>SERVICE</span>
-                            <div class="logo-line"></div>
-                        </div>
-                    </div>
+                    <a href="#" aria-label="ZPOOL SERVICE">
+                        <img src="logo.png" alt="ZPOOL SERVICE" class="footer-logo-img">
+                    </a>
                     <div class="footer-slogan">
                         <i class="fas fa-water" style="transform: rotate(-45deg);"></i>
                         <span>Ваша вода - наша забота.</span>
@@ -742,9 +724,9 @@
                 <div>
                     <h4>Мы в социальных сетях</h4>
                     <div class="socials">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="s-vk"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="s-tg"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="s-wa"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
