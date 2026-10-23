@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZPOOL SERVICE - Профессиональное обслуживание бассейнов</title>
+    <title>ZPOOL SERVICE</title>
     
-    <!-- Подключение шрифтов Google -->
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Подключение иконок FontAwesome -->
+    <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ================= ПЕРЕМЕННЫЕ И СБРОС ================= */
+        /* === СБРОС И БАЗОВЫЕ НАСТРОЙКИ === */
         :root {
-            --primary: #0fa2d6;
-            --primary-hover: #0b82ac;
-            --dark: #14364c;
-            --text: #333333;
-            --bg-light: #f4f9fb;
-            --white: #ffffff;
-            --border: #e0e0e0;
+            --color-primary: #1ea8d7; /* Бирюзовый */
+            --color-primary-hover: #168eb7;
+            --color-dark: #0c2d43; /* Темно-синий (текст и футер) */
+            --color-text: #4a5a67;
+            --color-bg-light: #f2f8fb; /* Светло-голубой фон */
+            --color-border: #e5edf1;
         }
 
         * {
@@ -33,9 +32,10 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            color: var(--text);
-            line-height: 1.6;
-            background-color: var(--white);
+            color: var(--color-text);
+            background-color: #ffffff;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -53,152 +53,179 @@
             padding: 0 20px;
         }
 
-        /* ================= КНОПКИ ================= */
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-white-outline {
-            background-color: transparent;
-            border-color: var(--white);
-            color: var(--white);
-        }
-
-        .btn-white-outline:hover {
-            background-color: var(--white);
-            color: var(--dark);
-        }
-
-        /* ================= ШАПКА ================= */
+        /* === ШАПКА === */
         .header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: #ffffff;
+            height: 80px;
+            display: flex;
+            align-items: center;
         }
 
-        .header-inner {
+        .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            width: 100%;
         }
 
+        /* Логотип (сделан на HTML/CSS, чтобы быть четким) */
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark);
-            letter-spacing: 1px;
-        }
-        
-        .logo span {
-            color: var(--primary);
-        }
-
-        .nav-menu {
             display: flex;
-            gap: 30px;
+            flex-direction: column;
+            justify-content: center;
+            width: 150px;
+        }
+        .logo-top {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--color-dark);
+            letter-spacing: 1px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+        }
+        .logo-top span {
+            color: var(--color-primary);
+        }
+        .logo-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2px;
+        }
+        .logo-bottom span {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: 3px;
+            margin-left: 2px;
+        }
+        .logo-line {
+            height: 2px;
+            background-color: var(--color-primary);
+            flex-grow: 1;
+            margin: 0 5px;
         }
 
-        .nav-menu a {
-            font-size: 15px;
+        /* Навигация */
+        .nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav a {
+            font-size: 14px;
             font-weight: 500;
+            color: #333;
             transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            color: var(--primary);
+        .nav a:hover {
+            color: var(--color-primary);
         }
 
-        .mobile-menu-btn {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: var(--dark);
-            cursor: pointer;
-        }
-
-        /* ================= ГЛАВНЫЙ ЭКРАН (HERO) ================= */
-        .hero {
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            min-height: 600px;
+        /* Кнопка в шапке */
+        .btn-header {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            color: var(--white);
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        .btn-header:hover {
+            background-color: var(--color-primary-hover);
         }
 
+        /* === ГЛАВНЫЙ БАННЕР (HERO) === */
+        .hero {
+            position: relative;
+            height: 480px;
+            /* Фоновая картинка с бассейном и горами */
+            background: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Белый градиент слева, чтобы текст читался */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to right, rgba(20, 54, 76, 0.85) 0%, rgba(20, 54, 76, 0.4) 100%);
+            background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 45%, rgba(255,255,255,0) 70%);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 700px;
-            padding: 60px 0;
+            max-width: 550px;
         }
 
         .hero h1 {
-            font-size: 48px;
-            line-height: 1.2;
-            margin-bottom: 20px;
+            font-size: 42px;
+            line-height: 1.15;
+            color: var(--color-dark);
             font-weight: 700;
+            margin-bottom: 15px;
         }
 
         .hero h1 span {
-            color: var(--primary);
+            color: var(--color-primary);
         }
 
         .hero p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            max-width: 500px;
+            font-size: 16px;
+            color: var(--color-text);
+            margin-bottom: 30px;
+            font-weight: 500;
+            line-height: 1.4;
         }
 
-        .hero-actions {
+        .hero-buttons {
             display: flex;
-            gap: 20px;
-            margin-bottom: 60px;
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary);
+            padding: 13px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid var(--color-primary);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: #fff;
+        }
+
+        /* Иконки преимуществ */
         .hero-features {
             display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
+            gap: 30px;
         }
 
         .feature {
@@ -207,259 +234,318 @@
             align-items: center;
             text-align: center;
             gap: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            width: 100px;
+            width: 80px;
         }
 
-        .feature i {
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
-            border: 2px solid rgba(255,255,255,0.5);
+        .feature-icon {
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
+            border: 1.5px solid var(--color-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
-            background: rgba(255,255,255,0.1);
+            color: var(--color-primary);
+            font-size: 18px;
+            background: rgba(255,255,255,0.8);
         }
 
-        /* ================= УСЛУГИ ================= */
+        .feature span {
+            font-size: 12px;
+            color: var(--color-dark);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* === УСЛУГИ === */
         .services {
-            padding: 80px 0;
+            padding: 60px 0;
+            background: #fff;
         }
 
-        .section-title {
+        .services h2 {
             text-align: center;
-            font-size: 32px;
-            color: var(--dark);
-            margin-bottom: 50px;
+            font-size: 28px;
+            color: var(--color-dark);
             font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.3;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
         }
 
         .service-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
+            background: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px 15px;
+            text-align: left;
+            transition: 0.3s;
         }
 
         .service-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transform: translateY(-5px);
-            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: var(--color-primary);
         }
 
-        .service-card i {
-            font-size: 32px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            background: var(--bg-light);
-            width: 70px;
-            height: 70px;
-            display: inline-flex;
+        .service-card .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--color-primary);
+            display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-        }
-
-        .service-card h3 {
-            font-size: 18px;
-            color: var(--dark);
+            color: var(--color-primary);
+            font-size: 16px;
             margin-bottom: 15px;
         }
 
-        .service-card p {
+        .service-card h3 {
             font-size: 14px;
-            color: #666;
+            color: var(--color-dark);
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        /* ================= БЛОК ОБОРУДОВАНИЯ ================= */
+        .service-card p {
+            font-size: 11px;
+            color: var(--color-text);
+            line-height: 1.4;
+        }
+
+        /* === БЛОК ОБОРУДОВАНИЯ === */
         .equipment {
-            background-color: var(--bg-light);
-            padding: 60px 0;
+            padding: 0 0 60px 0;
         }
 
         .equipment-inner {
+            background-color: var(--color-bg-light);
+            border-radius: 15px;
             display: flex;
             align-items: center;
-            gap: 40px;
-            background: var(--white);
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
         .equipment-img {
-            flex: 1;
-            min-height: 400px;
-            background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+            width: 40%;
+            height: 250px;
+            /* Фоновая картинка бассейна с поручнями */
+            background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
         }
 
         .equipment-content {
-            flex: 1;
-            padding: 40px;
+            width: 60%;
+            padding: 30px 40px;
         }
 
         .equipment-content h2 {
-            font-size: 28px;
-            color: var(--dark);
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .info-item i {
             font-size: 24px;
-            color: var(--primary);
-            background: var(--bg-light);
-            width: 50px;
-            height: 50px;
+            color: var(--color-dark);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .equipment-grid {
+            display: flex;
+            gap: 30px;
+        }
+
+        .equip-item {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .equip-item .icon {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            border: 1px solid var(--color-primary);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--color-primary);
+            font-size: 16px;
             flex-shrink: 0;
+            background: #fff;
         }
 
-        .info-item h4 {
-            font-size: 18px;
-            color: var(--dark);
+        .equip-item h4 {
+            font-size: 15px;
+            color: var(--color-dark);
+            font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .info-item p {
-            font-size: 14px;
-            color: #666;
+        .equip-item p {
+            font-size: 12px;
+            color: var(--color-text);
+            margin-bottom: 10px;
         }
 
-        /* ================= ПОДВАЛ ================= */
+        /* Логотипы брендов (имитация) */
+        .brand-logos {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .brand-logo {
+            height: 20px;
+            object-fit: contain;
+        }
+        .brand-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--color-primary);
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+
+        /* === ПОДВАЛ === */
         .footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 60px 0 20px;
+            background-color: var(--color-dark);
+            color: #fff;
+            padding: 50px 0 20px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1.2fr 1.5fr 1fr 1.2fr;
+            gap: 30px;
             margin-bottom: 40px;
         }
 
+        /* Колонка 1: Лого */
         .footer-logo {
-            font-size: 24px;
-            font-weight: 700;
             margin-bottom: 15px;
         }
-
-        .footer-logo span {
-            color: var(--primary);
-        }
-
-        .footer p {
-            font-size: 14px;
+        .footer-logo .logo-top { color: #fff; }
+        .footer-logo .logo-top span { color: var(--color-primary); }
+        .footer-logo .logo-bottom span { color: #fff; }
+        .footer-logo .logo-line { background-color: rgba(255,255,255,0.3); }
+        
+        .footer-slogan {
+            font-size: 13px;
             color: #a0b2c0;
-            margin-bottom: 10px;
-        }
-
-        .footer h4 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+        .footer-slogan i {
+            color: var(--color-primary);
+            font-size: 16px;
+        }
+
+        /* Колонка 2: Контакты */
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
             margin-bottom: 15px;
+            font-size: 13px;
+            color: #d1dde5;
+        }
+        .contact-list i {
+            color: var(--color-primary);
             font-size: 14px;
-            color: #a0b2c0;
+            margin-top: 3px;
         }
 
-        .contact-item i {
-            color: var(--primary);
-            width: 20px;
+        /* Колонка 3: Соцсети */
+        .footer h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
-
         .socials {
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 10px;
         }
-
         .socials a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            transition: background 0.3s;
+            color: #fff;
+            font-size: 16px;
+            transition: 0.3s;
         }
-
         .socials a:hover {
-            background: var(--primary);
+            background-color: #fff;
+            color: var(--color-primary);
         }
 
-        .footer-cta h4 {
-            margin-bottom: 10px;
+        /* Колонка 4: CTA */
+        .footer-cta p {
+            font-size: 13px;
+            color: #a0b2c0;
+            margin-bottom: 15px;
+        }
+        .btn-footer {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-footer:hover {
+            background-color: var(--color-primary-hover);
         }
 
+        /* Нижняя панель футера */
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 12px;
-            color: #a0b2c0;
-            flex-wrap: wrap;
-            gap: 10px;
+            color: #7a8f9f;
+            position: relative;
         }
 
-        /* ================= АДАПТИВНОСТЬ (МОБИЛЬНЫЕ) ================= */
-        @media (max-width: 992px) {
-            .hero h1 { font-size: 36px; }
+        .footer-bottom-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* Адаптивность (чтобы не сломалось на маленьких экранах, хотя фокус на десктоп) */
+        @media (max-width: 1100px) {
+            .services-grid { grid-template-columns: repeat(4, 1fr); }
+            .equipment-grid { flex-direction: column; gap: 15px; }
+        }
+        @media (max-width: 900px) {
+            .nav { display: none; }
+            .hero::before { background: rgba(255,255,255,0.85); }
             .equipment-inner { flex-direction: column; }
-            .equipment-img { width: 100%; min-height: 250px; }
+            .equipment-img { width: 100%; }
+            .equipment-content { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
-
-        @media (max-width: 768px) {
-            .nav-menu, .header .btn { display: none; }
-            .mobile-menu-btn { display: block; }
-            
-            .nav-menu.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-
-            .hero-actions { flex-direction: column; }
-            .hero-features { gap: 20px; justify-content: center; }
-            .feature { width: 45%; }
-            
-            .footer-bottom { flex-direction: column; text-align: center; }
+        @media (max-width: 600px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 32px; }
+            .hero-buttons { flex-direction: column; }
+            .hero-features { flex-wrap: wrap; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
@@ -467,160 +553,187 @@
 
     <!-- ШАПКА -->
     <header class="header">
-        <div class="container header-inner">
-            <div class="logo">ZPOOL<span>SERVICE</span></div>
-            
-            <nav class="nav-menu" id="navMenu">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-top">ZPOOL</div>
+                <div class="logo-bottom">
+                    <div class="logo-line"></div>
+                    <span>SERVICE</span>
+                    <div class="logo-line"></div>
+                </div>
+            </a>
+
+            <nav class="nav">
                 <a href="#">Главная</a>
-                <a href="#services">Услуги</a>
+                <a href="#">Услуги</a>
                 <a href="#">О компании</a>
-                <a href="#advantages">Преимущества</a>
+                <a href="#">Преимущества</a>
                 <a href="#">Проекты</a>
-                <a href="#contacts">Контакты</a>
+                <a href="#">Контакты</a>
             </nav>
 
-            <button class="btn btn-primary" onclick="alert('Форма заявки')">Связаться с нами</button>
-            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            <a href="#" class="btn-header">
+                <i class="fas fa-phone-alt" style="font-size: 12px;"></i> Связаться с нами
+            </a>
         </div>
     </header>
 
-    <main>
-        <!-- ГЛАВНЫЙ ЭКРАН -->
-        <section class="hero" id="advantages">
-            <div class="container hero-content">
-                <h1>Профессиональное <br><span>обслуживание бассейнов</span></h1>
-                <p>Чистая вода, надежное оборудование и безупречный сервис круглый год</p>
-                
-                <div class="hero-actions">
-                    <button class="btn btn-primary" onclick="alert('Форма заявки')">Оставить заявку</button>
-                    <button class="btn btn-white-outline">Как мы работаем</button>
-                </div>
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Профессиональное <br><span>обслуживание бассейнов</span></h1>
+            <p>Чистая вода, надежное оборудование <br>и безупречный сервис круглый год</p>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary">Оставить заявку</button>
+                <button class="btn-outline">Как мы работаем</button>
+            </div>
 
-                <div class="hero-features">
-                    <div class="feature">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Опытные<br>специалисты</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-tint"></i>
-                        <span>Качественная<br>химия</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-microchip"></i>
-                        <span>Современное<br>оборудование</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-clock"></i>
-                        <span>Бесплатный<br>выезд</span>
-                    </div>
+            <div class="hero-features">
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <span>Опытные<br>специалисты</span>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-tint"></i></div>
+                    <span>Качественная<br>химия</span>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+                    <span>Современное<br>оборудование</span>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="far fa-clock"></i></div>
+                    <span>Бесплатный<br>выезд</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- УСЛУГИ -->
-        <section class="services" id="services">
-            <div class="container">
-                <h2 class="section-title">Полный спектр услуг<br>по обслуживанию бассейнов</h2>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-shopping-cart"></i>
-                        <h3>Каталог товаров</h3>
-                        <p>Оборудование, химия и материалы для любых типов бассейнов</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-wrench"></i>
-                        <h3>Монтаж</h3>
-                        <p>Установка и настройка оборудования и фильтрации</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-water"></i>
-                        <h3>Обслуживание</h3>
-                        <p>Чистка, контроль качества воды, профилактика и уход</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-cog"></i>
-                        <h3>Ремонт</h3>
-                        <p>Диагностика и восстановление насосов, фильтров, систем</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-sync-alt"></i>
-                        <h3>Реконструкция</h3>
-                        <p>Полное обновление чаши, инженерии и внешнего вида.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-border-all"></i>
-                        <h3>Отделка</h3>
-                        <p>Мозаика, пленка, плитка — финишная отделка чаши под ключ</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="far fa-snowflake"></i>
-                        <h3>Сезонные работы</h3>
-                        <p>Подготовка к сезону и консервация на зиму</p>
-                    </div>
+    <!-- УСЛУГИ -->
+    <section class="services">
+        <div class="container">
+            <h2>Полный спектр услуг<br>по обслуживанию бассейнов</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Каталог товаров</h3>
+                    <p>Оборудование, химия и материалы для любых типов бассейнов</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-wrench"></i></div>
+                    <h3>Монтаж</h3>
+                    <p>Установка и настройка оборудования и фильтрации</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-tint"></i></div>
+                    <h3>Обслуживание</h3>
+                    <p>Чистка, контроль качества воды, профилактика и уход</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-cog"></i></div>
+                    <h3>Ремонт</h3>
+                    <p>Диагностика и восстановление насосов, фильтров, систем</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Реконструкция</h3>
+                    <p>Полное обновление чаши, инженерии и внешнего вида. Бассейн снова будет как новый</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-border-all"></i></div>
+                    <h3>Отделка</h3>
+                    <p>Мозаика, пленка, плитка — финишная отделка чаши под ключ</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="far fa-snowflake"></i></div>
+                    <h3>Сезонные работы</h3>
+                    <p>Подготовка к сезону и консервация на зиму</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- БЛОК ОБОРУДОВАНИЯ -->
-        <section class="equipment">
-            <div class="container">
-                <div class="equipment-inner">
-                    <div class="equipment-img"></div>
-                    <div class="equipment-content">
-                        <h2>Выбираем лучшее<br>для вашего бассейна</h2>
-                        
-                        <div class="info-item">
-                            <i class="fas fa-user-check"></i>
+    <!-- БЛОК ОБОРУДОВАНИЯ -->
+    <section class="equipment">
+        <div class="container">
+            <div class="equipment-inner">
+                <div class="equipment-img"></div>
+                <div class="equipment-content">
+                    <h2>Выбираем лучшее<br>для вашего бассейна</h2>
+                    
+                    <div class="equipment-grid">
+                        <div class="equip-item">
+                            <div class="icon"><i class="fas fa-user"></i></div>
                             <div>
-                                <h4>Индивидуальное обслуживание</h4>
+                                <h4>Индивидуальное<br>обслуживание</h4>
                                 <p>Персональный подход, удобный график и решение под ваши задачи.</p>
                             </div>
                         </div>
-
-                        <div class="info-item">
-                            <i class="fas fa-link"></i>
+                        <div class="equip-item">
+                            <div class="icon"><i class="fas fa-link"></i></div>
                             <div>
-                                <h4>Монтаж оборудования Ospa, Dinotec</h4>
+                                <h4>Монтаж оборудования<br>Ospa, Dinotec</h4>
                                 <p>Профессиональная установка и настройка премиум-оборудования.</p>
+                                <div class="brand-logos">
+                                    <!-- Имитация логотипов текстом, так как нет оригинальных файлов -->
+                                    <div class="brand-text">ospa</div>
+                                    <div class="brand-text" style="color: #333;"><i class="fas fa-caret-right" style="color: #f0b323; font-size: 14px;"></i> dinotec</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- ПОДВАЛ -->
-    <footer class="footer" id="contacts">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 
-                <div class="footer-col">
-                    <div class="footer-logo">ZPOOL<span>SERVICE</span></div>
-                    <p>Ваша вода - наша забота.</p>
-                </div>
-
-                <div class="footer-col">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Геленджик Краснодарский край</span>
+                <!-- Колонка 1 -->
+                <div>
+                    <div class="logo footer-logo">
+                        <div class="logo-top">ZPOOL</div>
+                        <div class="logo-bottom">
+                            <div class="logo-line"></div>
+                            <span>SERVICE</span>
+                            <div class="logo-line"></div>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>8-938-434-0-333</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Ежедневно 8:00 - 22:00</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@zpool-service.ru</span>
+                    <div class="footer-slogan">
+                        <i class="fas fa-water" style="transform: rotate(-45deg);"></i>
+                        <span>Ваша вода - наша забота.</span>
                     </div>
                 </div>
 
-                <div class="footer-col">
+                <!-- Колонка 2 -->
+                <div>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Геленджик Краснодарский край</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>8-938-434-0-333</span>
+                        </li>
+                        <li>
+                            <i class="far fa-clock"></i>
+                            <span>Ежедневно 8:00 - 22:00</span>
+                        </li>
+                        <li>
+                            <i class="far fa-envelope"></i>
+                            <span>info@zpool-service.ru</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
                     <h4>Мы в социальных сетях</h4>
                     <div class="socials">
                         <a href="#"><i class="fab fa-vk"></i></a>
@@ -629,29 +742,25 @@
                     </div>
                 </div>
 
-                <div class="footer-col footer-cta">
+                <!-- Колонка 4 -->
+                <div class="footer-cta">
                     <h4>Нужна консультация?</h4>
-                    <p style="margin-bottom: 15px;">Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
-                    <button class="btn btn-primary" onclick="alert('Форма заявки')">Оставить заявку</button>
+                    <p>Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
+                    <button class="btn-footer">Оставить заявку</button>
                 </div>
 
             </div>
 
+            <!-- Нижняя панель -->
             <div class="footer-bottom">
-                <p>© 2024 ZPOOL-SERVICE. Все права защищены.</p>
-                <p><a href="#">Политика конфиденциальности</a> &nbsp;|&nbsp; <a href="#">Пользовательское соглашение</a></p>
+                <div>© 2024 ZPOOL-SERVICE. Все права защищены.</div>
+                <div class="footer-bottom-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Пользовательское соглашение</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- СКРИПТ ДЛЯ МОБИЛЬНОГО МЕНЮ -->
-    <script>
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
