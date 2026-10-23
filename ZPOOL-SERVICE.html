@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Профессиональное обслуживание бассейнов в Геленджике. Чистка, ремонт, монтаж оборудования Ospa, Dinotec. Бесплатный выезд.">
-    <title>ZPOOL SERVICE - Обслуживание бассейнов</title>
     
+    <!-- ==========================================
+         SEO И META-ТЕГИ
+         ========================================== -->
+    <title>ZPOOL SERVICE - Обслуживание бассейнов в Геленджике</title>
+    <meta name="description" content="Профессиональное обслуживание бассейнов в Геленджике. Чистка, ремонт, монтаж оборудования Ospa, Dinotec. Бесплатный выезд специалиста.">
+    <meta name="keywords" content="обслуживание бассейнов, ремонт бассейнов, чистка бассейна, Геленджик, монтаж оборудования Ospa">
+    
+    <!-- Favicon (Иконка во вкладке браузера) - загрузите favicon.png в папку с сайтом -->
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- Open Graph (Для красивого отображения ссылки в WhatsApp, Telegram, ВК) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ZPOOL SERVICE - Обслуживание бассейнов">
+    <meta property="og:description" content="Чистая вода, надежное оборудование и безупречный сервис круглый год. Бесплатный выезд.">
+    <!-- Укажите полную ссылку на первую картинку бассейна -->
+    <meta property="og:image" content="https://kb61988.github.io/home-gel.github.io/hero-bg.jpg">
+    <meta property="og:url" content="https://kb61988.github.io/home-gel.github.io/ZPOOL-SERVICE.html">
+
+    <!-- Микроразметка Schema.org (Для поисковиков) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "ZPOOL SERVICE",
+      "image": "https://kb61988.github.io/home-gel.github.io/hero-bg.jpg",
+      "@id": "https://kb61988.github.io/home-gel.github.io/ZPOOL-SERVICE.html",
+      "url": "https://kb61988.github.io/home-gel.github.io/ZPOOL-SERVICE.html",
+      "telephone": "+79384340333",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Геленджик",
+        "addressRegion": "Краснодарский край",
+        "addressCountry": "RU"
+      },
+      "description": "Профессиональное обслуживание бассейнов в Геленджике.",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "08:00",
+        "closes": "22:00"
+      }
+    }
+    </script>
+
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,6 +65,7 @@
             --c-bg-light: #f2f8fb;   
             --c-border: #dbe6ec;     
             --c-white: #ffffff;
+            --c-whatsapp: #25D366;
             --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
@@ -191,96 +235,60 @@
         .guarantee-card h3 { font-size: 18px; color: var(--c-dark); font-weight: 600; margin-bottom: 10px; }
         .guarantee-card p { font-size: 14px; color: var(--c-text); line-height: 1.5; }
 
-        /* =========================================
-           НОВЫЙ БЛОК: FAQ (ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ)
-           ========================================= */
+        /* === FAQ === */
         .faq { padding: 80px 0; background-color: var(--c-white); }
         .faq-list { max-width: 800px; margin: 0 auto; }
-        .faq-item {
-            border-bottom: 1px solid var(--c-border);
-            margin-bottom: 15px;
-        }
+        .faq-item { border-bottom: 1px solid var(--c-border); margin-bottom: 15px; }
         .faq-question {
             width: 100%; text-align: left; background: none; border: none;
             font-size: 16px; font-weight: 600; color: var(--c-dark);
-            padding: 20px 0; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
             transition: color var(--transition);
         }
         .faq-question:hover { color: var(--c-cyan); }
         .faq-question i { transition: transform var(--transition); color: var(--c-cyan); }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
-        
-        .faq-answer {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.4s ease-out;
-        }
-        .faq-answer p {
-            padding-bottom: 20px; font-size: 14px; color: var(--c-text); line-height: 1.6;
-        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-answer p { padding-bottom: 20px; font-size: 14px; color: var(--c-text); line-height: 1.6; }
 
-        /* =========================================
-           НОВЫЙ БЛОК: МОДАЛЬНОЕ ОКНО (ФОРМА ЗАЯВКИ)
-           ========================================= */
+        /* === МОДАЛЬНОЕ ОКНО === */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(7, 34, 76, 0.8); /* Темно-синий полупрозрачный фон */
-            backdrop-filter: blur(5px);
+            background: rgba(7, 34, 76, 0.8); backdrop-filter: blur(5px);
             display: flex; align-items: center; justify-content: center;
-            z-index: 2000;
-            opacity: 0; visibility: hidden;
-            transition: all 0.3s ease;
+            z-index: 3000; /* Выше плавающих кнопок */
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
         }
-        .modal-overlay.active {
-            opacity: 1; visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-content {
             background: var(--c-white); padding: 40px; border-radius: 15px;
             width: 100%; max-width: 450px; position: relative;
             transform: translateY(30px); transition: transform 0.3s ease;
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px;
-            font-size: 28px; color: #999; cursor: pointer; transition: color 0.3s;
-        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 28px; color: #999; cursor: pointer; transition: color 0.3s; }
         .close-modal:hover { color: var(--c-dark); }
-        
         .modal-content h3 { font-size: 24px; color: var(--c-dark); font-weight: 700; margin-bottom: 10px; text-align: center; }
         .modal-content p { font-size: 13px; text-align: center; margin-bottom: 25px; }
-        
         .form-group { margin-bottom: 15px; }
         .form-control {
             width: 100%; padding: 14px 20px; border: 1px solid var(--c-border);
             border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px;
             background-color: var(--c-bg-light); transition: border-color 0.3s;
         }
-        .form-control:focus {
-            outline: none; border-color: var(--c-cyan); background-color: var(--c-white);
-        }
-        .modal-content .btn-primary {
-            width: 100%; margin-top: 10px; padding: 15px;
-        }
+        .form-control:focus { outline: none; border-color: var(--c-cyan); background-color: var(--c-white); }
+        .modal-content .btn-primary { width: 100%; margin-top: 10px; padding: 15px; }
 
         /* === ПОДВАЛ === */
         .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 30px; margin-bottom: 40px; }
-        
-        .footer-logo-img {
-            height: 65px; width: auto; display: block;
-            background-color: var(--c-white); padding: 8px 15px; border-radius: 8px;
-        }
-
+        .footer-logo-img { height: 65px; width: auto; display: block; background-color: var(--c-white); padding: 8px 15px; border-radius: 8px; }
         .footer-slogan { font-size: 13px; color: #b0c0cb; display: flex; align-items: center; gap: 8px; margin-top: 15px; }
         .footer-slogan i { color: var(--c-cyan); font-size: 16px; }
-
         .contact-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 13px; color: #d1dde5; }
         .contact-list i { color: var(--c-cyan); font-size: 14px; width: 16px; text-align: center; }
         .footer h4 { font-size: 15px; font-weight: 600; margin-bottom: 15px; color: var(--c-white); }
-
         .socials { display: flex; gap: 15px; }
         .socials a {
             width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center;
@@ -290,12 +298,49 @@
         .socials .s-tg { background-color: #27A7E7; }
         .socials .s-wa { background-color: #25D366; }
         .socials a:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
         .footer-cta p { font-size: 12px; color: #b0c0cb; margin-bottom: 15px; line-height: 1.4; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #7a8f9f; }
         .footer-bottom-links { display: flex; gap: 20px; }
         .footer-bottom-links a { transition: color var(--transition); }
         .footer-bottom-links a:hover { color: var(--c-white); }
+
+        /* =========================================
+           ПЛАВАЮЩИЕ КНОПКИ (FLOATING BUTTONS)
+           ========================================= */
+        
+        /* Кнопка WhatsApp для ПК (справа внизу) */
+        .floating-whatsapp {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; background-color: var(--c-whatsapp);
+            color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 32px; z-index: 1500;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all var(--transition);
+            animation: pulse 2s infinite;
+        }
+        .floating-whatsapp:hover {
+            transform: scale(1.1); color: white;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Мобильная панель (Звонок + WhatsApp) */
+        .mobile-bottom-bar {
+            display: none; /* Скрыто на ПК */
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--c-white); box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1500;
+        }
+        .mobile-bottom-bar a {
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 15px 0; font-size: 15px; font-weight: 600; color: var(--c-white);
+        }
+        .mobile-bar-call { background-color: var(--c-cyan); }
+        .mobile-bar-wa { background-color: var(--c-whatsapp); }
 
         /* === АДАПТИВНОСТЬ === */
         @media (max-width: 1100px) {
@@ -308,6 +353,13 @@
         }
 
         @media (max-width: 768px) {
+            /* Добавляем отступ снизу, чтобы панель не перекрывала контент */
+            body { padding-bottom: 60px; }
+            
+            /* Скрываем виджет WhatsApp на ПК и показываем нижнюю панель */
+            .floating-whatsapp { display: none; }
+            .mobile-bottom-bar { display: flex; }
+
             .header { height: 80px; } 
             .logo-img, .footer-logo-img { height: 50px; } 
             
@@ -337,8 +389,6 @@
             .brand-logos { flex-wrap: wrap; gap: 15px; }
 
             .process-grid, .guarantees-grid { grid-template-columns: 1fr; }
-            
-            /* Модалка на мобильных */
             .modal-content { padding: 30px 20px; max-width: 90%; }
 
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
@@ -376,7 +426,6 @@
                 <a href="#contacts">Контакты</a>
             </nav>
 
-            <!-- Кнопка открывает модальное окно -->
             <button class="btn-header open-modal-btn">
                 <i class="fas fa-phone-alt" style="font-size: 12px;"></i> Связаться с нами
             </button>
@@ -556,12 +605,11 @@
         </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК: FAQ -->
+    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <h2 class="section-title reveal">Часто задаваемые вопросы</h2>
             <div class="faq-list reveal">
-                <!-- Вопрос 1 -->
                 <div class="faq-item">
                     <button class="faq-question">
                         Как часто нужно проводить обслуживание бассейна?
@@ -571,7 +619,6 @@
                         <p>Для поддержания идеального качества воды рекомендуется проводить профилактическую чистку и проверку оборудования не реже 1-2 раз в неделю. Мы можем составить индивидуальный график в зависимости от интенсивности использования.</p>
                     </div>
                 </div>
-                <!-- Вопрос 2 -->
                 <div class="faq-item">
                     <button class="faq-question">
                         Выезд специалиста платный?
@@ -581,7 +628,6 @@
                         <p>Первичный выезд специалиста для оценки состояния бассейна и составления сметы — абсолютно бесплатный. Вы платите только за фактически выполненные работы и материалы.</p>
                     </div>
                 </div>
-                <!-- Вопрос 3 -->
                 <div class="faq-item">
                     <button class="faq-question">
                         Вы работаете с оборудованием, купленным не у вас?
@@ -591,7 +637,6 @@
                         <p>Да, мы обслуживаем и настраиваем оборудование любых популярных брендов (Ospa, Dinotec, Emaux и др.). Наши специалисты помогут с диагностикой и заменой запчастей.</p>
                     </div>
                 </div>
-                <!-- Вопрос 4 -->
                 <div class="faq-item">
                     <button class="faq-question">
                         Что входит в услугу консервации бассейна на зиму?
@@ -668,20 +713,46 @@
         </div>
     </footer>
 
-    <!-- НОВЫЙ БЛОК: МОДАЛЬНОЕ ОКНО (ВСПЛЫВАЮЩАЯ ФОРМА) -->
+    <!-- ==========================================
+         ПЛАВАЮЩИЕ КНОПКИ
+         ========================================== -->
+    
+    <!-- Виджет WhatsApp для ПК -->
+    <a href="https://wa.me/79384340333" target="_blank" class="floating-whatsapp" aria-label="Написать в WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Мобильная панель (Звонок и WhatsApp) -->
+    <div class="mobile-bottom-bar">
+        <a href="tel:+79384340333" class="mobile-bar-call">
+            <i class="fas fa-phone-alt"></i> Позвонить
+        </a>
+        <a href="https://wa.me/79384340333" target="_blank" class="mobile-bar-wa">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="callbackModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModalBtn">&times;</span>
             <h3>Оставить заявку</h3>
             <p>Оставьте свои контакты, и мы перезвоним вам в течение 15 минут</p>
             
-            <form id="requestForm">
+            <!-- ВАЖНО: Вставь сюда свой access_key от Web3Forms -->
+            <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="ВАШ_ACCESS_KEY_ЗДЕСЬ">
+                
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Ваше имя" required>
+                    <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control" placeholder="Ваш телефон" required>
+                    <input type="tel" name="phone" class="form-control" placeholder="Ваш телефон" required>
                 </div>
+                
+                <!-- Защита от спама -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                
                 <button type="submit" class="btn-primary">Отправить</button>
             </form>
         </div>
@@ -712,49 +783,61 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0,
-            rootMargin: "0px 0px -50px 0px"
-        });
+        }, { threshold: 0, rootMargin: "0px 0px -50px 0px" });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 3. Логика работы Модального окна (Формы)
+        // 3. Логика работы Модального окна
         const modal = document.getElementById('callbackModal');
         const openModalBtns = document.querySelectorAll('.open-modal-btn');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const form = document.getElementById('requestForm');
 
-        // Открыть модалку по клику на любую кнопку с классом .open-modal-btn
         openModalBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Предотвращаем переход по ссылке, если это <a>
+                e.preventDefault();
                 modal.classList.add('active');
             });
         });
 
-        // Закрыть по крестику
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
+        closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+        // 4. Отправка формы через AJAX (БЕЗ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ)
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Отменяем стандартную отправку
+            
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            
+            submitBtn.innerText = 'Отправка...';
+            submitBtn.disabled = true;
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.');
+                    modal.classList.remove('active');
+                    form.reset();
+                } else {
+                    alert('Ошибка при отправке. Пожалуйста, позвоните нам по телефону.');
+                }
+            })
+            .catch(error => {
+                alert('Ошибка сети. Пожалуйста, позвоните нам по телефону.');
+            })
+            .finally(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            });
         });
 
-        // Закрыть по клику вне окна
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
-        });
-
-        // Обработка отправки формы (демо)
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Спасибо! Ваша заявка отправлена (это демо-режим). В реальности здесь будет отправка на почту или CRM.');
-            modal.classList.remove('active');
-            form.reset();
-        });
-
-        // 4. Логика работы FAQ (Аккордеон)
+        // 5. Логика работы FAQ (Аккордеон)
         const faqItems = document.querySelectorAll('.faq-item');
-
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
@@ -762,13 +845,11 @@
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
                 
-                // Закрываем все остальные (опционально)
                 faqItems.forEach(otherItem => {
                     otherItem.classList.remove('active');
                     otherItem.querySelector('.faq-answer').style.maxHeight = null;
                 });
 
-                // Если текущий не был активен, открываем его
                 if (!isActive) {
                     item.classList.add('active');
                     answer.style.maxHeight = answer.scrollHeight + "px";
