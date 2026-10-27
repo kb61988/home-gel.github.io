@@ -126,10 +126,12 @@
         .equip-item .icon { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--c-cyan); display: flex; align-items: center; justify-content: center; color: var(--c-cyan); font-size: 22px; flex-shrink: 0; }
         .equip-item h4 { font-size: 16px; color: var(--c-dark); font-weight: 600; margin-bottom: 6px; }
         .equip-item p { font-size: 14px; color: var(--c-text); }
-        .brand-logos { display: flex; gap: 25px; align-items: center; margin-top: 15px; }
-        .brand-ospa { font-size: 26px; font-weight: 900; color: #005cbe; font-style: italic; line-height: 0.8; }
-        .brand-ospa span { font-size: 7px; display: block; color: #333; font-style: normal; margin-top: 4px; }
-        .brand-dinotec img { height: 28px; width: auto; }
+        
+        /* ОБНОВЛЕННЫЕ ЛОГОТИПЫ БРЕНДОВ */
+        .brand-logos { display: flex; gap: 40px; align-items: center; margin-top: 20px; }
+        .brand-ospa { font-size: 42px; font-weight: 900; color: #005cbe; font-style: italic; line-height: 0.8; letter-spacing: -1px; }
+        .brand-ospa span { font-size: 10px; display: block; color: #333; font-style: normal; margin-top: 6px; letter-spacing: 0.5px; font-weight: 700; }
+        .brand-dinotec img { height: 45px; width: auto; object-fit: contain; }
 
         /* === КАК МЫ РАБОТАЕМ === */
         .process { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-bg-light); }
@@ -280,6 +282,11 @@
 
             .form-wrapper { padding: 30px 20px; }
             .modal-content { padding: 30px 20px; }
+            
+            /* Уменьшаем логотипы на мобильных, чтобы не ломать верстку */
+            .brand-logos { flex-wrap: wrap; gap: 20px; }
+            .brand-ospa { font-size: 32px; }
+            .brand-dinotec img { height: 35px; }
         }
 
         @media (max-width: 400px) {
@@ -638,7 +645,6 @@
                 <div class="reveal">
                     <h4>Мы в соцсетях</h4>
                     <div class="socials">
-                        <!-- Вставьте ссылки на ваши профили -->
                         <a href="#" class="s-vk" aria-label="Мы во ВКонтакте"><i class="fab fa-vk" aria-hidden="true"></i></a>
                         <a href="#" class="s-tg" aria-label="Наш Telegram"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
                         <a href="https://wa.me/79384340333" class="s-wa" aria-label="Написать в WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
