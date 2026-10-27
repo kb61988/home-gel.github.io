@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сезонное обслуживание бассейна | ZPOOL SERVICE</title>
+    <meta name="description" content="Весенний запуск и зимняя консервация бассейнов в Геленджике. Профессиональная подготовка оборудования к сезону.">
+    
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Базовые стили */
+        :root { --c-cyan: #18a6c7; --c-cyan-hover: #138ca8; --c-dark: #0a3877; --c-footer-bg: #07224c; --c-text: #556975; --c-bg-light: #f2f8fb; --c-border: #dbe6ec; --c-white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--c-text); line-height: 1.4; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; }
+
+        /* Шапка */
+        .header { background-color: var(--c-white); height: 90px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-img { height: 65px; width: auto; mix-blend-mode: multiply; }
+        .nav { display: flex; gap: 25px; align-items: center; }
+        .nav a { font-size: 14px; font-weight: 500; color: var(--c-dark); transition: 0.3s; }
+        .nav a:hover { color: var(--c-cyan); }
+        .btn-primary { background-color: var(--c-cyan); color: var(--c-white); padding: 12px 24px; border-radius: 30px; border: none; cursor: pointer; font-weight: 500; transition: 0.3s; }
+        .btn-primary:hover { background-color: var(--c-cyan-hover); }
+
+        /* Баннер услуги */
+        .service-hero { position: relative; padding: 80px 0 120px; background: url('season-hero.jpg') center/cover no-repeat; display: flex; align-items: center; }
+        .service-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%); }
+        .service-hero::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 60px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" d="M0,60 C320,0 720,0 1440,60 L1440,60 L0,60 Z"/></svg>') no-repeat; background-size: cover; }
+        
+        .service-hero-content { position: relative; z-index: 1; max-width: 650px; }
+        .breadcrumbs { font-size: 13px; color: var(--c-text); margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+        .service-hero h1 { font-size: 42px; line-height: 1.1; color: var(--c-dark); font-weight: 700; margin-bottom: 20px; }
+        .service-hero h1 span { color: var(--c-cyan); }
+        .service-hero p { font-size: 16px; margin-bottom: 35px; font-weight: 500; color: var(--c-dark); }
+        
+        .hero-features { display: flex; gap: 25px; flex-wrap: wrap; margin-top: 40px; }
+        .feature { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; width: 90px; }
+        .feature-icon { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--c-cyan); display: flex; align-items: center; justify-content: center; color: var(--c-cyan); font-size: 18px; background: rgba(255,255,255,0.8); }
+
+        /* Общие заголовки */
+        .section-title { text-align: center; font-size: 32px; color: var(--c-dark); font-weight: 700; margin-bottom: 45px; }
+
+        /* Блок: Сезонное обслуживание (2 большие карточки) */
+        .season-cards-section { padding: 80px 0; background-color: var(--c-white); }
+        .season-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .season-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+        
+        /* Верхняя часть карточки с картинкой и заголовком */
+        .season-card-top { display: flex; align-items: stretch; border-bottom: 1px solid var(--c-border); }
+        .season-card-img { width: 40%; background-size: cover; background-position: center; min-height: 150px; }
+        .img-spring { background-image: url('season-spring.jpg'); }
+        .img-winter { background-image: url('season-winter.jpg'); }
+        
+        .season-card-header { width: 60%; padding: 25px; display: flex; flex-direction: column; justify-content: center; }
+        .season-card-header i { font-size: 24px; color: var(--c-cyan); margin-bottom: 10px; }
+        .season-card-header h3 { font-size: 18px; color: var(--c-dark); font-weight: 700; }
+
+        /* Нижняя часть карточки со списком */
+        .season-card-body { padding: 30px; flex-grow: 1; }
+        .season-list li { font-size: 13px; margin-bottom: 12px; padding-left: 25px; position: relative; color: var(--c-text); }
+        .season-list li i { position: absolute; left: 0; top: 3px; color: var(--c-cyan); }
+
+        .season-note { margin-top: 20px; background: var(--c-bg-light); padding: 15px; border-radius: 8px; display: flex; gap: 15px; align-items: center; }
+        .season-note i { color: var(--c-cyan); font-size: 20px; }
+        .season-note p { font-size: 12px; margin: 0; }
+
+        /* Блок: Особенности и Типы бассейнов */
+        .features-types { padding: 0 0 80px 0; background-color: var(--c-white); }
+        .ft-inner { display: flex; gap: 30px; }
+        
+        /* Левая часть (Геленджик) */
+        .ft-geo { width: 45%; background: linear-gradient(rgba(10, 56, 119, 0.8), rgba(10, 56, 119, 0.8)), url('hero-main.jpg') center/cover no-repeat; border-radius: 15px; padding: 40px; color: var(--c-white); }
+        .ft-geo h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .ft-geo p { font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+        .ft-geo ul li { font-size: 13px; margin-bottom: 10px; display: flex; gap: 10px; }
+        .ft-geo ul li i { color: var(--c-cyan); margin-top: 3px; }
+
+        /* Правая часть (Типы) */
+        .ft-types { width: 55%; }
+        .ft-types h3 { font-size: 20px; color: var(--c-dark); font-weight: 700; margin-bottom: 20px; }
+        .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .type-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 10px; overflow: hidden; text-align: center; padding-bottom: 15px; }
+        .type-img { height: 100px; width: 100%; background-size: cover; background-position: center; margin-bottom: 15px; }
+        .type-img-1 { background-image: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .type-img-2 { background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .type-img-3 { background-image: url('https://images.unsplash.com/photo-1572331165267-854af57b1a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .type-card h4 { font-size: 14px; color: var(--c-dark); font-weight: 600; margin-bottom: 5px; }
+        .type-card p { font-size: 11px; padding: 0 10px; }
+
+        /* Результат */
+        .result-section { padding: 60px 0; background-color: var(--c-bg-light); }
+        .result-title { font-size: 24px; color: var(--c-dark); font-weight: 700; margin-bottom: 30px; }
+        .result-grid { display: flex; justify-content: space-between; gap: 20px; }
+        .result-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+        .result-item i { font-size: 30px; color: var(--c-cyan); }
+        .result-item p { font-size: 13px; font-weight: 500; color: var(--c-dark); }
+
+        /* Подвал */
+        .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 30px; margin-bottom: 40px; }
+        .footer-logo-img { height: 65px; width: auto; background-color: var(--c-white); padding: 8px 15px; border-radius: 8px; }
+        .contact-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 13px; }
+        .socials { display: flex; gap: 15px; }
+        .socials a { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--c-white); font-size: 22px; }
+
+        /* Адаптивность */
+        @media (max-width: 1100px) {
+            .season-grid { grid-template-columns: 1fr; }
+            .ft-inner { flex-direction: column; }
+            .ft-geo, .ft-types { width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .service-hero h1 { font-size: 32px; }
+            .season-card-top { flex-direction: column; }
+            .season-card-img { width: 100%; height: 200px; }
+            .season-card-header { width: 100%; }
+            .types-grid { grid-template-columns: 1fr; }
+            .result-grid { flex-wrap: wrap; }
+            .result-item { min-width: 45%; margin-bottom: 20px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-grid > div:first-child { display: flex; justify-content: center; margin-bottom: 20px; }
+            .contact-list li { justify-content: center; }
+            .socials { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html"><img src="logo.png" alt="ZPOOL" class="logo-img"></a>
+            <nav class="nav">
+                <a href="index.html">Главная</a>
+                <a href="montazh.html">Монтаж</a>
+                <a href="obsluzhivanie.html">Обслуживание</a>
+                <a href="remont.html">Ремонт</a>
+                <a href="otdelka.html">Отделка</a>
+                <a href="rekonstrukciya.html">Реконструкция</a>
+                <a href="season.html" style="color: var(--c-cyan);">Сезонные работы</a>
+                <a href="index.html#contacts">Контакты</a>
+            </nav>
+            <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Связаться с нами</button>
+        </div>
+    </header>
+
+    <!-- БАННЕР -->
+    <section class="service-hero">
+        <div class="container service-hero-content">
+            <div class="breadcrumbs"><a href="index.html">Главная</a> <i class="fas fa-chevron-right" style="font-size: 10px;"></i> <span>Сезонные работы</span></div>
+            <h1>Сезонное обслуживание <br><span>бассейна</span></h1>
+            <p>Регулярное обслуживание бассейна позволяет сохранить чистоту воды, исправную работу оборудования и продлить срок службы чаши и инженерных систем.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Оставить заявку</button>
+            </div>
+            <div class="hero-features">
+                <div class="feature"><div class="feature-icon"><i class="fas fa-tint"></i></div><span>Чистая вода<br>круглый год</span></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><span>Надёжная<br>работа</span></div>
+                <div class="feature"><div class="feature-icon"><i class="far fa-clock"></i></div><span>Продление<br>срока службы</span></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-leaf"></i></div><span>Забота<br>о бассейне</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕЗОННОЕ ОБСЛУЖИВАНИЕ (2 КАРТОЧКИ) -->
+    <section class="season-cards-section">
+        <div class="container">
+            <h2 class="section-title">Сезонное обслуживание<br><span style="font-size: 18px; font-weight: 500; color: var(--c-text);">Два этапа — чистый бассейн весь сезон</span></h2>
+            
+            <div class="season-grid">
+                <!-- Весенний запуск -->
+                <div class="season-card">
+                    <div class="season-card-top">
+                        <div class="season-card-img img-spring"></div>
+                        <div class="season-card-header">
+                            <i class="fas fa-leaf"></i>
+                            <h3>Весенний запуск бассейна</h3>
+                        </div>
+                    </div>
+                    <div class="season-card-body">
+                        <p style="font-size: 14px; margin-bottom: 15px; font-weight: 600; color: var(--c-dark);">После зимнего периода выполняем:</p>
+                        <ul class="season-list">
+                            <li><i class="fas fa-check"></i> осмотр чаши, оборудования и закладных элементов;</li>
+                            <li><i class="fas fa-check"></i> очистку стен, дна и водяной линии;</li>
+                            <li><i class="fas fa-check"></i> подготовку и запуск системы фильтрации;</li>
+                            <li><i class="fas fa-check"></i> проверку насосов, нагрева и автоматики;</li>
+                            <li><i class="fas fa-check"></i> балансировку воды и настройку химических параметров.</li>
+                        </ul>
+                        <div class="season-note">
+                            <i class="fas fa-info-circle"></i>
+                            <p>После запуска контролируем работу оборудования и состояние воды.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Зимняя консервация -->
+                <div class="season-card">
+                    <div class="season-card-top">
+                        <div class="season-card-img img-winter"></div>
+                        <div class="season-card-header">
+                            <i class="far fa-snowflake"></i>
+                            <h3>Консервация бассейна на зиму</h3>
+                        </div>
+                    </div>
+                    <div class="season-card-body">
+                        <p style="font-size: 14px; margin-bottom: 15px; font-weight: 600; color: var(--c-dark);">Для защиты бассейна в холодный период выполняем:</p>
+                        <ul class="season-list">
+                            <li><i class="fas fa-check"></i> очистку чаши и оборудования;</li>
+                            <li><i class="fas fa-check"></i> подготовку воды к зимнему хранению;</li>
+                            <li><i class="fas fa-check"></i> защиту труб и закладных элементов;</li>
+                            <li><i class="fas fa-check"></i> консервацию насосов, фильтров и автоматики;</li>
+                            <li><i class="fas fa-check"></i> установку компенсаторов и зимнего укрытия.</li>
+                        </ul>
+                        <div class="season-note">
+                            <i class="far fa-snowflake"></i>
+                            <p>Правильная консервация помогает избежать повреждений от перепадов температуры и облегчает весенний запуск.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОСОБЕННОСТИ И ТИПЫ -->
+    <section class="features-types">
+        <div class="container">
+            <div class="ft-inner">
+                <!-- Особенности в Геленджике -->
+                <div class="ft-geo">
+                    <h3><i class="fas fa-map-marker-alt"></i> Особенности обслуживания в Геленджике</h3>
+                    <p>Учитываем местные условия:</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> морской воздух и риск коррозии оборудования;</li>
+                        <li><i class="fas fa-check"></i> сильные ветровые нагрузки на укрытия;</li>
+                        <li><i class="fas fa-check"></i> перепады температуры в зимний период;</li>
+                        <li><i class="fas fa-check"></i> жёсткость воды и образование известкового налёта.</li>
+                    </ul>
+                    <div class="season-note" style="margin-top: 20px; background: rgba(255,255,255,0.1);">
+                        <i class="fas fa-shield-alt" style="color: var(--c-white);"></i>
+                        <p style="color: var(--c-white);">Используем подходящие средства очистки и защиты оборудования.</p>
+                    </div>
+                </div>
+
+                <!-- Типы бассейнов -->
+                <div class="ft-types">
+                    <h3>Обслуживание разных типов бассейнов</h3>
+                    <div class="types-grid">
+                        <div class="type-card">
+                            <div class="type-img type-img-1"></div>
+                            <h4>Бетонные бассейны</h4>
+                            <p>Требуют внимательного контроля гидроизоляции, отделки и инженерных систем.</p>
+                        </div>
+                        <div class="type-card">
+                            <div class="type-img type-img-2"></div>
+                            <h4>Композитные бассейны</h4>
+                            <p>Нуждаются в бережной очистке и использовании подходящей химии.</p>
+                        </div>
+                        <div class="type-card">
+                            <div class="type-img type-img-3"></div>
+                            <h4>Каркасные бассейны</h4>
+                            <p>Обслуживаются с учетом рекомендаций производителя и особенностей конструкции.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- РЕЗУЛЬТАТ -->
+    <section class="result-section">
+        <div class="container">
+            <h3 class="result-title">Результат профессионального обслуживания</h3>
+            <div class="result-grid">
+                <div class="result-item">
+                    <i class="fas fa-tint"></i>
+                    <p>Чистая и безопасная<br>вода</p>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-cogs"></i>
+                    <p>Стабильная работа<br>оборудования</p>
+                </div>
+                <div class="result-item">
+                    <i class="far fa-snowflake"></i>
+                    <p>Защита бассейна<br>в зимний период</p>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-ruble-sign"></i>
+                    <p>Меньше затрат<br>на ремонт и восстановление</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div><a href="index.html"><img src="logo.png" class="footer-logo-img"></a></div>
+                <div>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt" style="color: var(--c-cyan)"></i> Геленджик, Краснодарский край</li>
+                        <li><i class="fas fa-phone-alt" style="color: var(--c-cyan)"></i> 8-938-434-0-333</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="socials">
+                        <a href="#" class="s-vk" style="background: #0077FF"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="s-tg" style="background: #27A7E7"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="s-wa" style="background: #25D366"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Связаться с нами</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
