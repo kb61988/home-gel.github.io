@@ -8,7 +8,7 @@
     
     <link rel="icon" href="logo.png" type="image/png">
     
-    <!-- Open Graph для соцсетей -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="ZPOOL SERVICE - Обслуживание бассейнов">
     <meta property="og:description" content="Чистая вода, надежное оборудование и безупречный сервис круглый год.">
@@ -80,7 +80,6 @@
         /* === УСЛУГИ === */
         .services { padding: 80px 0 70px; background: var(--c-white); }
         .section-title { text-align: center; font-size: 32px; color: var(--c-dark); font-weight: 700; margin-bottom: 45px; }
-        /* Сделал 3 колонки, чтобы 6 карточек смотрелись ровно */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .service-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 8px; padding: 30px 20px; transition: 0.3s; display: block; }
         .service-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: var(--c-cyan); transform: translateY(-8px); }
@@ -180,10 +179,20 @@
         }
         @media (max-width: 768px) {
             body { padding-bottom: 60px; }
+            .header { height: 80px; }
             .nav, .header .btn-primary { display: none; }
             .mobile-menu-btn { display: block; }
             .floating-whatsapp { display: none; }
             .mobile-bottom-bar { display: flex; }
+            
+            /* Выпадающее меню на мобильных */
+            .nav.active { 
+                display: flex; flex-direction: column; position: absolute; 
+                top: 80px; left: 0; width: 100%; background: var(--c-white); 
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1); padding: 20px; gap: 20px; 
+                margin-left: 0; z-index: 999;
+            }
+            .nav.active .dropdown-content { position: static; box-shadow: none; padding: 0; }
             
             .hero { height: auto; padding: 60px 0; }
             .hero::before { background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%); }
@@ -204,13 +213,14 @@
 
     <header class="header">
         <div class="container">
-            <!-- Ссылки исправлены на index.html -->
-            <a href="index.html"><img src="logo.png" alt="ZPOOL" class="logo-img"></a>
+            <!-- ССЫЛКА ИСПРАВЛЕНА НА "./" -->
+            <a href="./"><img src="logo.png" alt="ZPOOL" class="logo-img"></a>
             
             <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
 
             <nav class="nav">
-                <a href="index.html">Главная</a>
+                <!-- ССЫЛКА ИСПРАВЛЕНА НА "./" -->
+                <a href="./">Главная</a>
                 <div class="dropdown">
                     <a href="#">Услуги <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
                     <div class="dropdown-content">
@@ -232,7 +242,7 @@
 
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
-        <div class="container hero-content">
+        <div class="container hero-content reveal active">
             <h1>Профессиональное <br><span>обслуживание бассейнов</span></h1>
             <p>Чистая вода, надежное оборудование <br>и безупречный сервис круглый год</p>
             <div class="hero-buttons">
@@ -248,7 +258,7 @@
         </div>
     </section>
 
-    <!-- УСЛУГИ (6 карточек) -->
+    <!-- УСЛУГИ -->
     <section class="services">
         <div class="container">
             <h2 class="section-title reveal">Полный спектр услуг<br>по обслуживанию бассейнов</h2>
@@ -418,7 +428,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="reveal">
-                    <a href="index.html"><img src="logo.png" alt="ZPOOL" class="footer-logo-img"></a>
+                    <!-- ССЫЛКА ИСПРАВЛЕНА НА "./" -->
+                    <a href="./"><img src="logo.png" alt="ZPOOL" class="footer-logo-img"></a>
                 </div>
                 <div class="reveal">
                     <ul class="contact-list">
@@ -464,8 +475,8 @@
             <h3 style="text-align:center; margin-bottom: 20px;">Оставить заявку</h3>
             <p style="text-align:center; font-size: 13px; margin-bottom: 25px;">Оставьте свои контакты, и мы перезвоним вам в течение 15 минут</p>
             <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
-                <!-- ВСТАВЬ СЮДА СВОЙ КЛЮЧ ОТ WEB3FORMS -->
-                <input type="hidden" name="access_key" value="ТВОЙ_КЛЮЧ">
+                <!-- ВАЖНО: ВСТАВЬ СЮДА СВОЙ КЛЮЧ ОТ WEB3FORMS -->
+                <input type="hidden" name="access_key" value="ТВОЙ_КЛЮЧ_ЗДЕСЬ">
                 <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
                 <input type="tel" name="phone" class="form-control" placeholder="Ваш телефон" required>
                 <button type="submit" class="btn-primary" style="width: 100%;">Отправить</button>
@@ -513,13 +524,21 @@
         }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 2. Модальные окна
+        // 2. РАБОТА МОБИЛЬНОГО МЕНЮ
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // 3. Модальные окна (Форма)
         const modal = document.getElementById('callbackModal');
         document.querySelectorAll('.open-modal-btn').forEach(btn => btn.addEventListener('click', () => modal.classList.add('active')));
         document.querySelector('.close-modal').addEventListener('click', () => modal.classList.remove('active'));
         window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
-        // 3. Политика и Соглашение
+        // 4. Политика и Соглашение
         const privacyModal = document.getElementById('privacyModal');
         const termsModal = document.getElementById('termsModal');
         
@@ -531,7 +550,7 @@
         document.querySelector('.close-terms').addEventListener('click', () => termsModal.classList.remove('active'));
         window.addEventListener('click', (e) => { if (e.target === termsModal) termsModal.classList.remove('active'); });
 
-        // 4. FAQ Аккордеон
+        // 5. FAQ Аккордеон
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
@@ -550,7 +569,7 @@
             });
         });
 
-        // 5. Отправка формы без перезагрузки (AJAX)
+        // 6. Отправка формы
         const form = document.getElementById('requestForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
