@@ -44,13 +44,12 @@
         .header { background-color: var(--c-white); height: 90px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo-img { height: 60px; width: auto; transition: transform var(--transition); mix-blend-mode: multiply; }
-        .logo-img:hover { transform: scale(1.03); }
         
-        .nav { display: flex; gap: clamp(15px, 3vw, 35px); align-items: center; }
+        .nav { display: flex; gap: clamp(15px, 2vw, 25px); align-items: center; }
         .nav a { font-size: clamp(14px, 1.5vw, 15px); font-weight: 500; color: var(--c-dark); position: relative; padding: 5px 0; }
         .nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--c-cyan); transition: width var(--transition); }
-        .nav a:hover::after, .nav a.active::after { width: 100%; }
-        .nav a:hover, .nav a.active { color: var(--c-cyan); }
+        .nav a:hover::after { width: 100%; }
+        .nav a:hover { color: var(--c-cyan); }
 
         .mobile-menu-btn { display: none; font-size: 26px; color: var(--c-dark); z-index: 1001; }
 
@@ -66,7 +65,7 @@
         .btn-outline:hover { background-color: var(--c-cyan); color: var(--c-white); transform: translateY(-2px); }
 
         /* === ГЛАВНЫЙ ЭКРАН === */
-        .hero { position: relative; min-height: 520px; background: url('hero-main.jpg') center/cover no-repeat; display: flex; align-items: center; padding: 60px 0; }
+        .hero { position: relative; min-height: 520px; display: flex; align-items: center; padding: 60px 0; background: url('hero-main.jpg') center/cover no-repeat; }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0) 75%); }
         .hero-content { position: relative; z-index: 1; max-width: 650px; }
         .hero h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.15; color: var(--c-dark); font-weight: 800; margin-bottom: 20px; }
@@ -83,7 +82,6 @@
         .services { padding: clamp(50px, 8vw, 80px) 0; background: var(--c-white); }
         .section-title { text-align: center; font-size: clamp(26px, 4vw, 36px); color: var(--c-dark); font-weight: 700; margin-bottom: 50px; line-height: 1.3; }
         
-        /* Умная сетка: сама подстраивается под экран */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .service-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 12px; padding: 30px 25px; transition: 0.3s; display: flex; flex-direction: column; height: 100%; }
         .service-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: var(--c-cyan); transform: translateY(-5px); }
@@ -120,14 +118,33 @@
         /* === ГАРАНТИИ === */
         .guarantees { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-white); }
         .guarantees-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .guarantee-card { background: var(--c-bg-light); padding: 40px 30px; border-radius: 15px; transition: transform var(--transition); border: 1px solid transparent; }
-        .guarantee-card:hover { transform: translateY(-5px); border-color: var(--c-cyan); }
-        .guarantee-card i { font-size: 36px; color: var(--c-cyan); margin-bottom: 25px; }
-        .guarantee-card h3 { font-size: 20px; color: var(--c-dark); font-weight: 600; margin-bottom: 12px; }
+        .guarantee-card { background: var(--c-bg-light); padding: 40px 30px; border-radius: 15px; border: 1px solid transparent; transition: var(--transition); }
+        .guarantee-card:hover { border-color: var(--c-cyan); }
+        .guarantee-card i { font-size: 36px; color: var(--c-cyan); margin-bottom: 20px; }
+        .guarantee-card h3 { font-size: 20px; color: var(--c-dark); font-weight: 700; margin-bottom: 12px; }
         .guarantee-card p { font-size: 15px; line-height: 1.6; }
 
+        /* === ФОРМА (Взято из нового кода) === */
+        .form-section { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-bg-light); }
+        .form-wrapper { max-width: 600px; margin: 0 auto; background: var(--c-white); padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+        
+        .form-control { width: 100%; padding: 16px 20px; border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 15px; background: var(--c-bg-light); font-family: inherit; font-size: 16px; transition: border 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--c-cyan); background: #fff; }
+        
+        /* === КОНТАКТЫ И КАРТА (Взято из нового кода) === */
+        .contacts { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-white); }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .contact-info h2 { font-size: clamp(24px, 3vw, 32px); color: var(--c-dark); margin-bottom: 25px; font-weight: 700; }
+        .info-item { display: flex; gap: 15px; margin-bottom: 25px; align-items: center; }
+        .info-icon { width: 45px; height: 45px; border-radius: 50%; background: rgba(24, 166, 199, 0.1); color: var(--c-cyan); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .info-item h4 { font-size: 14px; color: var(--c-text); margin-bottom: 3px; }
+        .info-item p { font-size: 16px; color: var(--c-dark); font-weight: 600; }
+        
+        .map-container { position: relative; width: 100%; height: 100%; min-height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
         /* === FAQ === */
-        .faq { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-white); }
+        .faq { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-bg-light); }
         .faq-list { max-width: 850px; margin: 0 auto; }
         .faq-item { border-bottom: 1px solid var(--c-border); }
         .faq-question { width: 100%; text-align: left; font-size: 17px; font-weight: 600; color: var(--c-dark); padding: 25px 0; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s; }
@@ -136,10 +153,6 @@
         .faq-item.active .faq-question i { transform: rotate(180deg); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
         .faq-answer p { padding-bottom: 25px; font-size: 15px; line-height: 1.7; }
-
-        /* === КАРТА === */
-        .map-section { height: clamp(300px, 50vh, 450px); width: 100%; background-color: #eee; }
-        .map-section iframe { width: 100%; height: 100%; border: none; display: block; }
 
         /* === ПОДВАЛ === */
         .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
@@ -170,23 +183,17 @@
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 32px; color: #999; cursor: pointer; line-height: 1; }
         
-        /* 16px для предотвращения зума на iOS */
-        .form-control { width: 100%; padding: 16px 20px; border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 15px; background: var(--c-bg-light); font-family: inherit; font-size: 16px; transition: border 0.3s; }
-        .form-control:focus { outline: none; border-color: var(--c-cyan); background: #fff; }
-        
         .modal-large { max-width: 800px; }
         .legal-text { overflow-y: auto; padding-right: 10px; text-align: left; margin-top: 20px; }
         .legal-text p { margin-bottom: 15px; font-size: 15px; line-height: 1.7; color: var(--c-text); }
 
-        /* === АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ) === */
-        /* Планшеты */
+        /* === АДАПТИВНОСТЬ === */
         @media (max-width: 992px) {
             .header { height: 80px; }
             .logo-img { height: 50px; }
-            .nav { display: none; } /* Скрываем обычное меню */
-            .mobile-menu-btn { display: block; } /* Показываем бургер */
+            .nav { display: none; } 
+            .mobile-menu-btn { display: block; } 
             
-            /* Выпадающее меню на мобильных */
             .nav.active { 
                 display: flex; flex-direction: column; position: absolute; 
                 top: 80px; left: 0; width: 100%; background: var(--c-white); 
@@ -202,15 +209,16 @@
             
             .equipment-img { width: 100%; min-height: 250px; }
             .equipment-content { width: 100%; }
+
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .map-container { min-height: 300px; }
         }
 
-        /* Смартфоны */
         @media (max-width: 768px) {
-            body { padding-bottom: 65px; } /* Отступ под мобильную панель */
-            .floating-whatsapp { display: none; } /* Скрываем ПК-виджет */
-            .mobile-bottom-bar { display: flex; } /* Показываем мобильную панель */
-            
-            .btn-header { display: none; } /* Скрываем кнопку в шапке, чтобы не теснить бургер */
+            body { padding-bottom: 65px; } 
+            .floating-whatsapp { display: none; } 
+            .mobile-bottom-bar { display: flex; } 
+            .btn-header { display: none; } 
             
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn-primary, .btn-outline { width: 100%; }
@@ -222,10 +230,10 @@
             .footer-bottom { flex-direction: column; }
             .footer-bottom-links a { margin: 0 10px; }
             
+            .form-wrapper { padding: 30px 20px; }
             .modal-content { padding: 30px 20px; }
         }
 
-        /* Очень маленькие экраны */
         @media (max-width: 400px) {
             .feature { width: 45%; }
             .hero h1 { font-size: 28px; }
@@ -247,7 +255,7 @@
                 <a href="#contacts">Контакты</a>
             </nav>
             
-            <button class="btn-primary open-modal-btn" style="padding: 10px 20px;">Связаться с нами</button>
+            <button class="btn-primary open-modal-btn" style="padding: 10px 20px; display: block;">Связаться с нами</button>
             <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         </div>
     </header>
@@ -394,6 +402,76 @@
         </div>
     </section>
 
+    <!-- НОВАЯ СЕКЦИЯ: ФОРМА ЗАЯВКИ (Взято из нового кода) -->
+    <section class="form-section" id="request">
+        <div class="container reveal">
+            <h2 class="section-title">Оставьте заявку</h2>
+            <div class="form-wrapper">
+                <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- ВАЖНО: ВСТАВЬ СЮДА СВОЙ КЛЮЧ ОТ WEB3FORMS -->
+                    <input type="hidden" name="access_key" value="ТВОЙ_КЛЮЧ_ЗДЕСЬ">
+                    <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" class="form-control" placeholder="Ваш телефон" required>
+                    
+                    <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;margin-bottom:20px;color:var(--c-text);text-align:left;">
+                        <input type="checkbox" required style="margin-top:3px;">
+                        <span>Я согласен на обработку персональных данных согласно <a class="open-privacy" style="color:var(--c-cyan); cursor:pointer; text-decoration:underline;">Политике конфиденциальности</a></span>
+                    </label>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить заявку</button>
+                    <div id="formMessage" style="margin-top:15px;text-align:center;font-size:14px;"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВАЯ СЕКЦИЯ: КОНТАКТЫ И КАРТА (Взято из нового кода) -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <h2>Наши контакты</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Адрес</h4>
+                            <p>Геленджик, Краснодарский край</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p><a href="tel:+79384340333">8-938-434-0-333</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="far fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@zpool-service.ru">info@zpool-service.ru</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="far fa-clock"></i></div>
+                        <div>
+                            <h4>Режим работы</h4>
+                            <p>Ежедневно с 8:00 до 22:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container reveal">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=38.076389%2C44.562222&z=12" allowfullscreen="true"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
@@ -430,13 +508,8 @@
         </div>
     </section>
 
-    <!-- КАРТА -->
-    <section class="map-section">
-        <iframe src="https://yandex.ru/map-widget/v1/?ll=38.076389%2C44.562222&z=12" allowfullscreen="true"></iframe>
-    </section>
-
     <!-- ПОДВАЛ -->
-    <footer class="footer" id="contacts">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="reveal">
@@ -485,7 +558,7 @@
             <span class="close-modal">&times;</span>
             <h3 style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
             <p style="text-align:center; font-size: 14px; margin-bottom: 25px;">Оставьте свои контакты, и мы перезвоним вам в течение 15 минут</p>
-            <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+            <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="ТВОЙ_КЛЮЧ_ЗДЕСЬ">
                 <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
                 <input type="tel" name="phone" class="form-control" placeholder="Ваш телефон" required>
@@ -540,7 +613,6 @@
 
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            // Меняем иконку бургера на крестик
             const icon = mobileMenuBtn.querySelector('i');
             if (navMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -551,7 +623,6 @@
             }
         });
 
-        // Закрываем меню при клике на ссылку
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -561,7 +632,7 @@
             });
         });
 
-        // 3. Модальные окна (Форма)
+        // 3. Модальные окна (Кнопка "Связаться с нами")
         const modal = document.getElementById('callbackModal');
         document.querySelectorAll('.open-modal-btn').forEach(btn => btn.addEventListener('click', () => modal.classList.add('active')));
         document.querySelector('.close-modal').addEventListener('click', () => modal.classList.remove('active'));
@@ -571,11 +642,11 @@
         const privacyModal = document.getElementById('privacyModal');
         const termsModal = document.getElementById('termsModal');
         
-        document.querySelector('.open-privacy').addEventListener('click', (e) => { e.preventDefault(); privacyModal.classList.add('active'); });
+        document.querySelectorAll('.open-privacy').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); privacyModal.classList.add('active'); }));
         document.querySelector('.close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
         window.addEventListener('click', (e) => { if (e.target === privacyModal) privacyModal.classList.remove('active'); });
 
-        document.querySelector('.open-terms').addEventListener('click', (e) => { e.preventDefault(); termsModal.classList.add('active'); });
+        document.querySelectorAll('.open-terms').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); termsModal.classList.add('active'); }));
         document.querySelector('.close-terms').addEventListener('click', () => termsModal.classList.remove('active'));
         window.addEventListener('click', (e) => { if (e.target === termsModal) termsModal.classList.remove('active'); });
 
@@ -598,39 +669,53 @@
             });
         });
 
-        // 6. Отправка формы
-        const form = document.getElementById('requestForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerText;
-            
-            submitBtn.innerText = 'Отправка...';
-            submitBtn.disabled = true;
+        // 6. Функция отправки формы (Используется для двух форм)
+        function handleFormSubmit(formId, messageId) {
+            const form = document.getElementById(formId);
+            if (!form) return;
 
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.');
-                    modal.classList.remove('active');
-                    form.reset();
-                } else {
-                    alert('Ошибка при отправке. Пожалуйста, позвоните нам.');
-                }
-            })
-            .catch(error => {
-                alert('Ошибка сети. Пожалуйста, позвоните нам.');
-            })
-            .finally(() => {
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerText;
+                
+                submitBtn.innerText = 'Отправка...';
+                submitBtn.disabled = true;
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (messageId) {
+                            const msgDiv = document.getElementById(messageId);
+                            msgDiv.style.color = '#2ecc71';
+                            msgDiv.innerText = 'Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.';
+                        } else {
+                            alert('Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.');
+                        }
+                        form.reset();
+                        if (formId === 'modalForm') modal.classList.remove('active');
+                    } else {
+                        alert('Ошибка при отправке. Пожалуйста, позвоните нам.');
+                    }
+                })
+                .catch(error => {
+                    alert('Ошибка сети. Пожалуйста, позвоните нам.');
+                })
+                .finally(() => {
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                });
             });
-        });
+        }
+
+        // Инициализация обеих форм
+        handleFormSubmit('requestForm', 'formMessage'); // Форма на странице
+        handleFormSubmit('modalForm', null); // Форма в модальном окне
     </script>
 </body>
 </html>
