@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реконструкция бассейна в Геленджике | ZPOOL SERVICE</title>
+    <meta name="description" content="Профессиональная реконструкция бассейнов под ключ. Ремонт чаши, обновление отделки, модернизация оборудования. Работаем в Геленджике.">
+    
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Базовые стили */
+        :root { --c-cyan: #18a6c7; --c-cyan-hover: #138ca8; --c-dark: #0a3877; --c-footer-bg: #07224c; --c-text: #556975; --c-bg-light: #f2f8fb; --c-border: #dbe6ec; --c-white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--c-text); line-height: 1.4; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; }
+
+        /* Шапка */
+        .header { background-color: var(--c-white); height: 90px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-img { height: 65px; width: auto; mix-blend-mode: multiply; }
+        .nav { display: flex; gap: 25px; align-items: center; }
+        .nav a { font-size: 14px; font-weight: 500; color: var(--c-dark); transition: 0.3s; }
+        .nav a:hover { color: var(--c-cyan); }
+        .btn-primary { background-color: var(--c-cyan); color: var(--c-white); padding: 12px 24px; border-radius: 30px; border: none; cursor: pointer; font-weight: 500; transition: 0.3s; }
+        .btn-primary:hover { background-color: var(--c-cyan-hover); }
+
+        /* Баннер услуги */
+        .service-hero { position: relative; padding: 80px 0 120px; background: url('rekonstrukciya-hero.jpg') center/cover no-repeat; display: flex; align-items: center; }
+        .service-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%); }
+        .service-hero::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 60px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" d="M0,60 C320,0 720,0 1440,60 L1440,60 L0,60 Z"/></svg>') no-repeat; background-size: cover; }
+        
+        .service-hero-content { position: relative; z-index: 1; max-width: 650px; }
+        .breadcrumbs { font-size: 13px; color: var(--c-text); margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+        .service-hero h1 { font-size: 42px; line-height: 1.1; color: var(--c-dark); font-weight: 700; margin-bottom: 20px; }
+        .service-hero h1 span { color: var(--c-cyan); }
+        .service-hero p { font-size: 16px; margin-bottom: 35px; font-weight: 500; color: var(--c-dark); }
+        
+        .hero-features { display: flex; gap: 25px; flex-wrap: wrap; margin-top: 40px; }
+        .feature { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; width: 90px; }
+        .feature-icon { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--c-cyan); display: flex; align-items: center; justify-content: center; color: var(--c-cyan); font-size: 18px; background: rgba(255,255,255,0.8); }
+
+        /* Общие заголовки */
+        .section-title { text-align: center; font-size: 32px; color: var(--c-dark); font-weight: 700; margin-bottom: 45px; }
+
+        /* Когда нужна реконструкция */
+        .when-section { padding: 80px 0; background-color: var(--c-white); }
+        .when-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .when-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 10px; padding: 25px 20px; transition: 0.3s; display: flex; flex-direction: column; }
+        .when-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); transform: translateY(-5px); }
+        .when-card .icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--c-cyan); display: flex; align-items: center; justify-content: center; color: var(--c-cyan); font-size: 20px; margin-bottom: 15px; }
+        .when-card h3 { font-size: 15px; color: var(--c-dark); font-weight: 600; margin-bottom: 10px; }
+        .when-card p { font-size: 12px; color: var(--c-text); margin-bottom: 20px; flex-grow: 1; }
+        /* Картинки для карточек (заглушки) */
+        .when-img { height: 100px; width: 100%; border-radius: 8px; background-size: cover; background-position: center; margin-top: auto; }
+        .img-crack { background-image: url('https://images.unsplash.com/photo-1590366242976-216c7935985f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .img-old-finish { background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .img-old-equip { background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .img-new-features { background-image: url('https://images.unsplash.com/photo-1572331165267-854af57b1a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+
+        /* Этапы реконструкции */
+        .stages-section { padding: 0 0 80px 0; background-color: var(--c-white); }
+        .stages-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        .stage-card { background: var(--c-bg-light); border-radius: 10px; padding: 25px 15px; text-align: center; position: relative; }
+        .stage-card::after { content: '\f105'; font-family: 'FontAwesome'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: var(--c-cyan); font-size: 20px; z-index: 2; }
+        .stage-card:last-child::after { display: none; }
+        .stage-num { width: 35px; height: 35px; border-radius: 50%; background: var(--c-cyan); color: var(--c-white); display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 15px; }
+        .stage-card h4 { font-size: 14px; color: var(--c-dark); font-weight: 600; margin-bottom: 8px; }
+        .stage-card p { font-size: 12px; }
+
+        /* Блок: Геленджик и Типы бассейнов */
+        .location-types { padding: 0 0 80px 0; }
+        .loc-types-inner { display: flex; gap: 30px; }
+        
+        /* Левая часть - Геленджик */
+        .geo-box { width: 45%; background: linear-gradient(rgba(10, 56, 119, 0.85), rgba(10, 56, 119, 0.85)), url('rekonstrukciya-hero.jpg') center/cover no-repeat; border-radius: 15px; padding: 40px; color: var(--c-white); display: flex; flex-direction: column; justify-content: center; }
+        .geo-box h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; }
+        .geo-box p { font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+        .geo-box .btn-primary { align-self: flex-start; background-color: transparent; border: 1px solid var(--c-white); }
+        .geo-box .btn-primary:hover { background-color: var(--c-white); color: var(--c-dark); }
+
+        /* Правая часть - Типы бассейнов */
+        .types-box { width: 55%; }
+        .types-box h3 { font-size: 20px; color: var(--c-dark); font-weight: 700; margin-bottom: 20px; }
+        .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .type-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 10px; overflow: hidden; }
+        .type-img { height: 100px; width: 100%; background-size: cover; background-position: center; }
+        .type-img-1 { background-image: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .type-img-2 { background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .type-img-3 { background-image: url('https://images.unsplash.com/photo-1572331165267-854af57b1a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); }
+        .type-info { padding: 15px; }
+        .type-info h4 { font-size: 14px; color: var(--c-dark); font-weight: 600; margin-bottom: 5px; }
+        .type-info p { font-size: 11px; }
+
+        /* Результат */
+        .result-section { padding: 60px 0; background-color: var(--c-bg-light); text-align: center; }
+        .result-title { font-size: 24px; color: var(--c-dark); font-weight: 700; margin-bottom: 30px; }
+        .result-grid { display: flex; justify-content: space-between; gap: 20px; }
+        .result-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .result-item i { font-size: 30px; color: var(--c-cyan); }
+        .result-item p { font-size: 13px; font-weight: 500; color: var(--c-dark); }
+
+        /* Подвал */
+        .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 30px; margin-bottom: 40px; }
+        .footer-logo-img { height: 65px; width: auto; background-color: var(--c-white); padding: 8px 15px; border-radius: 8px; }
+        .contact-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 13px; }
+        .socials { display: flex; gap: 15px; }
+        .socials a { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--c-white); font-size: 22px; }
+
+        /* Адаптивность */
+        @media (max-width: 1100px) {
+            .when-grid { grid-template-columns: repeat(2, 1fr); }
+            .stages-grid { grid-template-columns: repeat(3, 1fr); }
+            .stage-card::after { display: none; }
+            .loc-types-inner { flex-direction: column; }
+            .geo-box, .types-box { width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .service-hero h1 { font-size: 32px; }
+            .when-grid { grid-template-columns: 1fr; }
+            .stages-grid { grid-template-columns: 1fr; }
+            .types-grid { grid-template-columns: 1fr; }
+            .result-grid { flex-wrap: wrap; }
+            .result-item { min-width: 45%; margin-bottom: 20px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-grid > div:first-child { display: flex; justify-content: center; margin-bottom: 20px; }
+            .contact-list li { justify-content: center; }
+            .socials { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html"><img src="logo.png" alt="ZPOOL" class="logo-img"></a>
+            <nav class="nav">
+                <a href="index.html">Главная</a>
+                <a href="montazh.html">Монтаж</a>
+                <a href="obsluzhivanie.html">Обслуживание</a>
+                <a href="remont.html">Ремонт</a>
+                <a href="otdelka.html">Отделка</a>
+                <a href="rekonstrukciya.html" style="color: var(--c-cyan);">Реконструкция</a>
+                <a href="index.html#contacts">Контакты</a>
+            </nav>
+            <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Связаться с нами</button>
+        </div>
+    </header>
+
+    <!-- БАННЕР -->
+    <section class="service-hero">
+        <div class="container service-hero-content">
+            <div class="breadcrumbs"><a href="index.html">Главная</a> <i class="fas fa-chevron-right" style="font-size: 10px;"></i> <span>Реконструкция</span></div>
+            <h1>Реконструкция <br><span>бассейна</span></h1>
+            <p>Обновляем чашу, отделку и инженерные системы. Продлеваем срок службы и делаем ваш бассейн современным.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Оставить заявку</button>
+            </div>
+            <div class="hero-features">
+                <div class="feature"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><span>Надёжно</span></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-cogs"></i></div><span>Современные<br>решения</span></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-tint"></i></div><span>Чистая<br>вода</span></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-star"></i></div><span>Комфорт<br>и безопасность</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОГДА НУЖНА РЕКОНСТРУКЦИЯ -->
+    <section class="when-section">
+        <div class="container">
+            <h2 class="section-title">Когда нужна реконструкция</h2>
+            <div class="when-grid">
+                <div class="when-card">
+                    <div class="icon"><i class="fas fa-tools"></i></div>
+                    <h3>Трещины и протечки</h3>
+                    <p>Устраняем повреждения чаши и гидроизоляции.</p>
+                    <div class="when-img img-crack"></div>
+                </div>
+                <div class="when-card">
+                    <div class="icon"><i class="fas fa-border-all"></i></div>
+                    <h3>Устаревшая отделка</h3>
+                    <p>Обновляем покрытие современными материалами.</p>
+                    <div class="when-img img-old-finish"></div>
+                </div>
+                <div class="when-card">
+                    <div class="icon"><i class="fas fa-cog"></i></div>
+                    <h3>Старое оборудование</h3>
+                    <p>Меняем насосы, фильтры и автоматику.</p>
+                    <div class="when-img img-old-equip"></div>
+                </div>
+                <div class="when-card">
+                    <div class="icon"><i class="fas fa-plus"></i></div>
+                    <h3>Новые возможности</h3>
+                    <p>Устанавливаем подогрев, подсветку, противоток и гидромассаж.</p>
+                    <div class="when-img img-new-features"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЭТАПЫ РЕКОНСТРУКЦИИ -->
+    <section class="stages-section">
+        <div class="container">
+            <h2 class="section-title">Этапы реконструкции</h2>
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <div class="stage-num">1</div>
+                    <h4>Диагностика</h4>
+                    <p>Оцениваем состояние бассейна и составляем план работ.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-num">2</div>
+                    <h4>Ремонт чаши</h4>
+                    <p>Устраняем дефекты и восстанавливаем гидроизоляцию.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-num">3</div>
+                    <h4>Новая отделка</h4>
+                    <p>Мозаика, плитка, ПВХ или полимерные покрытия.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-num">4</div>
+                    <h4>Модернизация оборудования</h4>
+                    <p>Фильтрация, подогрев, автоматика, подсветка.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-num">5</div>
+                    <h4>Готовый результат</h4>
+                    <p>Современный, удобный и надёжный бассейн.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК ГЕЛЕНДЖИК И ТИПЫ БАССЕЙНОВ -->
+    <section class="location-types">
+        <div class="container">
+            <div class="loc-types-inner">
+                <div class="geo-box">
+                    <h3><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Реконструкция в Геленджике</h3>
+                    <p>Учитываем местные условия и используем надежные материалы.</p>
+                    <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Оставить заявку</button>
+                </div>
+                <div class="types-box">
+                    <h3>Типы бассейнов</h3>
+                    <div class="types-grid">
+                        <div class="type-card">
+                            <div class="type-img type-img-1"></div>
+                            <div class="type-info">
+                                <h4>Бетонные</h4>
+                                <p>Надежные и долговечные</p>
+                            </div>
+                        </div>
+                        <div class="type-card">
+                            <div class="type-img type-img-2"></div>
+                            <div class="type-info">
+                                <h4>Композитные</h4>
+                                <p>Бережная реконструкция</p>
+                            </div>
+                        </div>
+                        <div class="type-card">
+                            <div class="type-img type-img-3"></div>
+                            <div class="type-info">
+                                <h4>Каркасные</h4>
+                                <p>С учетом конструкции</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- РЕЗУЛЬТАТ -->
+    <section class="result-section">
+        <div class="container">
+            <h3 class="result-title">Результат реконструкции</h3>
+            <div class="result-grid">
+                <div class="result-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>Герметичный<br>и надежный</p>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-cogs"></i>
+                    <p>Удобный<br>в обслуживании</p>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-star"></i>
+                    <p>Современный<br>функционал</p>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-tint"></i>
+                    <p>Чистая и безопасная<br>вода</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div><a href="index.html"><img src="logo.png" class="footer-logo-img"></a></div>
+                <div>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt" style="color: var(--c-cyan)"></i> Геленджик, Краснодарский край</li>
+                        <li><i class="fas fa-phone-alt" style="color: var(--c-cyan)"></i> 8-938-434-0-333</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="socials">
+                        <a href="#" class="s-vk" style="background: #0077FF"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="s-tg" style="background: #27A7E7"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="s-wa" style="background: #25D366"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-primary" onclick="window.location.href='index.html#contacts'">Связаться с нами</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
