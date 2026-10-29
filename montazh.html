@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Базовые стили (как на главной) */
+        /* Базовые стили */
         :root { --c-cyan: #18a6c7; --c-cyan-hover: #138ca8; --c-dark: #0a3877; --c-footer-bg: #07224c; --c-text: #556975; --c-bg-light: #f2f8fb; --c-border: #dbe6ec; --c-white: #ffffff; --c-whatsapp: #25D366; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -38,7 +38,7 @@
         .btn-primary:hover { background-color: var(--c-cyan-hover); transform: translateY(-2px); }
 
         /* Баннер услуги */
-        .service-hero { position: relative; padding: 80px 0 120px; background: url('professional-pool-tech-room.jpg') center/cover no-repeat; display: flex; align-items: center; }
+        .service-hero { position: relative; padding: 80px 0 120px; background: url('professional-pool-filtration-station.jpg') center/cover no-repeat; display: flex; align-items: center; }
         .service-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%); }
         .service-hero::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 60px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" d="M0,60 C320,0 720,0 1440,60 L1440,60 L0,60 Z"/></svg>') no-repeat; background-size: cover; }
         .service-hero-content { position: relative; z-index: 1; max-width: 650px; }
@@ -205,7 +205,7 @@
         </div>
     </section>
 
-    <!-- Подвал (Унифицированный) -->
+    <!-- Подвал -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -275,7 +275,6 @@
     </div>
 
     <script>
-        // Логика меню, модалок и форм (идентичная главной)
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navMenu = document.querySelector('.nav');
         function closeMenu() { navMenu.classList.remove('active'); mobileMenuBtn.querySelector('i').className = 'fas fa-bars'; }
