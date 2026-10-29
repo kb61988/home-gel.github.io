@@ -6,29 +6,24 @@
     <title>ZPOOL SERVICE - Обслуживание бассейнов в Геленджике</title>
     <meta name="description" content="Профессиональное обслуживание бассейнов в Геленджике. Чистка, ремонт, монтаж оборудования Ospa, Dinotec. Бесплатный выезд специалиста.">
     
-    <!-- Ссылки на реальный домен GitHub (если купишь свой домен - замени их) -->
     <link rel="canonical" href="https://kb61988.github.io/home-gel.github.io/">
     <meta name="theme-color" content="#0a3877">
-
     <link rel="icon" href="logo.png" type="image/png">
 
-    <!-- Open Graph (для красивых ссылок в WhatsApp, Telegram, ВК) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="ZPOOL SERVICE - Обслуживание бассейнов">
     <meta property="og:description" content="Чистая вода, надежное оборудование и безупречный сервис круглый год.">
     <meta property="og:image" content="https://kb61988.github.io/home-gel.github.io/hero-main.jpg">
     <meta property="og:url" content="https://kb61988.github.io/home-gel.github.io/">
 
-    <!-- Ускоряем загрузку главного фото -->
     <link rel="preload" as="image" href="hero-main.jpg" fetchpriority="high">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* === ЦВЕТА === */
+        /* Базовые стили и переменные */
         :root {
             --c-cyan: #18a6c7; --c-cyan-hover: #138ca8; --c-dark: #0a3877; --c-footer-bg: #07224c;
             --c-text: #556975; --c-bg-light: #f2f8fb; --c-border: #dbe6ec; --c-white: #ffffff;
@@ -41,13 +36,10 @@
         ul { list-style: none; }
         button { font-family: inherit; cursor: pointer; border: none; background: none; touch-action: manipulation; }
         img { max-width: 100%; height: auto; display: block; }
-
-        /* Анкоры не прячутся под sticky-шапку */
         section[id], footer[id] { scroll-margin-top: 100px; }
-
         .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; width: 100%; }
 
-        /* === АНИМАЦИИ === */
+        /* Анимации */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         @media (prefers-reduced-motion: reduce) {
@@ -55,21 +47,18 @@
             html { scroll-behavior: auto; }
         }
 
-        /* === ШАПКА === */
+        /* Шапка */
         .header { background-color: var(--c-white); height: 90px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo-img { height: 60px; width: auto; transition: transform var(--transition); mix-blend-mode: multiply; }
         .logo-img:hover { transform: scale(1.03); }
-
-        .nav { display: flex; gap: clamp(15px, 2vw, 25px); align-items: center; }
-        .nav a { font-size: clamp(14px, 1.5vw, 15px); font-weight: 500; color: var(--c-dark); position: relative; padding: 5px 0; }
+        .nav { display: flex; gap: clamp(10px, 1.5vw, 20px); align-items: center; }
+        .nav a { font-size: clamp(13px, 1.2vw, 14px); font-weight: 500; color: var(--c-dark); position: relative; padding: 5px 0; }
         .nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--c-cyan); transition: width var(--transition); }
         .nav a:hover::after { width: 100%; }
         .nav a:hover { color: var(--c-cyan); }
-
         .header-phone { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--c-dark); font-size: 15px; }
         .header-phone i { color: var(--c-cyan); }
-
         .mobile-menu-btn { display: none; font-size: 26px; color: var(--c-dark); z-index: 1001; }
 
         /* Кнопки */
@@ -83,7 +72,7 @@
         .btn-outline { background-color: transparent; color: var(--c-cyan); border: 2px solid var(--c-cyan); }
         .btn-outline:hover { background-color: var(--c-cyan); color: var(--c-white); transform: translateY(-2px); }
 
-        /* === ГЛАВНЫЙ ЭКРАН === */
+        /* Главный экран */
         .hero { position: relative; min-height: 520px; display: flex; align-items: center; padding: 60px 0; background: url('hero-main.jpg') center/cover no-repeat; }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0) 75%); }
         .hero-content { position: relative; z-index: 1; max-width: 650px; }
@@ -91,22 +80,19 @@
         .hero h1 span { color: var(--c-cyan); }
         .hero p { font-size: clamp(15px, 2vw, 18px); color: var(--c-dark); margin-bottom: 35px; font-weight: 500; }
         .hero-buttons { display: flex; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
-
         .hero-features { display: flex; gap: 30px; flex-wrap: wrap; }
         .feature { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; width: 100px; }
         .feature-icon { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--c-cyan); display: flex; align-items: center; justify-content: center; color: var(--c-cyan); font-size: 20px; background: rgba(255,255,255,0.8); }
         .feature span { font-size: 13px; color: var(--c-dark); font-weight: 600; }
 
-        /* === БЛОК ЦИФР === */
+        /* Блок цифр, Услуги, Оборудование и т.д. (как в вашем оригинале) */
         .stats { padding: clamp(35px, 5vw, 55px) 0; background: var(--c-white); border-bottom: 1px solid var(--c-border); }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
         .stat-num { font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--c-cyan); line-height: 1.1; }
         .stat-label { font-size: 14px; color: var(--c-text); margin-top: 6px; }
 
-        /* === УСЛУГИ === */
         .services { padding: clamp(50px, 8vw, 80px) 0; background: var(--c-white); }
         .section-title { text-align: center; font-size: clamp(26px, 4vw, 36px); color: var(--c-dark); font-weight: 700; margin-bottom: 50px; line-height: 1.3; }
-
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .service-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 12px; padding: 30px 25px; transition: 0.3s; display: flex; flex-direction: column; height: 100%; }
         .service-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: var(--c-cyan); transform: translateY(-5px); }
@@ -115,7 +101,6 @@
         .service-card h3 { font-size: 18px; color: var(--c-dark); font-weight: 600; margin-bottom: 12px; }
         .service-card p { font-size: 14px; color: var(--c-text); line-height: 1.6; margin-top: auto; }
 
-        /* === ОБОРУДОВАНИЕ === */
         .equipment { padding: 0 0 clamp(50px, 8vw, 80px) 0; }
         .equipment-inner { background-color: var(--c-bg-light); border-radius: 20px; display: flex; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); flex-wrap: wrap; }
         .equipment-img { width: 40%; background: url('equip-main.jpg') center/cover no-repeat; min-height: 400px; }
@@ -126,14 +111,11 @@
         .equip-item .icon { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--c-cyan); display: flex; align-items: center; justify-content: center; color: var(--c-cyan); font-size: 22px; flex-shrink: 0; }
         .equip-item h4 { font-size: 16px; color: var(--c-dark); font-weight: 600; margin-bottom: 6px; }
         .equip-item p { font-size: 14px; color: var(--c-text); }
-        
-        /* ОБНОВЛЕННЫЕ ЛОГОТИПЫ БРЕНДОВ */
         .brand-logos { display: flex; gap: 40px; align-items: center; margin-top: 20px; }
         .brand-ospa { font-size: 42px; font-weight: 900; color: #005cbe; font-style: italic; line-height: 0.8; letter-spacing: -1px; }
         .brand-ospa span { font-size: 10px; display: block; color: #333; font-style: normal; margin-top: 6px; letter-spacing: 0.5px; font-weight: 700; }
         .brand-dinotec img { height: 45px; width: auto; object-fit: contain; }
 
-        /* === КАК МЫ РАБОТАЕМ === */
         .process { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-bg-light); }
         .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         .process-step { text-align: center; background: var(--c-white); padding: 35px 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: var(--transition); }
@@ -142,7 +124,6 @@
         .process-step h4 { font-size: 18px; color: var(--c-dark); font-weight: 600; margin-bottom: 10px; }
         .process-step p { font-size: 14px; }
 
-        /* === ГАРАНТИИ === */
         .guarantees { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-white); }
         .guarantees-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .guarantee-card { background: var(--c-bg-light); padding: 40px 30px; border-radius: 15px; border: 1px solid transparent; transition: var(--transition); }
@@ -151,7 +132,6 @@
         .guarantee-card h3 { font-size: 20px; color: var(--c-dark); font-weight: 700; margin-bottom: 12px; }
         .guarantee-card p { font-size: 15px; line-height: 1.6; }
 
-        /* === ЦЕНЫ === */
         .prices { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-bg-light); }
         .prices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .price-card { background: var(--c-white); border-radius: 15px; padding: 35px 30px; text-align: center; border: 1px solid var(--c-border); transition: var(--transition); display: flex; flex-direction: column; }
@@ -165,16 +145,6 @@
         .price-card .btn-primary { margin-top: auto; width: 100%; }
         .prices-note { text-align: center; font-size: 13px; color: var(--c-text); margin-top: 25px; }
 
-        /* === ФОРМА === */
-        .form-section { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-white); }
-        .form-wrapper { max-width: 600px; margin: 0 auto; background: var(--c-bg-light); padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
-        .form-control { width: 100%; padding: 16px 20px; border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 15px; background: var(--c-white); font-family: inherit; font-size: 16px; transition: border 0.3s; }
-        .form-control:focus { outline: none; border-color: var(--c-cyan); }
-        .consent-label { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; margin-bottom: 20px; color: var(--c-text); text-align: left; }
-        .consent-label input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; }
-        .form-message { margin-top: 15px; text-align: center; font-size: 14px; min-height: 20px; }
-
-        /* === КОНТАКТЫ И КАРТА === */
         .contacts { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-bg-light); }
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
         .contact-info h2 { font-size: clamp(24px, 3vw, 32px); color: var(--c-dark); margin-bottom: 25px; font-weight: 700; }
@@ -182,13 +152,10 @@
         .info-icon { width: 45px; height: 45px; border-radius: 50%; background: rgba(24, 166, 199, 0.1); color: var(--c-cyan); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
         .info-item h4 { font-size: 14px; color: var(--c-text); margin-bottom: 3px; font-weight: 500; }
         .info-item p { font-size: 16px; color: var(--c-dark); font-weight: 600; }
-
         .map-container { position: relative; width: 100%; min-height: 380px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
         .map-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; background: var(--c-white); height: 100%; min-height: 380px; text-align: center; padding: 20px; }
-        .map-placeholder p { font-size: 14px; color: var(--c-text); }
         .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* === FAQ === */
         .faq { padding: clamp(50px, 8vw, 80px) 0; background-color: var(--c-white); }
         .faq-list { max-width: 850px; margin: 0 auto; }
         .faq-item { border-bottom: 1px solid var(--c-border); }
@@ -199,7 +166,7 @@
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
         .faq-answer p { padding-bottom: 25px; font-size: 15px; line-height: 1.7; }
 
-        /* === ПОДВАЛ === */
+        /* Подвал */
         .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-logo-img { height: 65px; width: auto; background-color: var(--c-white); padding: 10px 15px; border-radius: 10px; display: inline-block; }
@@ -216,7 +183,7 @@
         .footer-bottom-links a { cursor: pointer; margin-left: 20px; transition: color 0.3s; }
         .footer-bottom-links a:hover { color: var(--c-white); }
 
-        /* === ПЛАВАЮЩИЕ КНОПКИ === */
+        /* Плавающие кнопки и Модалки */
         .floating-whatsapp { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--c-whatsapp); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; z-index: 1500; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); animation: pulse 2s infinite; }
         .mobile-bottom-bar { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: var(--c-white); z-index: 1500; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
         .mobile-bottom-bar a { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 0; font-size: 16px; font-weight: 600; color: var(--c-white); }
@@ -224,102 +191,80 @@
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         @media (prefers-reduced-motion: reduce) { .floating-whatsapp { animation: none; } }
 
-        /* === МОДАЛЬНЫЕ ОКНА === */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 34, 76, 0.8); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 3000; opacity: 0; visibility: hidden; transition: 0.3s; padding: 20px; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-content { background: var(--c-white); padding: 40px; border-radius: 20px; width: 100%; max-width: 500px; position: relative; transform: translateY(30px); transition: 0.3s; box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 32px; color: #999; cursor: pointer; line-height: 1; }
-
         .modal-large { max-width: 800px; }
         .legal-text { overflow-y: auto; padding-right: 10px; text-align: left; margin-top: 20px; }
         .legal-text p { margin-bottom: 15px; font-size: 15px; line-height: 1.7; color: var(--c-text); }
 
-        /* === АДАПТИВНОСТЬ === */
+        .form-control { width: 100%; padding: 16px 20px; border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 15px; background: var(--c-white); font-family: inherit; font-size: 16px; transition: border 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--c-cyan); }
+        .consent-label { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; margin-bottom: 20px; color: var(--c-text); text-align: left; }
+        .consent-label input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; }
+        .form-message { margin-top: 15px; text-align: center; font-size: 14px; min-height: 20px; }
+
+        /* Адаптивность */
         @media (max-width: 992px) {
             .header { height: 80px; }
             .logo-img { height: 50px; }
             .nav { display: none; }
             .mobile-menu-btn { display: block; }
             .header-phone span { display: none; }
-
-            .nav.active {
-                display: flex; flex-direction: column; position: absolute;
-                top: 80px; left: 0; width: 100%; background: var(--c-white);
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1); padding: 20px; gap: 20px;
-                z-index: 999; max-height: calc(100vh - 80px); overflow-y: auto;
-            }
+            .nav.active { display: flex; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--c-white); box-shadow: 0 10px 15px rgba(0,0,0,0.1); padding: 20px; gap: 20px; z-index: 999; max-height: calc(100vh - 80px); overflow-y: auto; }
             .nav.active a { font-size: 18px; width: 100%; text-align: center; padding: 10px 0; }
-
             .hero::before { background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%); }
             .hero { text-align: center; }
-            .hero-buttons { justify-content: center; }
-            .hero-features { justify-content: center; }
-
-            .equipment-img { width: 100%; min-height: 250px; }
-            .equipment-content { width: 100%; }
-
+            .hero-buttons, .hero-features { justify-content: center; }
+            .equipment-img, .equipment-content { width: 100%; }
             .contact-wrapper { grid-template-columns: 1fr; }
-            .map-container { min-height: 300px; }
-            .map-placeholder { min-height: 300px; }
+            .map-container, .map-placeholder { min-height: 300px; }
         }
-
         @media (max-width: 768px) {
             body { padding-bottom: 65px; }
             .floating-whatsapp { display: none; }
             .mobile-bottom-bar { display: flex; }
-            .btn-header { display: none; }
-
+            .btn-header { display: none !important; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn-primary, .btn-outline { width: 100%; }
-
             .footer-grid { text-align: center; }
             .footer-logo-img { margin: 0 auto; }
             .contact-list li { justify-content: center; }
             .socials { justify-content: center; }
             .footer-bottom { flex-direction: column; }
             .footer-bottom-links a { margin: 0 10px; }
-
-            .form-wrapper { padding: 30px 20px; }
-            .modal-content { padding: 30px 20px; }
-            
-            /* Уменьшаем логотипы на мобильных, чтобы не ломать верстку */
+            .form-wrapper, .modal-content { padding: 30px 20px; }
             .brand-logos { flex-wrap: wrap; gap: 20px; }
             .brand-ospa { font-size: 32px; }
             .brand-dinotec img { height: 35px; }
-        }
-
-        @media (max-width: 400px) {
-            .feature { width: 45%; }
-            .hero h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ШАПКА -->
     <header class="header">
         <div class="container">
-            <a href="./" aria-label="На главную"><img src="logo.png" alt="ZPOOL SERVICE — обслуживание бассейнов в Геленджике" class="logo-img"></a>
-
+            <a href="index.html" aria-label="На главную"><img src="logo.png" alt="ZPOOL SERVICE" class="logo-img"></a>
             <nav class="nav" aria-label="Основное меню">
-                <a href="./">Главная</a>
+                <a href="index.html">Главная</a>
                 <a href="montazh.html">Монтаж</a>
                 <a href="obsluzhivanie.html">Обслуживание</a>
                 <a href="remont.html">Ремонт</a>
+                <a href="rekonstrukciya.html">Реконструкция</a>
                 <a href="otdelka.html">Отделка</a>
-                <a href="#contacts">Контакты</a>
+                <a href="season.html">Сезонные работы</a>
+                <a href="index.html#contacts">Контакты</a>
             </nav>
-
             <a href="tel:+79384340333" class="header-phone" aria-label="Позвонить нам">
                 <i class="fas fa-phone-alt"></i><span>8 (938) 434-03-33</span>
             </a>
-            <button class="btn-primary open-modal-btn btn-header" style="padding: 10px 20px;">Связаться с нами</button>
+            <button class="btn-primary open-modal-btn btn-header" style="padding: 10px 20px; margin-left: 15px;">Связаться с нами</button>
             <button class="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="container hero-content reveal active">
             <h1>Профессиональное <br><span>обслуживание бассейнов</span></h1>
@@ -337,7 +282,6 @@
         </div>
     </section>
 
-    <!-- БЛОК ЦИФР -->
     <section class="stats" aria-label="Компания в цифрах">
         <div class="container">
             <div class="stats-grid reveal">
@@ -349,7 +293,6 @@
         </div>
     </section>
 
-    <!-- УСЛУГИ -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title reveal">Полный спектр услуг<br>по обслуживанию бассейнов</h2>
@@ -388,7 +331,6 @@
         </div>
     </section>
 
-    <!-- ОБОРУДОВАНИЕ -->
     <section class="equipment" id="equipment">
         <div class="container reveal">
             <div class="equipment-inner">
@@ -420,7 +362,6 @@
         </div>
     </section>
 
-    <!-- КАК МЫ РАБОТАЕМ -->
     <section class="process" id="process">
         <div class="container">
             <h2 class="section-title reveal">Как мы работаем</h2>
@@ -449,7 +390,6 @@
         </div>
     </section>
 
-    <!-- ГАРАНТИИ -->
     <section class="guarantees" id="guarantees">
         <div class="container">
             <h2 class="section-title reveal">Наши гарантии</h2>
@@ -473,7 +413,6 @@
         </div>
     </section>
 
-    <!-- ЦЕНЫ -->
     <section class="prices" id="prices">
         <div class="container">
             <h2 class="section-title reveal">Примерная стоимость услуг</h2>
@@ -516,26 +455,19 @@
         </div>
     </section>
 
-    <!-- ФОРМА ЗАЯВКИ -->
     <section class="form-section" id="request">
         <div class="container reveal">
             <h2 class="section-title">Оставьте заявку</h2>
-            <div class="form-wrapper">
+            <div class="form-wrapper" style="max-width: 600px; margin: 0 auto; background: var(--c-bg-light); padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
                 <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
-                    <!-- ВАЖНО: ВСТАВЬТЕ СЮДА ВАШ ACCESS KEY ОТ WEB3FORMS -->
                     <input type="hidden" name="access_key" value="ВАШ_ACCESS_KEY_ЗДЕСЬ">
-                    
-                    <!-- honeypot: боты заполнят, люди не увидят -->
                     <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" aria-hidden="true">
-                    
                     <input type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
                     <input type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" pattern="[0-9+() -]+" title="Введите корректный номер телефона">
-                    
                     <label class="consent-label">
                         <input type="checkbox" required>
                         <span>Я согласен на обработку персональных данных согласно <a class="open-privacy" style="color:var(--c-cyan); cursor:pointer; text-decoration:underline;">Политике конфиденциальности</a></span>
                     </label>
-                    
                     <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить заявку</button>
                     <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
                 </form>
@@ -543,7 +475,6 @@
         </div>
     </section>
 
-    <!-- КОНТАКТЫ И КАРТА -->
     <section class="contacts" id="contacts">
         <div class="container">
             <div class="contact-wrapper">
@@ -551,35 +482,21 @@
                     <h2>Наши контакты</h2>
                     <div class="info-item">
                         <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>Адрес</h4>
-                            <p>Геленджик, Краснодарский край</p>
-                        </div>
+                        <div><h4>Адрес</h4><p>Геленджик, Краснодарский край</p></div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div>
-                            <h4>Телефон</h4>
-                            <p><a href="tel:+79384340333">8-938-434-0-333</a></p>
-                        </div>
+                        <div><h4>Телефон</h4><p><a href="tel:+79384340333">8-938-434-0-333</a></p></div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="far fa-envelope"></i></div>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:info@zpool-service.ru">info@zpool-service.ru</a></p>
-                        </div>
+                        <div><h4>Email</h4><p><a href="mailto:info@zpool-service.ru">info@zpool-service.ru</a></p></div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="far fa-clock"></i></div>
-                        <div>
-                            <h4>Режим работы</h4>
-                            <p>Ежедневно с 8:00 до 22:00</p>
-                        </div>
+                        <div><h4>Режим работы</h4><p>Ежедневно с 8:00 до 22:00</p></div>
                     </div>
                 </div>
-
-                <!-- Ленивая карта: грузится только по клику, экономит несколько мегабайт -->
                 <div class="map-container reveal">
                     <div class="map-placeholder" id="mapPlaceholder">
                         <i class="fas fa-map-location-dot" style="font-size: 40px; color: var(--c-cyan);"></i>
@@ -592,49 +509,30 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <h2 class="section-title reveal">Часто задаваемые вопросы</h2>
             <div class="faq-list reveal">
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Как часто нужно проводить обслуживание бассейна?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Для поддержания идеального качества воды рекомендуется проводить профилактическую чистку и проверку оборудования не реже 1-2 раз в неделю. Мы можем составить индивидуальный график в зависимости от интенсивности использования.</p>
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Как часто нужно проводить обслуживание бассейна?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Для поддержания идеального качества воды рекомендуется проводить профилактическую чистку и проверку оборудования не реже 1-2 раз в неделю. Мы можем составить индивидуальный график в зависимости от интенсивности использования.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Выезд специалиста платный?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Первичный выезд специалиста для оценки состояния бассейна и составления сметы — абсолютно бесплатный. Вы платите только за фактически выполненные работы и материалы.</p>
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Выезд специалиста платный?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Первичный выезд специалиста для оценки состояния бассейна и составления сметы — абсолютно бесплатный. Вы платите только за фактически выполненные работы и материалы.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Вы работаете с оборудованием, купленным не у вас?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Да, мы обслуживаем и настраиваем оборудование любых популярных брендов (Ospa, Dinotec, Emaux и др.). Наши специалисты помогут с диагностикой и заменой запчастей.</p>
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Вы работаете с оборудованием, купленным не у вас?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Да, мы обслуживаем и настраиваем оборудование любых популярных брендов (Ospa, Dinotec, Emaux и др.). Наши специалисты помогут с диагностикой и заменой запчастей.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ПОДВАЛ -->
     <footer class="footer" id="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="reveal">
-                    <a href="./" aria-label="На главную"><img src="logo.png" alt="ZPOOL SERVICE" class="footer-logo-img" loading="lazy"></a>
-                </div>
+                <div class="reveal"><a href="index.html"><img src="logo.png" alt="ZPOOL SERVICE" class="footer-logo-img" loading="lazy"></a></div>
                 <div class="reveal">
                     <ul class="contact-list">
                         <li><i class="fas fa-map-marker-alt"></i><span>Геленджик, Краснодарский край</span></li>
@@ -645,9 +543,9 @@
                 <div class="reveal">
                     <h4>Мы в соцсетях</h4>
                     <div class="socials">
-                        <a href="#" class="s-vk" aria-label="Мы во ВКонтакте"><i class="fab fa-vk" aria-hidden="true"></i></a>
-                        <a href="#" class="s-tg" aria-label="Наш Telegram"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
-                        <a href="https://wa.me/79384340333" class="s-wa" aria-label="Написать в WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="#" class="s-vk" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="s-tg" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="https://wa.me/79384340333" class="s-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="reveal">
@@ -665,127 +563,66 @@
         </div>
     </footer>
 
-    <!-- ПЛАВАЮЩИЕ КНОПКИ -->
-    <a href="https://wa.me/79384340333" class="floating-whatsapp" aria-label="Написать в WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+    <a href="https://wa.me/79384340333" class="floating-whatsapp" aria-label="Написать в WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <div class="mobile-bottom-bar">
-        <a href="tel:+79384340333" class="mobile-bar-call"><i class="fas fa-phone-alt" aria-hidden="true"></i> Позвонить</a>
-        <a href="https://wa.me/79384340333" class="mobile-bar-wa"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+        <a href="tel:+79384340333" class="mobile-bar-call"><i class="fas fa-phone-alt"></i> Позвонить</a>
+        <a href="https://wa.me/79384340333" class="mobile-bar-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО: ФОРМА -->
-    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- Модалка Форма -->
+    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true">
         <div class="modal-content">
             <button class="close-modal close-callback" aria-label="Закрыть окно">&times;</button>
-            <h3 id="modalTitle" style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
+            <h3 style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
             <p style="text-align:center; font-size: 14px; margin-bottom: 25px;">Оставьте свои контакты, и мы перезвоним вам в течение 15 минут</p>
             <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
-                <!-- ВАЖНО: ВСТАВЬТЕ СЮДА ВАШ ACCESS KEY ОТ WEB3FORMS -->
                 <input type="hidden" name="access_key" value="ВАШ_ACCESS_KEY_ЗДЕСЬ">
-                
                 <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" aria-hidden="true">
                 <input type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
                 <input type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" pattern="[0-9+() -]+" title="Введите корректный номер телефона">
-                
                 <label class="consent-label">
                     <input type="checkbox" required>
                     <span>Я согласен на обработку персональных данных согласно <a class="open-privacy" style="color:var(--c-cyan); cursor:pointer; text-decoration:underline;">Политике конфиденциальности</a></span>
                 </label>
-                
                 <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить</button>
                 <div id="modalMessage" class="form-message" role="status" aria-live="polite"></div>
             </form>
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО: ПОЛИТИКА -->
-    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <!-- Модалка Политика -->
+    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true">
         <div class="modal-content modal-large">
             <button class="close-modal close-privacy" aria-label="Закрыть окно">&times;</button>
-            <h3 id="privacyTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
+            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящая Политика конфиденциальности действует в отношении всей информации, которую сайт ZPOOL SERVICE может получить о Пользователе.</p>
                 <p><strong>2. Какие данные мы собираем</strong><br>Мы собираем только те данные, которые Пользователь предоставляет добровольно при заполнении формы: Имя и номер телефона.</p>
                 <p><strong>3. Цели сбора данных</strong><br>Данные собираются исключительно для связи с Пользователем, консультирования по вопросам услуг и заключения договора.</p>
-                <p><strong>4. Защита данных</strong><br>Администрация Сайта принимает необходимые меры для защиты персональной информации Пользователя от неправомерного доступа.</p>
             </div>
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО: СОГЛАШЕНИЕ -->
-    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <!-- Модалка Соглашение -->
+    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true">
         <div class="modal-content modal-large">
             <button class="close-modal close-terms" aria-label="Закрыть окно">&times;</button>
-            <h3 id="termsTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
+            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящее Соглашение регулирует отношения между владельцем сайта ZPOOL SERVICE и Пользователем при использовании сайта.</p>
                 <p><strong>2. Предмет соглашения</strong><br>Сайт предоставляет Пользователю доступ к информации об услугах. Оставляя заявку, Пользователь подтверждает согласие на обработку данных.</p>
-                <p><strong>3. Права и обязанности</strong><br>Пользователь обязуется предоставлять достоверную информацию. Администрация обязуется своевременно связываться по заявкам.</p>
             </div>
         </div>
     </div>
 
-    <!-- Страховка: без JS контент должен быть виден -->
     <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 
-    <!-- Разметка Schema.org: помогает поисковикам понять, кто вы и где вы -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ZPOOL SERVICE",
-      "description": "Профессиональное обслуживание бассейнов в Геленджике: чистка, ремонт, монтаж оборудования Ospa и Dinotec.",
-      "telephone": "+7-938-434-03-33",
-      "email": "info@zpool-service.ru",
-      "url": "https://kb61988.github.io/home-gel.github.io/",
-      "image": "https://kb61988.github.io/home-gel.github.io/hero-main.jpg",
-      "priceRange": "₽₽",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Геленджик",
-        "addressRegion": "Краснодарский край",
-        "addressCountry": "RU"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 44.562222,
-        "longitude": 38.076389
-      },
-      "openingHours": "Mo-Su 08:00-22:00"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как часто нужно проводить обслуживание бассейна?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Для поддержания идеального качества воды рекомендуется проводить профилактическую чистку и проверку оборудования не реже 1-2 раз в неделю. Мы можем составить индивидуальный график в зависимости от интенсивности использования." }
-        },
-        {
-          "@type": "Question",
-          "name": "Выезд специалиста платный?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Первичный выезд специалиста для оценки состояния бассейна и составления сметы — абсолютно бесплатный. Вы платите только за фактически выполненные работы и материалы." }
-        },
-        {
-          "@type": "Question",
-          "name": "Вы работаете с оборудованием, купленным не у вас?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Да, мы обслуживаем и настраиваем оборудование любых популярных брендов (Ospa, Dinotec, Emaux и др.). Наши специалисты помогут с диагностикой и заменой запчастей." }
-        }
-      ]
-    }
-    </script>
-
     <script>
-        // 1. Анимация появления при скролле
+        // 1. Анимация
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
             });
         }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
         revealElements.forEach(el => revealObserver.observe(el));
@@ -793,67 +630,51 @@
         // 2. Мобильное меню
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navMenu = document.querySelector('.nav');
-
         function closeMenu() {
             navMenu.classList.remove('active');
             mobileMenuBtn.setAttribute('aria-expanded', 'false');
             const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
         }
-
         mobileMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const willOpen = !navMenu.classList.contains('active');
             navMenu.classList.toggle('active');
             mobileMenuBtn.setAttribute('aria-expanded', String(willOpen));
             const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-times', willOpen);
-            icon.classList.toggle('fa-bars', !willOpen);
+            icon.classList.toggle('fa-times', willOpen); icon.classList.toggle('fa-bars', !willOpen);
         });
-
-        document.querySelectorAll('.nav a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-
+        document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', closeMenu));
         document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') &&
-                !mobileMenuBtn.contains(e.target) && !navMenu.contains(e.target)) {
-                closeMenu();
-            }
+            if (navMenu.classList.contains('active') && !mobileMenuBtn.contains(e.target) && !navMenu.contains(e.target)) closeMenu();
         });
 
-        // 3. Модальные окна
+        // 3. Модалки
         const modal = document.getElementById('callbackModal');
         const privacyModal = document.getElementById('privacyModal');
         const termsModal = document.getElementById('termsModal');
-
-        function openModal(m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeModal(m) { m.classList.remove('active'); document.body.style.overflow = ''; }
+        function openModal(m) { if(m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; } }
+        function closeModal(m) { if(m) { m.classList.remove('active'); document.body.style.overflow = ''; } }
 
         document.querySelectorAll('.open-modal-btn').forEach(btn => btn.addEventListener('click', () => openModal(modal)));
         document.querySelector('.close-callback').addEventListener('click', () => closeModal(modal));
-
         document.querySelectorAll('.open-privacy').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(privacyModal); }));
         document.querySelector('.close-privacy').addEventListener('click', () => closeModal(privacyModal));
-
         document.querySelectorAll('.open-terms').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(termsModal); }));
         document.querySelector('.close-terms').addEventListener('click', () => closeModal(termsModal));
 
-        // Закрытие по клику на фон и по Escape
         [modal, privacyModal, termsModal].forEach(m => {
-            window.addEventListener('click', (e) => { if (e.target === m) closeModal(m); });
+            if(m) window.addEventListener('click', (e) => { if (e.target === m) closeModal(m); });
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') [modal, privacyModal, termsModal].forEach(m => closeModal(m));
         });
 
-        // 4. FAQ Аккордеон
+        // 4. FAQ
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
-
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
                 faqItems.forEach(otherItem => {
@@ -869,28 +690,22 @@
             });
         });
 
-        // 5. Ленивая карта
-        document.getElementById('loadMapBtn').addEventListener('click', function () {
-            const frame = document.getElementById('mapFrame');
-            frame.src = 'https://yandex.ru/map-widget/v1/?ll=38.076389%2C44.562222&z=12';
-            frame.style.display = 'block';
-            document.getElementById('mapPlaceholder').style.display = 'none';
-        });
+        // 5. Карта
+        const loadMapBtn = document.getElementById('loadMapBtn');
+        if(loadMapBtn) {
+            loadMapBtn.addEventListener('click', function () {
+                const frame = document.getElementById('mapFrame');
+                frame.src = 'https://yandex.ru/map-widget/v1/?ll=38.076389%2C44.562222&z=12';
+                frame.style.display = 'block';
+                document.getElementById('mapPlaceholder').style.display = 'none';
+            });
+        }
 
-        // 6. Отправка форм (общий обработчик для страницы и модалки)
+        // 6. Формы
         function handleFormSubmit(formId, messageId) {
             const form = document.getElementById(formId);
             if (!form) return;
             const msgDiv = messageId ? document.getElementById(messageId) : null;
-
-            function showMsg(text, color) {
-                if (msgDiv) {
-                    msgDiv.style.color = color;
-                    msgDiv.innerText = text;
-                } else {
-                    alert(text);
-                }
-            }
 
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -899,30 +714,23 @@
                 submitBtn.innerText = 'Отправка...';
                 submitBtn.disabled = true;
 
-                fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
+                fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        showMsg('Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.', '#2ecc71');
+                        if(msgDiv) { msgDiv.style.color = '#2ecc71'; msgDiv.innerText = 'Спасибо! Заявка отправлена.'; }
                         form.reset();
                         if (formId === 'modalForm') setTimeout(() => closeModal(modal), 2500);
                     } else {
-                        showMsg('Ошибка при отправке. Пожалуйста, позвоните нам: 8-938-434-0-333.', '#e74c3c');
+                        if(msgDiv) { msgDiv.style.color = '#e74c3c'; msgDiv.innerText = 'Ошибка. Позвоните нам: 8-938-434-0-333.'; }
                     }
                 })
                 .catch(() => {
-                    showMsg('Ошибка сети. Пожалуйста, позвоните нам: 8-938-434-0-333.', '#e74c3c');
+                    if(msgDiv) { msgDiv.style.color = '#e74c3c'; msgDiv.innerText = 'Ошибка сети. Позвоните нам: 8-938-434-0-333.'; }
                 })
-                .finally(() => {
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
-                });
+                .finally(() => { submitBtn.innerText = originalText; submitBtn.disabled = false; });
             });
         }
-
         handleFormSubmit('requestForm', 'formMessage');
         handleFormSubmit('modalForm', 'modalMessage');
     </script>
