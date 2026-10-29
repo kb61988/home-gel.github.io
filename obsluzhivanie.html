@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Общие стили (копируются из шаблона выше) */
+        /* Общие стили */
         :root { --c-cyan: #18a6c7; --c-cyan-hover: #138ca8; --c-dark: #0a3877; --c-footer-bg: #07224c; --c-text: #556975; --c-bg-light: #f2f8fb; --c-border: #dbe6ec; --c-white: #ffffff; --c-red: #e74c3c; --c-green: #27ae60; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; color: var(--c-text); line-height: 1.4; background: var(--c-white); }
@@ -60,7 +60,7 @@
 
         .why-important { padding: 0 0 80px 0; background-color: var(--c-white); }
         .why-layout { display: flex; gap: 30px; }
-        .why-image-box { width: 40%; background: linear-gradient(rgba(10, 56, 119, 0.7), rgba(10, 56, 119, 0.7)), url('professional-pool-cleaning-kit.jpg') center/cover no-repeat; border-radius: 15px; padding: 40px; color: var(--c-white); display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; min-height: 350px; }
+        .why-image-box { width: 40%; background: linear-gradient(rgba(10, 56, 119, 0.7), rgba(10, 56, 119, 0.7)), url('pool-diagnostics-and-testing.jpg') center/cover no-repeat; border-radius: 15px; padding: 40px; color: var(--c-white); display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; min-height: 350px; }
         .why-image-box h3 { font-size: 24px; font-weight: 700; margin-bottom: 20px; position: relative; z-index: 1; }
         .why-image-box .btn-primary { align-self: flex-start; position: relative; z-index: 1; background-color: transparent; border: 1px solid var(--c-white); }
         .why-image-box .btn-primary:hover { background-color: var(--c-white); color: var(--c-dark); }
@@ -81,7 +81,7 @@
         .result-item i { font-size: 30px; color: var(--c-cyan); }
         .result-item p { font-size: 13px; font-weight: 500; color: var(--c-dark); }
 
-        /* Футер и Модалки (идентичны) */
+        /* Футер и Модалки */
         .footer { background-color: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-logo-img { height: 65px; width: auto; background-color: var(--c-white); padding: 10px 15px; border-radius: 10px; display: inline-block; }
@@ -258,8 +258,7 @@
     <div class="modal-overlay" id="termsModal"><div class="modal-content modal-large"><button class="close-modal close-terms">&times;</button><h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3><div class="legal-text"><p><strong>1. Общие положения</strong><br>Настоящее Соглашение регулирует отношения между владельцем сайта ZPOOL SERVICE и Пользователем.</p></div></div></div>
 
     <script>
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.querySelector('.nav');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn'), navMenu = document.querySelector('.nav');
         function closeMenu() { navMenu.classList.remove('active'); mobileMenuBtn.querySelector('i').className = 'fas fa-bars'; }
         mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('active'); mobileMenuBtn.querySelector('i').className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars'; });
         document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', closeMenu));
