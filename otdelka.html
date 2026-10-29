@@ -52,7 +52,10 @@
         .pool-finish { padding: 80px 0; background-color: var(--c-white); }
         .finish-layout { display: flex; gap: 30px; }
         .finish-main { width: 70%; }
-        .materials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        
+        /* Изменено на 3 колонки для верхнего блока, так как убрали Полимерные покрытия */
+        .pool-finish .materials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        
         .material-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: 10px; overflow: hidden; transition: 0.3s; }
         .material-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.08); transform: translateY(-5px); }
         .material-img { height: 120px; width: 100%; background-size: cover; background-position: center; }
@@ -60,11 +63,7 @@
         .img-mosaic { background-image: url('blue-glass-mosaic-tiles.jpg'); }
         .img-keramo { background-image: url('beige-travertine-pool-deck.jpg'); }
         .img-pvc { background-image: url('blue-pvc-liner-and-mosaic-samples.jpg'); }
-        .img-polymer { background-image: url('premium-pool-edge-tiling.jpg'); }
-        .img-slategres { background-image: url('beige-travertine-pool-deck.jpg'); }
-        .img-clinker { background-image: url('terracotta-outdoor-pool-tiles.jpg'); }
-        .img-stone { background-image: url('beige-travertine-pool-deck.jpg'); }
-        .img-wood { background-image: url('wpc-pool-decking-terrace.jpg'); }
+        /* Удален класс .img-polymer */
 
         .material-info { padding: 15px; }
         .material-info h4 { font-size: 14px; color: var(--c-dark); font-weight: 600; margin-bottom: 5px; }
@@ -78,6 +77,14 @@
         .side-card .side-img { width: 100%; height: 150px; border-radius: 10px; background: url('pool-tile-samples-selection.jpg') center/cover no-repeat; margin-top: auto; }
 
         .area-finish { padding: 0 0 80px 0; background-color: var(--c-white); }
+        /* Нижний блок оставляем на 4 колонки */
+        .area-finish .materials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        
+        .img-slategres { background-image: url('beige-travertine-pool-deck.jpg'); }
+        .img-clinker { background-image: url('terracotta-outdoor-pool-tiles.jpg'); }
+        .img-stone { background-image: url('beige-travertine-pool-deck.jpg'); }
+        .img-wood { background-image: url('wpc-pool-decking-terrace.jpg'); }
+
         .side-card .side-img-safe { width: 100%; height: 150px; border-radius: 10px; background: url('premium-pool-edge-tiling.jpg') center/cover no-repeat; margin-top: auto; }
 
         .why-important { padding: 80px 0; background: linear-gradient(rgba(7, 34, 76, 0.8), rgba(7, 34, 76, 0.8)), url('pool-reconstruction-construction-site.jpg') center/cover no-repeat; color: var(--c-white); text-align: center; }
@@ -126,7 +133,9 @@
 
         @media (max-width: 1100px) {
             .finish-layout { flex-direction: column; } .finish-main, .finish-side { width: 100%; }
-            .materials-grid { grid-template-columns: repeat(2, 1fr); } .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .pool-finish .materials-grid { grid-template-columns: repeat(2, 1fr); }
+            .area-finish .materials-grid { grid-template-columns: repeat(2, 1fr); } 
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 992px) {
             .header { height: 80px; } .logo-img { height: 50px; } .nav { display: none; } .mobile-menu-btn { display: block; } .header-phone span { display: none; }
@@ -134,7 +143,10 @@
             .nav.active a { font-size: 18px; width: 100%; text-align: center; padding: 10px 0; }
         }
         @media (max-width: 768px) {
-            .service-hero h1 { font-size: 32px; } .materials-grid { grid-template-columns: 1fr; } .why-grid { grid-template-columns: 1fr; }
+            .service-hero h1 { font-size: 32px; } 
+            .pool-finish .materials-grid { grid-template-columns: 1fr; }
+            .area-finish .materials-grid { grid-template-columns: 1fr; } 
+            .why-grid { grid-template-columns: 1fr; }
             .result-grid { flex-wrap: wrap; } .result-item { min-width: 45%; margin-bottom: 20px; }
             .footer-grid { text-align: center; } .footer-logo-img { margin: 0 auto; } .contact-list li { justify-content: center; } .socials { justify-content: center; } .footer-bottom { flex-direction: column; } .footer-bottom-links a { margin: 0 10px; }
             .section-title::after { margin: 10px auto 0; } .section-title { text-align: center; }
@@ -188,7 +200,7 @@
                         <div class="material-card"><div class="material-img img-mosaic"></div><div class="material-info"><h4>Стеклянная мозаика</h4><p>Для премиального вида и сложных форм.</p></div></div>
                         <div class="material-card"><div class="material-img img-keramo"></div><div class="material-info"><h4>Керамогранит</h4><p>Прочное и долговечное покрытие.</p></div></div>
                         <div class="material-card"><div class="material-img img-pvc"></div><div class="material-info"><h4>ПВХ-лайнер</h4><p>Быстрое решение с гидроизоляцией.</p></div></div>
-                        <div class="material-card"><div class="material-img img-polymer"></div><div class="material-info"><h4>Полимерные покрытия</h4><p>Для нестандартных чаш.</p></div></div>
+                        <!-- Карточка "Полимерные покрытия" удалена -->
                     </div>
                 </div>
                 <div class="finish-side">
