@@ -67,7 +67,7 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 .btn-outline:hover { background-color: var(--c-cyan); color: var(--c-white); transform: translateY(-2px); }
 
 /* Главный экран (Hero) */
-.hero { position: relative; min-height: 520px; display: flex; align-items: center; padding: 60px 0; background: url('modern-rectangular-pool.jpg') center/cover no-repeat; }
+.hero { position: relative; min-height: 520px; display: flex; align-items: center; padding: 60px 0; background: url('resort-pool-seaview.jpg') center/cover no-repeat; }
 .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0) 75%); }
 .hero-content { position: relative; z-index: 1; max-width: 650px; }
 .hero h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.15; color: var(--c-dark); font-weight: 800; margin-bottom: 20px; }
@@ -110,7 +110,7 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 /* Оборудование (Главная) */
 .equipment { padding: 80px 0; background: var(--c-bg-light); }
 .equipment-inner { display: flex; align-items: stretch; gap: 50px; background: var(--c-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-.equipment-img { flex: 1; min-height: 400px; background: url('professional-pool-filtration-station.jpg') center/cover no-repeat; }
+.equipment-img { flex: 1; min-height: 400px; background: url('pool-equipment-room.jpg') center/cover no-repeat; }
 .equipment-content { flex: 1; padding: 50px; }
 .equipment-content h2 { font-size: 32px; color: var(--c-dark); margin-bottom: 30px; line-height: 1.2; }
 .equipment-grid { display: flex; flex-direction: column; gap: 25px; }
@@ -238,7 +238,7 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 /* CTA блок с фото (montazh.html) */
 .cta-photo-section { padding: 80px 0; }
 .cta-photo-inner { display: flex; gap: 50px; align-items: center; background: var(--c-bg-light); border-radius: 20px; overflow: hidden; }
-.cta-photo-img { flex: 1; min-height: 400px; background: url('equipment-bg.jpg') center/cover no-repeat; }
+.cta-photo-img { flex: 1; min-height: 400px; background: url('pool-equipment-room.jpg') center/cover no-repeat; }
 .cta-photo-content { flex: 1; padding: 40px 40px 40px 0; }
 .cta-photo-content h2 { font-size: 32px; color: var(--c-dark); margin-bottom: 20px; }
 .cta-photo-content p { margin-bottom: 20px; font-size: 15px; }
@@ -258,7 +258,7 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 /* Почему важно (obsluzhivanie.html) */
 .why-important { padding: 80px 0; background: var(--c-white); }
 .why-layout { display: flex; gap: 40px; align-items: stretch; }
-.why-image-box { flex: 1; background: url('smart-pool-automation-technician.jpg') center/cover no-repeat; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; min-height: 400px; }
+.why-image-box { flex: 1; background: url('pool-technician-tablet.jpg') center/cover no-repeat; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; min-height: 400px; }
 .why-image-box::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,56,119,0.9), transparent); }
 .why-image-box h3 { position: relative; z-index: 1; color: var(--c-white); font-size: 24px; margin-bottom: 20px; }
 .why-image-box button { position: relative; z-index: 1; align-self: flex-start; }
@@ -293,13 +293,13 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 .material-card { background: var(--c-white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
 .material-card:hover { transform: translateY(-5px); }
 .material-img { height: 150px; background-color: #ddd; background-size: cover; background-position: center; }
-.img-mosaic { background-image: url('pool-finishing-materials-samples.jpg'); }
-.img-keramo { background-image: url('mosaic-tiles.jpg'); }
-.img-pvc { background-image: url('pvc-liner.jpg'); }
-.img-slategres { background-image: url('slategres.jpg'); }
-.img-clinker { background-image: url('clinker.jpg'); }
-.img-stone { background-image: url('natural-stone.jpg'); }
-.img-wood { background-image: url('decking.jpg'); }
+.img-mosaic { background-image: url('mosaic-tiles-closeup.jpg'); }
+.img-keramo { background-image: url('outdoor-tiles-travertine.jpg'); }
+.img-pvc { background-image: url('pool-liner-rolls.jpg'); }
+.img-slategres { background-image: url('outdoor-tiles-travertine.jpg'); }
+.img-clinker { background-image: url('terracotta-tiles.jpg'); }
+.img-stone { background-image: url('outdoor-tiles-travertine.jpg'); }
+.img-wood { background-image: url('composite-decking-pool.jpg'); }
 .material-info { padding: 20px; text-align: center; }
 .material-info h4 { font-size: 16px; color: var(--c-dark); margin-bottom: 5px; }
 .material-info p { font-size: 13px; }
@@ -307,8 +307,8 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 .side-card .icon { font-size: 40px; color: var(--c-cyan); margin-bottom: 20px; }
 .side-card h3 { font-size: 20px; color: var(--c-dark); margin-bottom: 15px; }
 .side-card p { font-size: 14px; margin-bottom: 20px; flex-grow: 1; }
-.side-img { height: 200px; background: url('pool-tiles-prep.jpg') center/cover no-repeat; border-radius: 10px; }
-.side-img-safe { height: 200px; background: url('pool-safe-deck.jpg') center/cover no-repeat; border-radius: 10px; }
+.side-img { height: 200px; background: url('pool-construction-rebar.jpg') center/cover no-repeat; border-radius: 10px; }
+.side-img-safe { height: 200px; background: url('composite-decking-pool.jpg') center/cover no-repeat; border-radius: 10px; }
 
 /* Темная секция (otdelka.html) */
 .why-important-dark { background: var(--c-dark); color: var(--c-white); padding: 80px 0; text-align: center; }
@@ -327,10 +327,10 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 .when-card h3 { font-size: 18px; color: var(--c-dark); margin-bottom: 10px; padding: 0 20px; }
 .when-card p { font-size: 14px; margin-bottom: 20px; padding: 0 20px; flex-grow: 1; }
 .when-img { height: 200px; background-color: #eee; background-size: cover; background-position: center; }
-.img-crack { background-image: url('pool-crack.jpg'); }
-.img-old-finish { background-image: url('old-pool-finish.jpg'); }
-.img-old-equip { background-image: url('old-pool-equip.jpg'); }
-.img-new-features { background-image: url('pool-new-features.jpg'); }
+.img-crack { background-image: url('pool-wall-crack.jpg'); }
+.img-old-finish { background-image: url('pool-finishing-materials-samples.jpg'); }
+.img-old-equip { background-image: url('pool-pump-repair-disassembled.jpg'); }
+.img-new-features { background-image: url('pool-automation-dosing-system.jpg'); }
 
 .stages-section { background: var(--c-bg-light); }
 .stages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
@@ -349,9 +349,9 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 .types-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .type-card { background: var(--c-white); border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .type-img { height: 120px; background-color: #eee; background-size: cover; background-position: center; }
-.type-img-1 { background-image: url('pool-concrete.jpg'); }
-.type-img-2 { background-image: url('pool-composite.jpg'); }
-.type-img-3 { background-image: url('pool-frame.jpg'); }
+.type-img-1 { background-image: url('pool-construction-rebar.jpg'); }
+.type-img-2 { background-image: url('resort-pool-seaview.jpg'); }
+.type-img-3 { background-image: url('framed-pool-backyard.jpg'); }
 .type-info { padding: 15px; text-align: center; }
 .type-info h4 { font-size: 16px; color: var(--c-dark); margin-bottom: 5px; }
 .type-info p { font-size: 13px; }
@@ -386,7 +386,7 @@ section[id], footer[id] { scroll-margin-top: 100px; }
 .season-card-top { position: relative; }
 .season-card-img { height: 200px; background-size: cover; background-position: center; }
 .img-spring { background-image: url('pool-seasonal-service-summer-winter.jpg'); }
-.img-winter { background-image: url('pool-winter-conservation.jpg'); }
+.img-winter { background-image: url('pool-seasonal-service-summer-winter.jpg'); }
 .season-card-header { position: absolute; bottom: -20px; left: 30px; background: var(--c-white); padding: 15px 25px; border-radius: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; }
 .season-card-header i { color: var(--c-cyan); font-size: 20px; }
 .season-card-header h3 { font-size: 18px; color: var(--c-dark); margin: 0; }
