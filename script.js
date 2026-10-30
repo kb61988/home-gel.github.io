@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mobileMenuBtn && navMenu) {
         
-        // Функция закрытия меню с полным сбросом состояний
         const closeMobileMenu = () => {
             navMenu.classList.remove('active');
             mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Открытие/закрытие по кнопке-бургеру
         mobileMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const willOpen = !navMenu.classList.contains('active');
@@ -58,12 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Закрытие при клике на любую ссылку в меню
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
 
-        // Закрытие при клике вне меню
         document.addEventListener('click', (e) => {
             if (navMenu.classList.contains('active') && 
                 !mobileMenuBtn.contains(e.target) && 
@@ -82,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         terms: document.getElementById('termsModal')
     };
     
-    // Универсальные функции открытия и закрытия
     const openModal = (modal) => { 
         if (modal) { 
             modal.classList.add('active'); 
@@ -93,24 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = (modal) => { 
         if (modal) { 
             modal.classList.remove('active'); 
-            // Возвращаем скролл только если нет других открытых модалок
             if (!document.querySelector('.modal-overlay.active')) {
                 document.body.style.overflow = ''; 
             }
         } 
     };
 
-    // Обработчики для открытия
     document.querySelectorAll('.open-modal-btn').forEach(btn => btn.addEventListener('click', () => openModal(modals.callback)));
     document.querySelectorAll('.open-privacy').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(modals.privacy); }));
     document.querySelectorAll('.open-terms').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(modals.terms); }));
     
-    // Обработчики для закрытия (крестики)
     if (document.querySelector('.close-callback')) document.querySelector('.close-callback').addEventListener('click', () => closeModal(modals.callback));
     if (document.querySelector('.close-privacy')) document.querySelector('.close-privacy').addEventListener('click', () => closeModal(modals.privacy));
     if (document.querySelector('.close-terms')) document.querySelector('.close-terms').addEventListener('click', () => closeModal(modals.terms));
 
-    // Закрытие по клику на темный фон (оверлей)
     Object.values(modals).forEach(modal => {
         if (modal) {
             modal.addEventListener('click', (e) => { 
@@ -119,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Закрытие по клавише Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             Object.values(modals).forEach(modal => closeModal(modal));
@@ -139,16 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             
-            // Сначала закрываем все открытые вкладки
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('active');
                 const otherAnswer = otherItem.querySelector('.faq-answer');
-                if (otherAnswer) otherAnswer.style.maxHeight = null; // Сброс высоты
+                if (otherAnswer) otherAnswer.style.maxHeight = null;
                 const otherQuestion = otherItem.querySelector('.faq-question');
                 if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
             });
             
-            // Если текущая вкладка не была открыта, открываем её
             if (!isActive) {
                 item.classList.add('active');
                 answer.style.maxHeight = answer.scrollHeight + "px";
@@ -189,12 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
             
-            // Блокируем кнопку и показываем загрузку
             submitBtn.innerText = 'Отправка...';
             submitBtn.disabled = true;
             if (msgDiv) msgDiv.innerText = '';
 
-            // Отправка данных
             fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
             .then(response => {
                 if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -208,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     form.reset();
                     
-                    // Если это форма в модалке, закрываем её через 2.5 секунды
                     if (isModal && modals.callback) {
                         setTimeout(() => closeModal(modals.callback), 2500);
                     }
@@ -227,14 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .finally(() => { 
-                // Возвращаем кнопку в исходное состояние
                 submitBtn.innerText = originalText; 
                 submitBtn.disabled = false; 
             });
         });
     }
 
-    // Инициализация форм (передаем ID формы, ID блока для сообщения и флаг модалки)
     handleFormSubmit('requestForm', 'formMessage', false);
     handleFormSubmit('modalForm', 'modalMessage', true);
 
