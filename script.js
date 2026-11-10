@@ -70,33 +70,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================
-       3. Модальные окна (Заявка, Политика, Соглашение)
+       3. Модальные окна + focus management
        ========================================== */
     const modals = {
         callback: document.getElementById('callbackModal'),
         privacy: document.getElementById('privacyModal'),
         terms: document.getElementById('termsModal')
     };
-    
+
+    let lastFocusedElement = null;
+
+    const getFocusable = (modal) => {
+        if (!modal) return [];
+        return Array.from(modal.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([type="hidden"]):not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])'
+        )).filter(el => el.offsetParent !== null);
+    };
+
     const openModal = (modal) => { 
-        if (modal) { 
-            modal.classList.add('active'); 
-            document.body.style.overflow = 'hidden'; 
-        } 
+        if (!modal) return;
+        lastFocusedElement = document.activeElement;
+        modal.classList.add('active'); 
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            const focusables = getFocusable(modal);
+            if (focusables.length) focusables[0].focus();
+        }, 80);
     };
     
     const closeModal = (modal) => { 
-        if (modal) { 
-            modal.classList.remove('active'); 
-            if (!document.querySelector('.modal-overlay.active')) {
-                document.body.style.overflow = ''; 
-            }
-        } 
+        if (!modal) return;
+        modal.classList.remove('active'); 
+        if (!document.querySelector('.modal-overlay.active')) {
+            document.body.style.overflow = ''; 
+        }
+        if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
+            lastFocusedElement.focus();
+        }
+        lastFocusedElement = null;
     };
 
-    document.querySelectorAll('.open-modal-btn').forEach(btn => btn.addEventListener('click', () => openModal(modals.callback)));
-    document.querySelectorAll('.open-privacy').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(modals.privacy); }));
-    document.querySelectorAll('.open-terms').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(modals.terms); }));
+    document.querySelectorAll('.open-modal-btn').forEach(btn => 
+        btn.addEventListener('click', () => openModal(modals.callback))
+    );
+    document.querySelectorAll('.open-privacy').forEach(btn => 
+        btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openModal(modals.privacy); })
+    );
+    document.querySelectorAll('.open-terms').forEach(btn => 
+        btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openModal(modals.terms); })
+    );
     
     if (document.querySelector('.close-callback')) document.querySelector('.close-callback').addEventListener('click', () => closeModal(modals.callback));
     if (document.querySelector('.close-privacy')) document.querySelector('.close-privacy').addEventListener('click', () => closeModal(modals.privacy));
@@ -113,6 +135,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             Object.values(modals).forEach(modal => closeModal(modal));
+        }
+        // Focus trap
+        if (e.key === 'Tab') {
+            const active = document.querySelector('.modal-overlay.active');
+            if (!active) return;
+            const focusables = getFocusable(active);
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault(); last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault(); first.focus();
+            }
         }
     });
 
@@ -141,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.add('active');
                 answer.style.maxHeight = answer.scrollHeight + "px";
                 question.setAttribute('aria-expanded', 'true');
-                // После анимации снимаем ограничение, чтобы текст не обрезался при ресайзе
                 setTimeout(() => {
                     if (item.classList.contains('active')) answer.style.maxHeight = 'none';
                 }, 350);
@@ -175,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const msgDiv = messageId ? document.getElementById(messageId) : null;
 
-        // Проверяем, что ключ Web3Forms заменён на реальный
         const accessKeyInput = form.querySelector('input[name="access_key"]');
         const accessKey = accessKeyInput ? accessKeyInput.value : '';
         const keyMissing = !accessKey || accessKey.includes('ВАШ_ACCESS_KEY');
@@ -183,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             
-            // Защита от незаменённого ключа
             if (keyMissing) {
                 if (msgDiv) {
                     msgDiv.style.color = 'var(--c-red)';
@@ -199,7 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             if (msgDiv) msgDiv.innerText = '';
 
-            fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
+            fetch('https://api.web3forms.com/submit', { 
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(form) 
+            })
             .then(response => {
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 return response.json();
@@ -238,5 +275,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleFormSubmit('requestForm', 'formMessage', false);
     handleFormSubmit('modalForm', 'modalMessage', true);
+
+    /* ==========================================
+       7. Актуальный год в футере
+       ========================================== */
+    document.querySelectorAll('.footer-bottom > div:first-child').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/©\s*\d{4}/, '© ' + new Date().getFullYear());
+    });
 
 });
