@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /style.css
+Disallow: /script.js
+
+Sitemap: https://kb61988.github.io/home-gel.github.io/sitemap.xml
