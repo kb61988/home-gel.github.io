@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================
-       4. FAQ (Аккордеон)
+       4. FAQ (Аккордеон) — плавное открытие и закрытие
        ========================================== */
     const faqItems = document.querySelectorAll('.faq-item');
 
@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
 
+            // Закрываем все открытые
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('active');
                 const otherAnswer = otherItem.querySelector('.faq-answer');
@@ -178,9 +179,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
             });
 
+            // Открываем текущий, если он не был активен
             if (!isActive) {
                 item.classList.add('active');
                 answer.style.maxHeight = '0';
+                // Форсируем reflow, чтобы transition отработал из 0 → scrollHeight
                 void answer.offsetHeight;
                 answer.style.maxHeight = answer.scrollHeight + 'px';
                 question.setAttribute('aria-expanded', 'true');
