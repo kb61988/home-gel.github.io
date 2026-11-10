@@ -798,3 +798,19 @@ h3 { font-size: 20px; font-weight: 700; }
     .footer-bottom { flex-direction: column; text-align: center; align-items: center; }
     .footer-bottom-links { flex-direction: column; gap: 10px; }
 }
+
+/* =========================================
+   20. Уважение к настройке «уменьшить движение»
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .service-card,
+    .service-img img,
+    .included-img img,
+    .system-img img,
+    .material-img img,
+    .feature-img img,
+    .step-img img { transition: none; }
+    .btn-primary:hover { transform: none; }
+}
