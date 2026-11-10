@@ -78,42 +78,42 @@
             <h2 class="section-title reveal">Полный спектр услуг<br>по обслуживанию бассейнов</h2>
             <div class="services-grid">
                 <a href="montazh.html" class="service-card reveal">
-                    <div class="service-img"><img src="service-montazh.jpg" alt="Монтаж бассейна" loading="lazy"></div>
+                    <div class="service-img"><img src="service-montazh.jpg" alt="Монтаж бассейна" loading="lazy" width="600" height="400"></div>
                     <div class="service-content">
                         <h3>Монтаж</h3>
                         <p>Установка и настройка оборудования и фильтрации</p>
                     </div>
                 </a>
                 <a href="obsluzhivanie.html" class="service-card reveal">
-                    <div class="service-img"><img src="service-obsluzhivanie.jpg" alt="Обслуживание бассейна" loading="lazy"></div>
+                    <div class="service-img"><img src="service-obsluzhivanie.jpg" alt="Обслуживание бассейна" loading="lazy" width="600" height="400"></div>
                     <div class="service-content">
                         <h3>Обслуживание</h3>
                         <p>Чистка, контроль качества воды, профилактика и уход</p>
                     </div>
                 </a>
                 <a href="remont.html" class="service-card reveal">
-                    <div class="service-img"><img src="service-remont.jpg" alt="Ремонт бассейна" loading="lazy"></div>
+                    <div class="service-img"><img src="service-remont.jpg" alt="Ремонт бассейна" loading="lazy" width="600" height="400"></div>
                     <div class="service-content">
                         <h3>Ремонт</h3>
                         <p>Диагностика и восстановление насосов, фильтров, систем</p>
                     </div>
                 </a>
                 <a href="rekonstrukciya.html" class="service-card reveal">
-                    <div class="service-img"><img src="service-rekonstrukciya.jpg" alt="Реконструкция бассейна" loading="lazy"></div>
+                    <div class="service-img"><img src="service-rekonstrukciya.jpg" alt="Реконструкция бассейна" loading="lazy" width="600" height="400"></div>
                     <div class="service-content">
                         <h3>Реконструкция</h3>
                         <p>Полное обновление чаши, инженерии и внешнего вида</p>
                     </div>
                 </a>
                 <a href="otdelka.html" class="service-card reveal">
-                    <div class="service-img"><img src="service-otdelka.jpg" alt="Отделка бассейна" loading="lazy"></div>
+                    <div class="service-img"><img src="service-otdelka.jpg" alt="Отделка бассейна" loading="lazy" width="600" height="400"></div>
                     <div class="service-content">
                         <h3>Отделка</h3>
                         <p>Мозаика, пленка, плитка — финишная отделка чаши</p>
                     </div>
                 </a>
                 <a href="season.html" class="service-card reveal">
-                    <div class="service-img"><img src="service-season.jpg" alt="Сезонные работы" loading="lazy"></div>
+                    <div class="service-img"><img src="service-season.jpg" alt="Сезонные работы" loading="lazy" width="600" height="400"></div>
                     <div class="service-content">
                         <h3>Сезонные работы</h3>
                         <p>Подготовка к сезону и консервация на зиму</p>
@@ -143,7 +143,6 @@
                                 <h4>Монтаж оборудования Ospa, Dinotec</h4>
                                 <p>Профессиональная установка и настройка премиум-оборудования.</p>
                                 <div class="brand-logos">
-                                    <!-- Убраны размеры width/height для корректного масштабирования через CSS -->
                                     <div class="brand-ospa"><img src="ospa-logo.png" alt="Ospa" loading="lazy"></div>
                                     <div class="brand-dinotec"><img src="dinotec.png" alt="Dinotec" loading="lazy"></div>
                                 </div>
@@ -257,12 +256,21 @@
                     <input type="hidden" name="from_name" value="ZPOOL SERVICE">
                     <input type="hidden" name="subject" value="Новая заявка с сайта ZPOOL SERVICE">
                     <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" aria-hidden="true">
-                    <input type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
-                    <input type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
-                    <label class="consent-label">
-                        <input type="checkbox" name="consent" value="yes" required>
-                        <span>Я согласен на обработку персональных данных согласно <button type="button" class="open-privacy open-privacy-link">Политике конфиденциальности</button></span>
-                    </label>
+
+                    <label for="request-name" class="sr-only">Ваше имя</label>
+                    <input id="request-name" type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
+
+                    <label for="request-phone" class="sr-only">Телефон</label>
+                    <input id="request-phone" type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
+
+                    <div class="consent-wrapper">
+                        <label class="consent-label">
+                            <input type="checkbox" name="consent" value="yes" required>
+                            <span>Я согласен на обработку персональных данных согласно</span>
+                        </label>
+                        <button type="button" class="open-privacy open-privacy-link">Политике конфиденциальности</button>
+                    </div>
+
                     <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить заявку</button>
                     <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
                 </form>
@@ -365,32 +373,41 @@
         <a href="https://wa.me/79384340333" class="mobile-bar-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
-    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true" aria-labelledby="callbackTitle">
         <div class="modal-content">
             <button class="close-modal close-callback" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
+            <h3 id="callbackTitle" style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
             <p style="text-align:center; font-size: 14px; margin-bottom: 25px;">Оставьте свои контакты, и мы перезвоним вам в течение 15 минут</p>
             <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="ВАШ_ACCESS_KEY_ЗДЕСЬ">
                 <input type="hidden" name="from_name" value="ZPOOL SERVICE">
                 <input type="hidden" name="subject" value="Новая заявка с сайта ZPOOL SERVICE (модалка)">
                 <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" aria-hidden="true">
-                <input type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
-                <input type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
-                <label class="consent-label">
-                    <input type="checkbox" name="consent" value="yes" required>
-                    <span>Я согласен на обработку персональных данных согласно <button type="button" class="open-privacy open-privacy-link">Политике конфиденциальности</button></span>
-                </label>
+
+                <label for="modal-name" class="sr-only">Ваше имя</label>
+                <input id="modal-name" type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
+
+                <label for="modal-phone" class="sr-only">Телефон</label>
+                <input id="modal-phone" type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
+
+                <div class="consent-wrapper">
+                    <label class="consent-label">
+                        <input type="checkbox" name="consent" value="yes" required>
+                        <span>Я согласен на обработку персональных данных согласно</span>
+                    </label>
+                    <button type="button" class="open-privacy open-privacy-link">Политике конфиденциальности</button>
+                </div>
+
                 <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить</button>
                 <div id="modalMessage" class="form-message" role="status" aria-live="polite"></div>
             </form>
         </div>
     </div>
 
-    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
         <div class="modal-content modal-large">
             <button class="close-modal close-privacy" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
+            <h3 id="privacyTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящая Политика конфиденциальности действует в отношении всей информации, которую сайт ZPOOL SERVICE может получить о Пользователе.</p>
                 <p><strong>2. Какие данные мы собираем</strong><br>Мы собираем только те данные, которые Пользователь предоставляет добровольно при заполнении формы: Имя и номер телефона.</p>
@@ -399,10 +416,10 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
         <div class="modal-content modal-large">
             <button class="close-modal close-terms" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
+            <h3 id="termsTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящее Соглашение регулирует отношения между владельцем сайта ZPOOL SERVICE и Пользователем при использовании сайта.</p>
                 <p><strong>2. Предмет соглашения</strong><br>Сайт предоставляет Пользователю доступ к информации об услугах. Оставляя заявку, Пользователь подтверждает согласие на обработку данных.</p>
