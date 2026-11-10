@@ -6,12 +6,14 @@
     <title>Сезонное обслуживание бассейна | ZPOOL SERVICE</title>
     <meta name="description" content="Весенний запуск и зимняя консервация бассейнов в Геленджике. Профессиональная подготовка оборудования к сезону.">
     <link rel="canonical" href="https://kb61988.github.io/home-gel.github.io/season.html">
+    <meta name="theme-color" content="#0a3877">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Сезонное обслуживание бассейна | ZPOOL SERVICE">
     <meta property="og:description" content="Весенний запуск и зимняя консервация бассейнов в Геленджике. Профессиональная подготовка оборудования к сезону.">
     <meta property="og:image" content="https://kb61988.github.io/home-gel.github.io/pool-seasonal-service-summer-winter.jpg">
     <meta property="og:url" content="https://kb61988.github.io/home-gel.github.io/season.html">
     <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="preload" as="image" href="pool-seasonal-service-summer-winter.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -186,32 +188,47 @@
         </div>
     </footer>
 
-    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true">
+    <a href="https://wa.me/79384340333" class="floating-whatsapp" aria-label="Написать в WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <div class="mobile-bottom-bar">
+        <a href="tel:+79384340333" class="mobile-bar-call"><i class="fas fa-phone-alt"></i> Позвонить</a>
+        <a href="https://wa.me/79384340333" class="mobile-bar-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true" aria-labelledby="callbackTitle">
         <div class="modal-content">
             <button class="close-modal close-callback" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
+            <h3 id="callbackTitle" style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
             <p style="text-align:center; font-size: 14px; margin-bottom: 25px;">Оставьте контакты, и мы перезвоним в течение 15 минут</p>
             <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="ВАШ_ACCESS_KEY_ЗДЕСЬ">
                 <input type="hidden" name="from_name" value="ZPOOL SERVICE">
                 <input type="hidden" name="subject" value="Новая заявка с сайта ZPOOL SERVICE (Сезонные работы)">
                 <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" aria-hidden="true">
-                <input type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
-                <input type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
-                <label class="consent-label">
-                    <input type="checkbox" name="consent" value="yes" required>
-                    <span>Я согласен на обработку персональных данных согласно <button type="button" class="open-privacy open-privacy-link">Политике</button></span>
-                </label>
+
+                <label for="modal-name" class="sr-only">Ваше имя</label>
+                <input id="modal-name" type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
+
+                <label for="modal-phone" class="sr-only">Телефон</label>
+                <input id="modal-phone" type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
+
+                <div class="consent-wrapper">
+                    <label class="consent-label">
+                        <input type="checkbox" name="consent" value="yes" required>
+                        <span>Я согласен на обработку персональных данных согласно</span>
+                    </label>
+                    <button type="button" class="open-privacy open-privacy-link">Политике конфиденциальности</button>
+                </div>
+
                 <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить</button>
                 <div id="modalMessage" class="form-message" role="status" aria-live="polite"></div>
             </form>
         </div>
     </div>
 
-    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
         <div class="modal-content modal-large">
             <button class="close-modal close-privacy" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
+            <h3 id="privacyTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящая Политика конфиденциальности действует в отношении всей информации, которую сайт ZPOOL SERVICE может получить о Пользователе.</p>
                 <p><strong>2. Какие данные мы собираем</strong><br>Мы собираем только те данные, которые Пользователь предоставляет добровольно при заполнении формы: Имя и номер телефона.</p>
@@ -220,10 +237,10 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
         <div class="modal-content modal-large">
             <button class="close-modal close-terms" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
+            <h3 id="termsTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящее Соглашение регулирует отношения между владельцем сайта ZPOOL SERVICE и Пользователем при использовании сайта.</p>
                 <p><strong>2. Предмет соглашения</strong><br>Сайт предоставляет Пользователю доступ к информации об услугах. Оставляя заявку, Пользователь подтверждает согласие на обработку данных.</p>
@@ -231,6 +248,7 @@
         </div>
     </div>
 
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
     <script src="script.js" defer></script>
 </body>
 </html>
