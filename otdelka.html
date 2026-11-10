@@ -12,6 +12,7 @@
     <meta property="og:image" content="https://kb61988.github.io/home-gel.github.io/otdelka-hero-bg.jpg">
     <meta property="og:url" content="https://kb61988.github.io/home-gel.github.io/otdelka.html">
     <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="preload" as="image" href="otdelka-hero-bg.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -64,19 +65,19 @@
                     <div class="materials-grid">
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="mosaic-tiles.jpg" alt="Стеклянная мозаика" loading="lazy">
+                                <img src="mosaic-tiles.jpg" alt="Стеклянная мозаика" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>Стеклянная мозаика</h4><p>Для премиального вида и сложных форм.</p></div>
                         </div>
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="keramogranit.jpg" alt="Керамогранит" loading="lazy">
+                                <img src="keramogranit.jpg" alt="Керамогранит" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>Керамогранит</h4><p>Прочное и долговечное покрытие.</p></div>
                         </div>
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="pvc-liner.jpg" alt="ПВХ-лайнер" loading="lazy">
+                                <img src="pvc-liner.jpg" alt="ПВХ-лайнер" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>ПВХ-лайнер</h4><p>Быстрое решение с гидроизоляцией.</p></div>
                         </div>
@@ -88,7 +89,7 @@
                         <h3>Подготовка основания и гидроизоляция</h3>
                         <p>Перед отделкой выполняем подготовку поверхности, гидроизоляцию и герметизацию всех технологических узлов.</p>
                         <div class="side-img">
-                            <img src="base-waterproofing.jpg" alt="Подготовка основания и гидроизоляция бассейна" loading="lazy">
+                            <img src="base-waterproofing.jpg" alt="Подготовка основания и гидроизоляция бассейна" loading="lazy" width="400" height="300">
                         </div>
                     </div>
                 </div>
@@ -105,25 +106,25 @@
                     <div class="materials-grid">
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="slategres.jpg" alt="Противоскользящий керамогранит" loading="lazy">
+                                <img src="slategres.jpg" alt="Противоскользящий керамогранит" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>Противоскользящий керамогранит</h4></div>
                         </div>
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="clinker.jpg" alt="Клинкерная плитка" loading="lazy">
+                                <img src="clinker.jpg" alt="Клинкерная плитка" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>Клинкерная плитка</h4></div>
                         </div>
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="natural-stone.jpg" alt="Натуральный камень" loading="lazy">
+                                <img src="natural-stone.jpg" alt="Натуральный камень" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>Натуральный камень</h4></div>
                         </div>
                         <div class="material-card">
                             <div class="material-img">
-                                <img src="decking.jpg" alt="Террасная доска и ДПК" loading="lazy">
+                                <img src="decking.jpg" alt="Террасная доска и ДПК" loading="lazy" width="400" height="300">
                             </div>
                             <div class="material-info"><h4>Террасная доска и ДПК</h4></div>
                         </div>
@@ -135,7 +136,7 @@
                         <h3>Безопасность и комфорт</h3>
                         <p>Особое внимание уделяем дренажу, безопасным бортам и защите от скольжения.</p>
                         <div class="side-img">
-                            <img src="safe-deck.jpg" alt="Безопасная зона вокруг бассейна" loading="lazy">
+                            <img src="safe-deck.jpg" alt="Безопасная зона вокруг бассейна" loading="lazy" width="400" height="300">
                         </div>
                     </div>
                 </div>
@@ -176,8 +177,15 @@
                         <img src="logo.png" alt="ZPOOL SERVICE" class="footer-logo-img" loading="lazy" width="160" height="65">
                     </a>
                 </div>
-                <div><ul class="contact-list"><li><i class="fas fa-map-marker-alt"></i><span>Геленджик, Краснодарский край</span></li><li><i class="fas fa-phone-alt"></i><a href="tel:+79384340333">8-938-434-0-333</a></li><li><i class="far fa-envelope"></i><a href="mailto:info@zpool-service.ru">info@zpool-service.ru</a></li></ul></div>
-                <div><h4>Мы в соцсетях</h4>
+                <div>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i><span>Геленджик, Краснодарский край</span></li>
+                        <li><i class="fas fa-phone-alt"></i><a href="tel:+79384340333">8-938-434-0-333</a></li>
+                        <li><i class="far fa-envelope"></i><a href="mailto:info@zpool-service.ru">info@zpool-service.ru</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Мы в соцсетях</h4>
                     <div class="socials">
                         <a href="ССЫЛКА_НА_ВК" class="s-vk" aria-label="ВКонтакте" target="_blank" rel="noopener"><i class="fab fa-vk"></i></a>
                         <a href="ССЫЛКА_НА_TELEGRAM" class="s-tg" aria-label="Telegram" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i></a>
@@ -185,7 +193,10 @@
                         <a href="ССЫЛКА_НА_MAX" class="s-max" aria-label="MAX" target="_blank" rel="noopener"></a>
                     </div>
                 </div>
-                <div><h4>Нужна консультация?</h4><button class="btn-primary open-modal-btn footer-btn" type="button">Оставить заявку</button></div>
+                <div>
+                    <h4>Нужна консультация?</h4>
+                    <button class="btn-primary open-modal-btn footer-btn" type="button">Оставить заявку</button>
+                </div>
             </div>
             <div class="footer-bottom">
                 <div>© 2024 ZPOOL-SERVICE. Все права защищены.</div>
@@ -197,32 +208,41 @@
         </div>
     </footer>
 
-    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true" aria-labelledby="callbackTitle">
         <div class="modal-content">
             <button class="close-modal close-callback" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
+            <h3 id="callbackTitle" style="text-align:center; margin-bottom: 15px; color: var(--c-dark); font-size: 24px;">Оставить заявку</h3>
             <p style="text-align:center; font-size: 14px; margin-bottom: 25px;">Оставьте контакты, и мы перезвоним в течение 15 минут</p>
             <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="ВАШ_ACCESS_KEY_ЗДЕСЬ">
                 <input type="hidden" name="from_name" value="ZPOOL SERVICE">
                 <input type="hidden" name="subject" value="Новая заявка с сайта ZPOOL SERVICE (Отделка)">
                 <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" aria-hidden="true">
-                <input type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
-                <input type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
-                <label class="consent-label">
-                    <input type="checkbox" name="consent" value="yes" required>
-                    <span>Я согласен на обработку персональных данных согласно <button type="button" class="open-privacy open-privacy-link">Политике</button></span>
-                </label>
+
+                <label for="modal-name" class="sr-only">Ваше имя</label>
+                <input id="modal-name" type="text" name="name" class="form-control" placeholder="Ваше имя" required autocomplete="name">
+
+                <label for="modal-phone" class="sr-only">Телефон</label>
+                <input id="modal-phone" type="tel" name="phone" class="form-control" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\-\(\)]{10,18}" title="Введите корректный номер телефона">
+
+                <div class="consent-wrapper">
+                    <label class="consent-label">
+                        <input type="checkbox" name="consent" value="yes" required>
+                        <span>Я согласен на обработку персональных данных согласно</span>
+                    </label>
+                    <button type="button" class="open-privacy open-privacy-link">Политике конфиденциальности</button>
+                </div>
+
                 <button type="submit" class="btn-primary" style="width: 100%; padding: 16px;">Отправить</button>
                 <div id="modalMessage" class="form-message" role="status" aria-live="polite"></div>
             </form>
         </div>
     </div>
 
-    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
         <div class="modal-content modal-large">
             <button class="close-modal close-privacy" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
+            <h3 id="privacyTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Политика конфиденциальности</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящая Политика конфиденциальности действует в отношении всей информации, которую сайт ZPOOL SERVICE может получить о Пользователе.</p>
                 <p><strong>2. Какие данные мы собираем</strong><br>Мы собираем только те данные, которые Пользователь предоставляет добровольно при заполнении формы: Имя и номер телефона.</p>
@@ -231,10 +251,10 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
         <div class="modal-content modal-large">
             <button class="close-modal close-terms" aria-label="Закрыть окно" type="button">&times;</button>
-            <h3 style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
+            <h3 id="termsTitle" style="text-align: left; margin-bottom: 15px; color: var(--c-dark); font-size: 22px;">Пользовательское соглашение</h3>
             <div class="legal-text">
                 <p><strong>1. Общие положения</strong><br>Настоящее Соглашение регулирует отношения между владельцем сайта ZPOOL SERVICE и Пользователем при использовании сайта.</p>
                 <p><strong>2. Предмет соглашения</strong><br>Сайт предоставляет Пользователю доступ к информации об услугах. Оставляя заявку, Пользователь подтверждает согласие на обработку данных.</p>
