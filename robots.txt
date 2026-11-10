@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kb61988.github.io/home-gel.github.io/sitemap.xml
