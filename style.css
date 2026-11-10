@@ -279,16 +279,15 @@ h3 { font-size: 20px; font-weight: 700; }
 .equip-item h4 { font-size: 17px; margin-bottom: 6px; }
 .equip-item p { font-size: 14px; }
 
-/* ИСПРАВЛЕННЫЙ БЛОК ДЛЯ ЛОГОТИПОВ */
 .brand-logos { 
     display: flex; 
-    gap: 30px; /* Увеличено расстояние между логотипами */
+    gap: 30px;
     margin-top: 20px; 
-    align-items: center; /* Выравнивание по центру по вертикали */
+    align-items: center;
 }
 .brand-logos img { 
-    height: 60px; /* Увеличена высота (было 35px) */
-    width: auto; /* Автоматическая ширина */
+    height: 60px;
+    width: auto;
     object-fit: contain; 
     display: block;
 }
@@ -346,7 +345,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .consent-label input { margin-top: 3px; }
 .form-message { margin-top: 15px; font-size: 14px; text-align: center; font-weight: 600; }
 
-/* Кнопка-ссылка «Политика» внутри чекбокса */
 .open-privacy-link {
     background: none;
     border: none;
@@ -391,7 +389,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .footer { background: var(--c-footer-bg); color: var(--c-white); padding: 60px 0 20px; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
 
-/* Логотип в футере */
 .footer-logo-link {
     display: inline-flex;
     align-items: center;
@@ -428,7 +425,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .footer-bottom-links a { cursor: pointer; }
 .footer-bottom-links a:hover { color: var(--c-white); }
 
-/* Кнопки «Политика/Соглашение» в футере */
 .footer-bottom-links button {
     background: none;
     border: none;
@@ -466,8 +462,6 @@ h3 { font-size: 20px; font-weight: 700; }
 /* =========================================
    17. ВНУТРЕННИЕ СТРАНИЦЫ (Услуги)
    ========================================= */
-
-/* Шаги монтажа (montazh.html) */
 .steps-section { padding: 80px 0; background: var(--c-bg-light); }
 .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 
@@ -489,7 +483,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .cta-photo-content p { margin-bottom: 20px; font-size: 15px; }
 .cta-list li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
 
-/* Что входит в обслуживание (obsluzhivanie.html) */
 .included-section { padding: 80px 0; }
 .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
@@ -551,7 +544,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .included-card ul li { position: relative; padding-left: 20px; }
 .included-card ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--c-cyan); font-size: 12px; top: 3px; }
 
-/* Почему важно (obsluzhivanie.html) */
 .why-important { padding: 80px 0; background: var(--c-white); }
 .why-layout { display: flex; gap: 40px; align-items: stretch; }
 .why-image-box { flex: 1; background: #0a3877 url('smart-pool-automation-technician.jpg') center/cover no-repeat; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; min-height: 400px; }
@@ -570,7 +562,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .compare-bad ul li i { color: var(--c-red); margin-top: 3px; }
 .compare-good ul li i { color: var(--c-green); margin-top: 3px; }
 
-/* Результат (общая для многих) */
 .result-section { padding: 60px 0; background: var(--c-bg-light); text-align: center; }
 .result-section-dark { padding: 60px 0; background: var(--c-dark); color: var(--c-white); text-align: center; }
 .result-title { font-size: 28px; color: var(--c-dark); margin-bottom: 40px; font-weight: 700; }
@@ -579,7 +570,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .result-item i { font-size: 36px; color: var(--c-cyan); margin-bottom: 15px; }
 .result-item p { font-size: 15px; font-weight: 500; }
 
-/* Отделка (otdelka.html) */
 .pool-finish, .area-finish { padding: 80px 0; }
 .area-finish { background: var(--c-bg-light); }
 .finish-layout { display: flex; gap: 40px; }
@@ -601,7 +591,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .side-img { height: 200px; border-radius: 10px; overflow: hidden; background-color: #e0e0e0; background-size: cover; background-position: center; }
 .side-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* Тёмная секция (otdelka.html) */
 .why-important-dark { background: var(--c-dark); color: var(--c-white); padding: 80px 0; text-align: center; }
 .why-important-dark h2 { font-size: 32px; margin-bottom: 20px; }
 .why-important-dark p { font-size: 16px; margin-bottom: 40px; opacity: 0.8; }
@@ -610,7 +599,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .why-icon { font-size: 36px; color: var(--c-cyan); margin-bottom: 15px; }
 .why-item span { font-size: 15px; font-weight: 500; }
 
-/* Реконструкция (rekonstrukciya.html) */
 .when-section, .stages-section { padding: 80px 0; }
 .when-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
 .when-card { background: var(--c-white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
@@ -647,7 +635,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .type-info h4 { font-size: 16px; color: var(--c-dark); margin-bottom: 5px; }
 .type-info p { font-size: 13px; }
 
-/* Ремонт (remont.html) */
 .systems-section { padding: 80px 0; }
 .systems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 .system-card { background: var(--c-white); border-radius: 15px; border: 1px solid var(--c-border); transition: var(--transition); overflow: hidden; display: flex; flex-direction: column; padding: 0; }
@@ -677,7 +664,6 @@ h3 { font-size: 20px; font-weight: 700; }
 .feature-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; font-size: 15px; }
 .feature-list li i { color: var(--c-cyan); margin-top: 3px; font-size: 18px; }
 
-/* Сезонные работы (season.html) */
 .season-cards-section { padding: 80px 0; }
 .season-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .season-card { background: var(--c-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--c-border); display: flex; flex-direction: column; }
@@ -711,7 +697,58 @@ h3 { font-size: 20px; font-weight: 700; }
 .ft-types .type-info p { color: rgba(255,255,255,0.7); }
 
 /* =========================================
-   18. АДАПТИВНОСТЬ
+   18. ДОПОЛНЕНИЯ: доступность и consent
+   ========================================= */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.consent-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--c-text);
+}
+
+.consent-wrapper .consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.consent-wrapper .consent-label input {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.consent-wrapper .open-privacy-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--c-cyan);
+    cursor: pointer;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.consent-wrapper .open-privacy-link:hover { color: #1289a8; }
+
+/* =========================================
+   19. АДАПТИВНОСТЬ
    ========================================= */
 @media (max-width: 1024px) {
     .equipment-inner, .cta-photo-inner, .why-layout, .finish-layout, .loc-types-inner, .features-inner, .ft-inner {
