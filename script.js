@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
        1. Анимация появления элементов (Reveal)
        ========================================== */
     const revealElements = document.querySelectorAll('.reveal');
-    
+
     if (revealElements.length > 0) {
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) { 
-                    entry.target.classList.add('active'); 
-                    observer.unobserve(entry.target); 
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-        
+
         revealElements.forEach(el => revealObserver.observe(el));
     }
 
@@ -24,33 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================== */
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.nav');
-    
+
     if (mobileMenuBtn && navMenu) {
-        
+
         const closeMobileMenu = () => {
             navMenu.classList.remove('active');
             mobileMenuBtn.setAttribute('aria-expanded', 'false');
             const icon = mobileMenuBtn.querySelector('i');
-            if (icon) { 
-                icon.classList.remove('fa-times'); 
-                icon.classList.add('fa-bars'); 
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         };
 
         mobileMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const willOpen = !navMenu.classList.contains('active');
-            
+
             navMenu.classList.toggle('active');
             mobileMenuBtn.setAttribute('aria-expanded', String(willOpen));
-            
+
             const icon = mobileMenuBtn.querySelector('i');
-            if (icon) { 
+            if (icon) {
                 if (willOpen) {
-                    icon.classList.remove('fa-bars'); 
+                    icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
                 } else {
-                    icon.classList.remove('fa-times'); 
+                    icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
             }
@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') && 
-                !mobileMenuBtn.contains(e.target) && 
+            if (navMenu.classList.contains('active') &&
+                !mobileMenuBtn.contains(e.target) &&
                 !navMenu.contains(e.target)) {
                 closeMobileMenu();
             }
@@ -87,22 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
         )).filter(el => el.offsetParent !== null);
     };
 
-    const openModal = (modal) => { 
+    const openModal = (modal) => {
         if (!modal) return;
         lastFocusedElement = document.activeElement;
-        modal.classList.add('active'); 
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
         setTimeout(() => {
-            const focusables = getFocusable(modal);
-            if (focusables.length) focusables[0].focus();
+            const firstInput = modal.querySelector(
+                'input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]), textarea, select'
+            );
+            const target = firstInput
+                || modal.querySelector('.close-modal')
+                || getFocusable(modal)[0];
+            if (target) target.focus();
         }, 80);
     };
-    
-    const closeModal = (modal) => { 
+
+    const closeModal = (modal) => {
         if (!modal) return;
-        modal.classList.remove('active'); 
+        modal.classList.remove('active');
         if (!document.querySelector('.modal-overlay.active')) {
-            document.body.style.overflow = ''; 
+            document.body.style.overflow = '';
         }
         if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
             lastFocusedElement.focus();
@@ -110,24 +115,24 @@ document.addEventListener('DOMContentLoaded', () => {
         lastFocusedElement = null;
     };
 
-    document.querySelectorAll('.open-modal-btn').forEach(btn => 
+    document.querySelectorAll('.open-modal-btn').forEach(btn =>
         btn.addEventListener('click', () => openModal(modals.callback))
     );
-    document.querySelectorAll('.open-privacy').forEach(btn => 
+    document.querySelectorAll('.open-privacy').forEach(btn =>
         btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openModal(modals.privacy); })
     );
-    document.querySelectorAll('.open-terms').forEach(btn => 
+    document.querySelectorAll('.open-terms').forEach(btn =>
         btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openModal(modals.terms); })
     );
-    
+
     if (document.querySelector('.close-callback')) document.querySelector('.close-callback').addEventListener('click', () => closeModal(modals.callback));
     if (document.querySelector('.close-privacy')) document.querySelector('.close-privacy').addEventListener('click', () => closeModal(modals.privacy));
     if (document.querySelector('.close-terms')) document.querySelector('.close-terms').addEventListener('click', () => closeModal(modals.terms));
 
     Object.values(modals).forEach(modal => {
         if (modal) {
-            modal.addEventListener('click', (e) => { 
-                if (e.target === modal) closeModal(modal); 
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(modal);
             });
         }
     });
@@ -156,15 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
        4. FAQ (Аккордеон)
        ========================================== */
     const faqItems = document.querySelectorAll('.faq-item');
-    
+
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
         if (!question || !answer) return;
-        
+
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
+
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('active');
                 const otherAnswer = otherItem.querySelector('.faq-answer');
@@ -172,14 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const otherQuestion = otherItem.querySelector('.faq-question');
                 if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
             });
-            
+
             if (!isActive) {
                 item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + "px";
+                answer.style.maxHeight = '0';
+                void answer.offsetHeight;
+                answer.style.maxHeight = answer.scrollHeight + 'px';
                 question.setAttribute('aria-expanded', 'true');
-                setTimeout(() => {
-                    if (item.classList.contains('active')) answer.style.maxHeight = 'none';
-                }, 350);
             }
         });
     });
@@ -192,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMapBtn.addEventListener('click', function () {
             const frame = document.getElementById('mapFrame');
             const placeholder = document.getElementById('mapPlaceholder');
-            
+
             if (frame && placeholder) {
                 frame.src = 'https://yandex.ru/map-widget/v1/?ll=38.076389%2C44.562222&z=12';
                 frame.style.display = 'block';
@@ -207,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleFormSubmit(formId, messageId, isModal = false) {
         const form = document.getElementById(formId);
         if (!form) return;
-        
+
         const msgDiv = messageId ? document.getElementById(messageId) : null;
 
         const accessKeyInput = form.querySelector('input[name="access_key"]');
@@ -216,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             if (keyMissing) {
                 if (msgDiv) {
                     msgDiv.style.color = 'var(--c-red)';
@@ -224,18 +228,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return;
             }
-            
+
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
-            
+
             submitBtn.innerText = 'Отправка...';
             submitBtn.disabled = true;
             if (msgDiv) msgDiv.innerText = '';
 
-            fetch('https://api.web3forms.com/submit', { 
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: { 'Accept': 'application/json' },
-                body: new FormData(form) 
+                body: new FormData(form)
             })
             .then(response => {
                 if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -243,32 +247,32 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 if (data.success) {
-                    if (msgDiv) { 
-                        msgDiv.style.color = 'var(--c-green)'; 
-                        msgDiv.innerText = 'Спасибо! Заявка успешно отправлена.'; 
+                    if (msgDiv) {
+                        msgDiv.style.color = 'var(--c-green)';
+                        msgDiv.innerText = 'Спасибо! Заявка успешно отправлена.';
                     }
                     form.reset();
-                    
+
                     if (isModal && modals.callback) {
                         setTimeout(() => closeModal(modals.callback), 2500);
                     }
                 } else {
-                    if (msgDiv) { 
-                        msgDiv.style.color = 'var(--c-red)'; 
-                        msgDiv.innerText = 'Ошибка. Пожалуйста, позвоните нам: 8-938-434-0-333.'; 
+                    if (msgDiv) {
+                        msgDiv.style.color = 'var(--c-red)';
+                        msgDiv.innerText = 'Ошибка. Пожалуйста, позвоните нам: 8-938-434-0-333.';
                     }
                 }
             })
             .catch((err) => {
                 console.error('Form submit error:', err);
-                if (msgDiv) { 
-                    msgDiv.style.color = 'var(--c-red)'; 
-                    msgDiv.innerText = 'Ошибка сети. Пожалуйста, позвоните нам: 8-938-434-0-333.'; 
+                if (msgDiv) {
+                    msgDiv.style.color = 'var(--c-red)';
+                    msgDiv.innerText = 'Ошибка сети. Пожалуйста, позвоните нам: 8-938-434-0-333.';
                 }
             })
-            .finally(() => { 
-                submitBtn.innerText = originalText; 
-                submitBtn.disabled = false; 
+            .finally(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
             });
         });
     }
